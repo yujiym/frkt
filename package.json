@@ -1,0 +1,22 @@
+{
+  "name": "frkt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dashboard": "pnpm --filter dashboard",
+    "common": "pnpm --filter common",
+    "contracts": "pnpm --filter contracts",
+    "www": "pnpm --filter www",
+    "lint": "eslint .",
+    "format": "rettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3"
+  }
+}
