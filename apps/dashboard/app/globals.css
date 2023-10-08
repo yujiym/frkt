@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&family=Work+Sans:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  body > div,
+  main {
+    @apply h-full;
+  }
+  body {
+    @apply min-h-screen relative overflow-x-hidden antialiased font-sans;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply border-2 border-black bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50;
+  }
+}
