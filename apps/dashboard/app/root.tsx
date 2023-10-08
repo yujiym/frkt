@@ -1,6 +1,6 @@
 import stylesheet from './globals.css'
+import type { LinksFunction, MetaFunction } from '@remix-run/cloudflare'
 import { cssBundleHref } from '@remix-run/css-bundle'
-import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -9,7 +9,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
-import logoUrl from 'common/assets/img/logo-sq.svg'
+import logoUrl from '@@/common/assets/img/logo-sq.svg'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
