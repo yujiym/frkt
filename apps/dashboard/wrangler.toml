@@ -1,4 +1,5 @@
 name = "frkt-dashboard"
+main= = "build/index.js"
 
 workers_dev = true
 main = "./build/index.js"
