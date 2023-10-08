@@ -5,5 +5,9 @@ export default {
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",
-  rootPath: '../../',
+  watchPaths: [
+    '../../packages/common/components/**/*',
+    '../../packages/common/hooks/**/*',
+    '../../packages/common/lib/**/*',
+  ],
 }
