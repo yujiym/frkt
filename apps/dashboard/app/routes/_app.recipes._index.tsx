@@ -30,11 +30,8 @@ export default function Recipes() {
             </button>
           </a>
         </div>
-        <div
-          className="card bg-white"
-          onClick={() => toast.error('ok gooooooood', { icon: '😔' })}
-        >
-          <a className="flex flex-col h-full">
+        <div className="card bg-white">
+          <a className="flex flex-col h-full" href="/recipes/nft">
             <div className="text-5xl pt-12 px-4 border-b border-black flex items-center justify-center bg-blue-100 flex-1">
               <div className="text-center">
                 🖼️

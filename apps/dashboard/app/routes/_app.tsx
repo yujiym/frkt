@@ -13,6 +13,7 @@ export const loader: LoaderFunction = async ({
     failureRedirect: '/login',
   })
 }
+
 export default function AppLayout() {
   return (
     <WagmiWrapper>

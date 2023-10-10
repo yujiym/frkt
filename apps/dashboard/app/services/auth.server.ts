@@ -31,7 +31,6 @@ export function getAuthenticator(
 ): Authenticator<AuthUser> {
   if (_authenticator == null) {
     const env = context.env as Env
-    console.log('env::::', env)
     const cookie = createCookie('__session', {
       secrets: [env.SESSION_SECRET],
       path: '/',
