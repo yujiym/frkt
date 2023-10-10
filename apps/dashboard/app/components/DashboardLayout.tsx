@@ -79,7 +79,7 @@ const Menu = () => {
     >
       <h1
         className={cn(
-          'text-foreground font-bold flex items-center justify-center border-b border-slate-500 h-16',
+          'text-white font-bold flex items-center justify-center border-b border-slate-500 h-16',
           sidebar.isFull ? 'px-4' : 'px-1'
         )}
       >
@@ -98,7 +98,7 @@ const Menu = () => {
           <ChevronRight
             strokeWidth={4}
             className={cn(
-              'h-4 w-4 transition-all duration-300 text-foreground transform',
+              'h-4 w-4 transition-all duration-300 text-white transform',
               sidebar.isFull ? '' : 'rotate-180'
             )}
           />
@@ -117,7 +117,7 @@ const Menu = () => {
       <ul className="absolute bottom-0 right-0 left-0">
         <li
           className={cn(
-            'h-16 px-6 text-foreground relative flex items-center hover:bg-gray-800 border-slate-500 border-t',
+            'h-16 px-6 text-white relative flex items-center hover:bg-gray-800 border-slate-500 border-t',
             sidebar.isFull ? 'justify-start' : 'sm:justify-center'
           )}
         >
@@ -128,7 +128,7 @@ const Menu = () => {
         </li>
         <li
           className={cn(
-            'h-16 text-foreground relativehover:bg-gray-800 border-slate-500 border-t',
+            'h-16 text-white relativehover:bg-gray-800 border-slate-500 border-t',
             sidebar.isFull ? 'justify-start' : 'sm:justify-center'
           )}
         >
@@ -167,7 +167,7 @@ const MenuItem = ({
       <a
         href={href}
         className={cn(
-          'h-16 px-6 text-foreground relative flex items-center hover:bg-gray-800 border-slate-500',
+          'h-16 px-6 text-white relative flex items-center hover:bg-gray-800 border-slate-500',
           sidebar.isFull ? 'justify-start' : 'sm:justify-center',
           pathname === href && 'font-bold',
           position === 'top' ? 'border-b' : 'border-t'
