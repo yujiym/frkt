@@ -1,3 +1,5 @@
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { InjectedConnector } from 'wagmi/connectors/injected'
 import { SITE_TITLE, SITE_DESCRIPTION } from '@@/lib/const'
 import type { MetaFunction } from '@remix-run/cloudflare'
 
@@ -9,6 +11,12 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
+  const { address, isConnected } = useAccount()
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  })
+  const { disconnect } = useDisconnect()
+
   return (
     <>
       <div className="px-4 pt-16 pb-16 flex items-center justify-center bg-yellow-100">
@@ -19,9 +27,14 @@ export default function Index() {
       </div>
       <div className="mx-auto max-w-2xl py-12 px-6">
         <div>
-          <button className="btn-outline w-full py-5 px-8">
+          <button
+            className="btn-outline w-full py-5 px-8"
+            onClick={() => connect()}
+          >
             <span className="font-bold text-xl uppercase mr-4">1.</span>
-            <span className="text-xl">Connect wallet</span>
+            <span className="text-xl">
+              {isConnected ? `Connected as ${address}` : 'Connect wallet'}
+            </span>
           </button>
         </div>
         <div className="text-center my-4 text-xl">&#9661;</div>
