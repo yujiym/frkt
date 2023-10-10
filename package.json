@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "www": "pnpm --filter www",
     "dashboard": "pnpm --filter dashboard",
+    "widget": "pnpm --filter widget",
+    "demo": "pnpm --filter demo",
     "common": "pnpm --filter common",
     "contracts": "pnpm --filter contracts",
-    "www": "pnpm --filter www",
     "lint": "eslint .",
     "format": "rettier --write ."
   },
@@ -18,5 +20,10 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "pnpm": "8.9.0",
+    "npm": "please_use_pnpm_instead"
   }
 }

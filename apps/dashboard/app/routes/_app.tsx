@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLocation } from '@remix-run/react'
+import { useLocation, Form } from '@remix-run/react'
 import {
   X,
   Home,
@@ -8,22 +8,39 @@ import {
   BookCopy,
   UserCircle,
 } from 'lucide-react'
-import { cn } from '@@/common/lib'
-import Logo from '@@/common/assets/img/logo-white.svg'
-import LogoSq from '@@/common/assets/img/logo-sq.svg'
-import LogoSqW from '@@/common/assets/img/logo-sq-white.svg'
+import { cn } from '@@/lib'
+import Logo from '@@/assets/img/logo-white.svg'
+import LogoSq from '@@/assets/img/logo-sq.svg'
+import LogoSqW from '@@/assets/img/logo-sq-white.svg'
+import { Outlet } from '@remix-run/react'
+import type { LoaderFunction, LoaderFunctionArgs } from '@remix-run/cloudflare'
+import { getAuthenticator } from '~/services/auth.server'
+
+export const loader: LoaderFunction = async ({
+  request,
+  context,
+}: LoaderFunctionArgs) => {
+  const authenticator = getAuthenticator(context)
+  return await authenticator.isAuthenticated(request, {
+    failureRedirect: '/login',
+  })
+}
+
+export default function AppLayout() {
+  return (
+    <AdminLayout>
+      <Outlet />
+    </AdminLayout>
+  )
+}
 
 const MENU_ITEMS = [
   { name: 'Dashboard', href: '/', icon: <Home /> },
-  { name: 'Apps', href: '/apps', icon: <LayoutPanelLeft /> },
+  { name: 'My Apps', href: '/apps', icon: <LayoutPanelLeft /> },
   { name: 'Recipes', href: '/recipes', icon: <BookCopy /> },
 ]
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+function AdminLayout({ children }: { children: React.ReactNode }) {
   const [navOpen, setNavOpen] = useState<boolean>(false)
   const [sideBarFull, setSideBarFull] = useState<boolean>(true)
 
@@ -34,20 +51,20 @@ export default function AdminLayout({
         sideBarFull={sideBarFull}
         setSideBarFull={setSideBarFull}
       />
+      <nav
+        className={cn(
+          'fixed bg-foreground/60 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-primary z-40 flex sm:hidden items-center justify-between'
+        )}
+      >
+        <img className="block md:hidden" src={LogoSq} width={54} alt="FRKT" />
+        <HeaderButton navOpen={navOpen} setNavOpen={setNavOpen} />
+      </nav>
       <main
         className={cn(
-          'mt-16 fixed top-0 right-0 bottom-0 left-0 ml-0',
+          'mt-16 sm:mt-0 fixed top-0 right-0 bottom-0 left-0 ml-0 overflow-y-scroll',
           sideBarFull ? 'md:ml-64' : 'md:ml-20'
         )}
       >
-        <nav
-          className={cn(
-            'fixed bg-foreground top-0 right-0 left-0 h-16 border-b border-primary z-40 flex items-center justify-between'
-          )}
-        >
-          <img className="block md:hidden" src={LogoSq} width={54} alt="FRKT" />
-          <HeaderButton navOpen={navOpen} setNavOpen={setNavOpen} />
-        </nav>
         {children}
       </main>
     </>

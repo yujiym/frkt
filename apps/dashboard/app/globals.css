@@ -12,16 +12,20 @@
     @apply h-full;
   }
   body {
-    @apply min-h-screen relative overflow-x-hidden antialiased font-sans;
+    @apply min-h-screen relative overflow-x-hidden antialiased font-sans bg-foreground;
   }
 }
 
 @layer components {
   .btn {
-    @apply border-2 border-black bg-black flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 text-white hover:text-black;
+    @apply border-2 border-black bg-black flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 text-white hover:text-black disabled:bg-gray-400 disabled:cursor-not-allowed;
   }
 
   .btn-outline {
-    @apply border-2 border-black bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50;
+    @apply border-2 border-black bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 disabled:bg-slate-200 disabled:cursor-not-allowed;
+  }
+
+  .card {
+    @apply border border-primary bg-white rounded-md hover:shadow-solid shadow-none;
   }
 }

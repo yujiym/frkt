@@ -1,11 +1,27 @@
-import { SITE_TITLE } from '@@/common/lib/const'
-import Logo from '@@/common/assets/img/logo.svg'
-import { GoogleIcon, GithubIcon } from '@@/common/components/Icons'
+import { Form } from '@remix-run/react'
+import type {
+  MetaFunction,
+  LoaderFunction,
+  LoaderFunctionArgs,
+} from '@remix-run/cloudflare'
 import { KeySquare } from 'lucide-react'
-import type { MetaFunction } from '@remix-run/node'
+import { SITE_TITLE } from '@@/lib/const'
+import Logo from '@@/assets/img/logo.svg'
+import { GoogleIcon, GithubIcon } from '@@/components/Icons'
+import { getAuthenticator } from '~/services/auth.server'
 
 export const meta: MetaFunction = () => {
   return [{ title: `Login | ${SITE_TITLE} Dashboard` }]
+}
+
+export const loader: LoaderFunction = async ({
+  request,
+  context,
+}: LoaderFunctionArgs) => {
+  const authenticator = getAuthenticator(context)
+  return await authenticator.isAuthenticated(request, {
+    successRedirect: '/',
+  })
 }
 
 export default function Index() {
@@ -32,18 +48,22 @@ export default function Index() {
             <KeySquare className="mr-3" size={32} strokeWidth={2.5} />
             Login
           </h2>
-          <button className="btn-outline h-16 w-full mb-6">
-            <span className="w-6 h-6 fill-gray-800 mr-5">
-              <GoogleIcon />
-            </span>
-            Signin with Google
-          </button>
-          <button className="btn-outline h-16 w-full mb-6">
-            <span className="w-6 h-6 fill-gray-800 mr-5">
-              <GithubIcon />
-            </span>
-            Signin with GitHub
-          </button>
+          <Form method="post" action="/auth/github">
+            <button className="btn-outline h-16 w-full mb-6">
+              <span className="w-6 h-6 fill-gray-800 mr-5">
+                <GithubIcon />
+              </span>
+              Signin with GitHub
+            </button>
+          </Form>
+          <Form method="post" action="/auth/google">
+            <button disabled className="btn-outline h-16 w-full mb-6">
+              <span className="w-6 h-6 fill-gray-800 mr-5">
+                <GoogleIcon />
+              </span>
+              Signin with Google
+            </button>
+          </Form>
         </div>
       </div>
     </div>

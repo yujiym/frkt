@@ -9,7 +9,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
-import logoUrl from '@@/common/assets/img/logo-sq.svg'
+import Toaster from '@@/components/Toaster'
+import logoUrl from '@@/assets/img/logo-sq.svg'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -36,6 +37,7 @@ export default function App() {
       <body>
         <Outlet />
         <ScrollRestoration />
+        <Toaster />
         <Scripts />
         <LiveReload />
       </body>

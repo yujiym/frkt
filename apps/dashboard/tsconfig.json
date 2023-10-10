@@ -1,5 +1,10 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "remix.env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../packages/common/components/Toaster.tsx"
+  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,
@@ -14,7 +19,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"],
-      "@@/*": ["./../../packages/*"]
+      "@/*": ["./../../packages/*"],
+      "@@/*": ["./../../packages/common/*"]
     },
 
     // Remix takes care of building everything in `remix build`.

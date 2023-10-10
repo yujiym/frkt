@@ -1,5 +1,4 @@
 name = "frkt-dashboard"
-main= = "build/index.js"
 
 workers_dev = true
 main = "./build/index.js"
@@ -11,3 +10,14 @@ compatibility_date = "2023-04-20"
 
 [build]
   command = "npm run build"
+
+[[kv_namespaces]]
+binding = "SESSION_KV"
+id = "26b937b9dffe47cb9bdf443a800cabd6"
+preview_id = "f2f75a91b5fe4b78a24e017300365581"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "frkt-db"
+database_id = "12f1bb56-8dee-4767-9b6f-30b8d26cabd1"
+migrations_dir = "db/migrations"

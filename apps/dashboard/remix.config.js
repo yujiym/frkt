@@ -4,6 +4,10 @@ export default {
   server: './server.ts',
   serverConditions: ['workerd', 'worker', 'browser'],
   serverDependenciesToBundle: [
+    'lucia',
+    'lucia/middleware',
+    'lucia/polyfill/node',
+    '@lucia-auth/adapter-sqlite',
     // bundle everything except the virtual module for the static content manifest provided by wrangler
     /^(?!.*\b__STATIC_CONTENT_MANIFEST\b).*$/,
   ],
