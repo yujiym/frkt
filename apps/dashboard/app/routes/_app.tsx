@@ -28,9 +28,9 @@ export const loader: LoaderFunction = async ({
 
 export default function AppLayout() {
   return (
-    <AdminLayout>
+    <DashboardLayout>
       <Outlet />
-    </AdminLayout>
+    </DashboardLayout>
   )
 }
 
@@ -40,7 +40,7 @@ const MENU_ITEMS = [
   { name: 'Recipes', href: '/recipes', icon: <BookCopy /> },
 ]
 
-function AdminLayout({ children }: { children: React.ReactNode }) {
+function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [navOpen, setNavOpen] = useState<boolean>(false)
   const [sideBarFull, setSideBarFull] = useState<boolean>(true)
 
