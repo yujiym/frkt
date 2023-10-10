@@ -8,7 +8,7 @@ import {
   UserCircle,
   LogOut,
 } from 'lucide-react'
-import { cn } from '@@/lib'
+import { cn } from '@/common/lib/utils'
 import Logo from '@@/assets/img/logo-white.svg'
 import LogoSq from '@@/assets/img/logo-sq.svg'
 import LogoSqW from '@@/assets/img/logo-sq-white.svg'
@@ -48,7 +48,7 @@ export default function DashboardLayout({
       <Menu />
       <nav
         className={cn(
-          'fixed bg-foreground/60 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-primary z-40 flex sm:hidden items-center justify-between'
+          'fixed bg-background/60 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-primary z-40 flex sm:hidden items-center justify-between'
         )}
       >
         <img className="block md:hidden" src={LogoSq} width={54} alt="FRKT" />
@@ -103,6 +103,7 @@ const Menu = () => {
             )}
           />
         </button>
+
         {MENU_ITEMS.map((item) => (
           <MenuItem
             key={item.name.toLowerCase()}

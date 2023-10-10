@@ -2,6 +2,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import type { Config } from 'tailwindcss'
 
 export default {
+  darkMode: ['class'],
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './../../packages/common/components/**/*.{js,ts,jsx,tsx}',
@@ -51,12 +52,12 @@ export default {
       },
       keyframes: {
         'accordion-down': {
-          from: { height: 0 },
+          from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
+          to: { height: '0' },
         },
       },
       animation: {

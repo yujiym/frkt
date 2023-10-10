@@ -19,7 +19,6 @@
     "@remix-run/cloudflare": "^2.0.1",
     "@remix-run/css-bundle": "^2.0.1",
     "@remix-run/react": "^2.0.1",
-    "class-variance-authority": "^0.7.0",
     "common": "workspace:*",
     "isbot": "^3.6.8",
     "jotai": "^2.4.3",
@@ -30,7 +29,6 @@
     "remix-auth": "^3.6.0",
     "remix-auth-github": "^1.6.0",
     "remix-auth-google": "^1.2.0",
-    "tailwindcss-animate": "^1.0.7",
     "viem": "^1.16.2",
     "wagmi": "^1.4.3"
   },
@@ -48,6 +46,7 @@
     "drizzle-orm": "^0.28.6",
     "eslint": "^8.38.0",
     "postcss": "^8.4.31",
+    "tailwindcss-animate": "^1.0.7",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6",

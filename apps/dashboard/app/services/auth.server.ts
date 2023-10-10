@@ -9,7 +9,7 @@ import { GitHubStrategy } from 'remix-auth-github'
 import { users } from 'db/schema'
 import { InferInsertModel, eq } from 'drizzle-orm'
 import { createClient } from '~/services/db.server'
-import { getAuthCallbackURL } from '@@/lib'
+import { getAuthCallbackURL } from '@/common/lib/utils'
 
 export type AuthUser = {
   id: number
