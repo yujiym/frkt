@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@@/components/ui/tooltip'
+import { HOST } from '@@/lib/const'
 
 export const meta: MetaFunction = () => {
   return [{ title: `Login | ${SITE_TITLE} Dashboard` }]
@@ -33,21 +34,22 @@ export const loader: LoaderFunction = async ({
 export default function Index() {
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <div className="flex flex-1 bg-slate-700 text-background">
-        <div className="flex flex-col items-center justify-center md:items-start md:justify-between py-6 px-10 w-full">
-          <div className="">
-            <div className="w-32">
-              <Logo width={200} />
-            </div>
+      <div className="flex flex-1 bg-zinc-800 text-background">
+        <div className="flex flex-col justify-center md:items-start md:justify-between py-6 px-10 w-full">
+          <div>
+            <Logo width={200} />
             <h1 className="text-3xl font-bold mb-8">
               No-code tools for web2
               <span className="mx-0.5 text-2xl">&amp;</span>3
             </h1>
           </div>
-          <div className="flex-start">
+          <div>
             This is an alpha version.
             <br />
-            Pre-registration is available from <a className="underline">here</a>
+            Pre-registration is available from{' '}
+            <a className="underline" href={`${HOST}#presignup`}>
+              here
+            </a>
             .
           </div>
         </div>

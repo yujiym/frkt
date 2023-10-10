@@ -14,6 +14,7 @@ import LogoSq from '@@/assets/img/logo-sq.svg'
 import LogoSqW from '@@/assets/img/logo-sq-white.svg'
 import { sidebarAtom } from '~/atoms'
 import { useAtom, useAtomValue } from 'jotai'
+import { Dialog, DialogContent, DialogTrigger } from '@@/components/ui/dialog'
 
 const MENU_ITEMS = [
   {
@@ -48,7 +49,7 @@ export default function DashboardLayout({
       <Menu />
       <nav
         className={cn(
-          'fixed bg-background/60 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-primary z-40 flex sm:hidden items-center justify-between'
+          'fixed bg-background/80 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-primary z-40 flex sm:hidden items-center justify-between'
         )}
       >
         <img className="block md:hidden" src={LogoSq} width={54} alt="FRKT" />
@@ -72,14 +73,14 @@ const Menu = () => {
   return (
     <div
       className={cn(
-        'h-screen bg-primary transition-all duration-300 fixed sm:relative z-50',
+        'h-screen bg-zinc-800 transition-all duration-300 fixed sm:relative z-50',
         sidebar.isFull ? 'w-64' : 'w-64 sm:w-20',
         sidebar.navOpen ? 'top-0 left-0' : 'top-0 -left-64 sm:left-0'
       )}
     >
       <h1
         className={cn(
-          'text-white font-bold flex items-center justify-center border-b border-slate-500 h-16',
+          'text-white font-bold flex items-center justify-center border-b border-zinc-600 h-16',
           sidebar.isFull ? 'px-4' : 'px-1'
         )}
       >
@@ -93,7 +94,7 @@ const Menu = () => {
       <ul>
         <button
           onClick={() => setSideBar({ ...sidebar, isFull: !sidebar.isFull })}
-          className="hidden sm:block focus:outline-none absolute p-1 -right-3 top-5 bg-primary rounded-full shadow-xl"
+          className="hidden sm:block focus:outline-none absolute p-1 -right-3 top-5 bg-zinc-800 rounded-full shadow-xl"
         >
           <ChevronRight
             strokeWidth={4}
@@ -103,7 +104,6 @@ const Menu = () => {
             )}
           />
         </button>
-
         {MENU_ITEMS.map((item) => (
           <MenuItem
             key={item.name.toLowerCase()}
@@ -117,29 +117,11 @@ const Menu = () => {
       <ul className="absolute bottom-0 right-0 left-0">
         <li
           className={cn(
-            'h-16 px-6 text-white relative flex items-center hover:bg-gray-800 border-slate-500 border-t',
+            'h-16 px-6 text-white relative hover:bg-zinc-600 border-zinc-600 border-t',
             sidebar.isFull ? 'justify-start' : 'sm:justify-center'
           )}
         >
-          <UserCircle />
-          <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
-            Profile
-          </span>
-        </li>
-        <li
-          className={cn(
-            'h-16 text-white relativehover:bg-gray-800 border-slate-500 border-t',
-            sidebar.isFull ? 'justify-start' : 'sm:justify-center'
-          )}
-        >
-          <Form method="post" action="/auth/logout" className="h-full w-full">
-            <button className="px-6 flex items-center h-full w-full">
-              <LogOut />
-              <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
-                LogOut
-              </span>
-            </button>
-          </Form>
+          <UserProfile />
         </li>
       </ul>
     </div>
@@ -167,7 +149,7 @@ const MenuItem = ({
       <a
         href={href}
         className={cn(
-          'h-16 px-6 text-white relative flex items-center hover:bg-gray-800 border-slate-500',
+          'h-16 px-6 text-white relative flex items-center hover:bg-zinc-600 border-zinc-600',
           sidebar.isFull ? 'justify-start' : 'sm:justify-center',
           pathname === href && 'font-bold',
           position === 'top' ? 'border-b' : 'border-t'
@@ -208,5 +190,30 @@ const HeaderButton = () => {
         <X className={`h-6 w-6 ${sidebar.navOpen ? '' : 'hidden'}`} />
       </button>
     </>
+  )
+}
+
+const UserProfile = () => {
+  const sidebar = useAtomValue(sidebarAtom)
+  return (
+    <Dialog>
+      <DialogTrigger className="w-full h-full flex items-center">
+        <UserCircle />
+        <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
+          Profile
+        </span>
+      </DialogTrigger>
+      <DialogContent>
+        <div className="bg-gray-100 h-64"></div>
+        <Form method="post" action="/auth/logout" className="px-8">
+          <button className="btn flex items-center w-full py-2 justify-center">
+            <LogOut />
+            <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
+              LogOut
+            </span>
+          </button>
+        </Form>
+      </DialogContent>
+    </Dialog>
   )
 }

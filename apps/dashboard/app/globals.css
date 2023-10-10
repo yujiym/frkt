@@ -6,12 +6,12 @@
 
 @layer base {
   :root {
-    --background: 0 0% 97%;
-    --foreground: 60 29% 95%;
+    --background: 83 4% 95%;
+    --foreground: 0 0% 13.5%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 13%;
+    --popover-foreground: 0 0% 13.5%;
     --primary: 0 0% 13%;
     --primary-foreground: 0 0% 97%;
     --secondary: 240 4.8% 95.9%;
@@ -62,11 +62,11 @@
 
 @layer components {
   .btn {
-    @apply border-2 border-black bg-black flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 text-white hover:text-black disabled:bg-gray-400 disabled:cursor-not-allowed;
+    @apply border-2 border-black bg-black flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 text-white hover:text-black disabled:bg-slate-200 disabled:cursor-not-allowed;
   }
 
   .btn-outline {
-    @apply border-2 border-black bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 disabled:bg-slate-200 disabled:cursor-not-allowed;
+    @apply border-2 border-black bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 disabled:bg-stone-200 disabled:cursor-not-allowed;
   }
 
   .card {

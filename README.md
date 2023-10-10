@@ -1,20 +1,20 @@
-# FRKT.io
+# FRKT
 
-No-Code tools for web3.
+No-code tool for web2 & 3.<br />
+FRKT(/furɪkt/) provides a frictionless UX for any apps.<br />
+<br />
+Build for [ETHOnline 2023](https://ethglobal.com/events/ethonline2023).
 
-FRKT(/furɪkt/) provides a frictionless UX for any apps
-
-This repo created for EthGLOBAL Online hackathon.
-
-### Folders
+### This repo structure
 
 ```
- - apps
-    - contracts: Contracts for FRKT
-    - dashboard: Dashboard App
-    - demo: Demo app
-    - widget: Widget
-    - www: Landing page
-  - packages
-    - common: Common libs
+├── apps
+│   ├── contracts   -> Smart contracts
+│   ├── dashboard   -> Dashboard frontend  # Remix, react.js
+│   ├── demo        -> Demo app frontend
+│   ├── widget      -> Widget
+│   └── www         -> Landing page (frkt.io)
+├── packages
+│   └── common      -> Common libs
+...
 ```

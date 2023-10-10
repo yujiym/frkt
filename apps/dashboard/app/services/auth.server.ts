@@ -61,7 +61,7 @@ export function getAuthenticator(
         const newUser: CreateUser = {
           githubProfileId: profile.id,
           email: profile.emails?.[0].value,
-          username: profile.username,
+          username: profile.displayName,
           bio: profile.bio,
           iconUrl: profile.photos?.[0].value,
           createdAt: new Date(),
