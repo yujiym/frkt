@@ -16,9 +16,24 @@ import { sidebarAtom } from '~/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 
 const MENU_ITEMS = [
-  { name: 'Dashboard', href: '/', icon: <Home /> },
-  { name: 'My Apps', href: '/apps', icon: <LayoutPanelLeft /> },
-  { name: 'Recipes', href: '/recipes', icon: <BookCopy /> },
+  {
+    name: 'Dashboard',
+    href: '/',
+    icon: <Home strokeWidth={1} />,
+    activeIcon: <Home strokeWidth={2} />,
+  },
+  {
+    name: 'My Apps',
+    href: '/apps',
+    icon: <LayoutPanelLeft strokeWidth={1} />,
+    activeIcon: <LayoutPanelLeft strokeWidth={2} />,
+  },
+  {
+    name: 'Recipes',
+    href: '/recipes',
+    icon: <BookCopy strokeWidth={1} />,
+    activeIcon: <BookCopy strokeWidth={2} />,
+  },
 ]
 
 export default function DashboardLayout({
@@ -26,7 +41,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [sidebar, setSideBar] = useAtom(sidebarAtom)
+  const sidebar = useAtomValue(sidebarAtom)
 
   return (
     <>
@@ -94,6 +109,7 @@ const Menu = () => {
             name={item.name}
             href={item.href}
             icon={item.icon}
+            activeIcon={item.activeIcon}
           />
         ))}
       </ul>
@@ -133,11 +149,13 @@ const MenuItem = ({
   name,
   href,
   icon,
+  activeIcon,
   position = 'top',
 }: {
   name: string
   href: string
   icon: React.ReactNode
+  activeIcon: React.ReactNode
   position?: 'top' | 'bottom'
 }) => {
   const { pathname } = useLocation()
@@ -154,7 +172,7 @@ const MenuItem = ({
           position === 'top' ? 'border-b' : 'border-t'
         )}
       >
-        {icon}
+        {pathname === href ? activeIcon : icon}
         <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
           {name}
         </span>
