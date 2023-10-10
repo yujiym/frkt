@@ -7,6 +7,7 @@ import {
   LayoutPanelLeft,
   BookCopy,
   UserCircle,
+  LogOut,
 } from 'lucide-react'
 import { cn } from '@@/lib'
 import Logo from '@@/assets/img/logo-white.svg'
@@ -134,6 +135,21 @@ const Menu = ({
         <span className={cn('ml-6', sideBarFull ? '' : 'sm:hidden')}>
           Profile
         </span>
+      </li>
+      <li
+        className={cn(
+          'h-16 text-foreground relativehover:bg-gray-800 border-slate-500 border-t',
+          sideBarFull ? 'justify-start' : 'sm:justify-center'
+        )}
+      >
+        <Form method="post" action="/auth/logout" className="h-full w-full">
+          <button className="px-6 flex items-center h-full w-full">
+            <LogOut />
+            <span className={cn('ml-6', sideBarFull ? '' : 'sm:hidden')}>
+              LogOut
+            </span>
+          </button>
+        </Form>
       </li>
     </ul>
   </div>
