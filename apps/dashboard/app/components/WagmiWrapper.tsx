@@ -1,7 +1,7 @@
 import { WagmiConfig, createConfig, mainnet } from 'wagmi'
 import { createPublicClient, http } from 'viem'
 
-const wagmiConfig = createConfig({
+const config = createConfig({
   autoConnect: true,
   publicClient: createPublicClient({
     chain: mainnet,
@@ -14,5 +14,5 @@ export default function WagmiWrapper({
 }: {
   children: React.ReactNode
 }) {
-  return <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>
+  return <WagmiConfig config={config}>{children}</WagmiConfig>
 }
