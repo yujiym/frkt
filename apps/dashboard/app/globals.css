@@ -66,11 +66,11 @@
 
 @layer components {
   .btn {
-    @apply border-2 border-black bg-black flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 text-white hover:text-black disabled:bg-slate-200 disabled:cursor-not-allowed;
+    @apply border-2 border-foreground bg-foreground flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-primary text-background hover:text-foreground disabled:bg-stone-200 disabled:cursor-not-allowed;
   }
 
   .btn-outline {
-    @apply border-2 border-black bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-slate-50 disabled:bg-stone-200 disabled:cursor-not-allowed;
+    @apply border-2 border-foreground bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-white disabled:bg-stone-200 disabled:cursor-not-allowed;
   }
 
   .card {

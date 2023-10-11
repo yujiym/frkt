@@ -14,7 +14,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@@/components/ui/tooltip'
+} from '@@/components/ui/Tooltip'
 import { HOST } from '@@/lib/const'
 
 export const meta: MetaFunction = () => {

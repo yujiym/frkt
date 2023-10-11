@@ -1,4 +1,4 @@
-import { useLocation, Form } from '@remix-run/react'
+import { useLocation } from '@remix-run/react'
 import {
   X,
   Home,
@@ -6,14 +6,13 @@ import {
   LayoutPanelLeft,
   BookCopy,
   UserCircle,
-  LogOut,
 } from 'lucide-react'
-import { cn } from '@/common/lib/utils'
+import { useAtom, useAtomValue } from 'jotai'
+import UserDialog from '~/components/UserDialog'
+import { sidebarAtom } from '~/atoms'
+import { cn } from '@@/lib/utils'
 import LogoSquare from '@@/components/svgs/LogoSquare'
 import Logo from '@@/components/svgs/Logo'
-import { sidebarAtom } from '~/atoms'
-import { useAtom, useAtomValue } from 'jotai'
-import { Dialog, DialogContent, DialogTrigger } from '@@/components/ui/dialog'
 
 const MENU_ITEMS = [
   {
@@ -86,7 +85,7 @@ const Menu = () => {
         {sidebar.isFull || sidebar.navOpen ? (
           <Logo size={80} />
         ) : (
-          <LogoSquare size={54} />
+          <LogoSquare size={60} />
         )}
       </h1>
       <ul>
@@ -119,7 +118,12 @@ const Menu = () => {
             sidebar.isFull ? 'justify-start' : 'sm:justify-center'
           )}
         >
-          <UserProfile />
+          <UserDialog>
+            <UserCircle />
+            <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
+              Profile
+            </span>
+          </UserDialog>
         </li>
       </ul>
     </div>
@@ -188,32 +192,5 @@ const HeaderButton = () => {
         <X className={`h-6 w-6 ${sidebar.navOpen ? '' : 'hidden'}`} />
       </button>
     </>
-  )
-}
-
-const UserProfile = () => {
-  const sidebar = useAtomValue(sidebarAtom)
-  return (
-    <Dialog>
-      <DialogTrigger className="w-full h-full flex items-center">
-        <UserCircle />
-        <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
-          Profile
-        </span>
-      </DialogTrigger>
-      <DialogContent>
-        <div className="bg-gray-100 w-full h-full">
-          <img src="" />
-        </div>
-        <Form method="post" action="/auth/logout" className="px-8">
-          <button className="btn flex items-center w-full py-2 justify-center">
-            <LogOut />
-            <span className={cn('ml-6', sidebar.isFull ? '' : 'sm:hidden')}>
-              LogOut
-            </span>
-          </button>
-        </Form>
-      </DialogContent>
-    </Dialog>
   )
 }

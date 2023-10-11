@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import { atomWithReset } from 'jotai/utils'
+import { atomWithReset, useHydrateAtoms } from 'jotai/utils'
 
 export type Session = {
   id: string | undefined
