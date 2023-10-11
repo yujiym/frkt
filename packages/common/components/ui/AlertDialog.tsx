@@ -101,7 +101,7 @@ const AlertDialogAction = React.forwardRef<
   <AlertDialogPrimitive.Action
     ref={ref}
     className={cn(
-      'flex items-center justify-center flex-1 border-t border-l border-foreground hover:bg-primary h-14',
+      'flex items-center justify-center flex-1 border-t border-foreground hover:bg-primary h-14',
       className
     )}
     {...props}
@@ -116,7 +116,7 @@ const AlertDialogCancel = React.forwardRef<
   <AlertDialogPrimitive.Cancel
     ref={ref}
     className={cn(
-      'flex items-center justify-center flex-1 border-t border-foreground hover:bg-white h-14',
+      'flex items-center justify-center flex-1 border-t border-r border-foreground hover:bg-white h-14',
       className
     )}
     {...props}
