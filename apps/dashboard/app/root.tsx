@@ -9,8 +9,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+import { SITE_TITLE, SITE_DESCRIPTION } from '@@/lib/const'
 import Toaster from '@@/components/Toaster'
-import logoUrl from '@@/assets/img/logo-sq.svg'
+import faviconUrl from '@@/assets/img/favicon.svg'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -19,8 +20,8 @@ export const links: LinksFunction = () => [
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'FRKT Dashboard' },
-    { name: 'description', content: 'no-code tool for web2/3.' },
+    { title: `${SITE_TITLE} Dashboard` },
+    { name: 'description', content: SITE_DESCRIPTION },
   ]
 }
 
@@ -30,7 +31,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href={logoUrl} />
+        <link rel="icon" href={faviconUrl} type="image/svg+xml" />
         <Meta />
         <Links />
       </head>

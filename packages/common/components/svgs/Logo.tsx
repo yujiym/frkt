@@ -1,15 +1,14 @@
 type Props = {
-  width?: number
-  height?: number
+  size?: number
   color?: string
 }
 
-export default function Logo({ width, height, color }: Props) {
+export default function Logo({ size, color }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={width || 346}
-      height={height || 113}
+      width={size || 346}
+      height={size ? (size * 226) / 692 : 113}
       fill={color || 'currentColor'}
       viewBox="0 0 692 226"
     >

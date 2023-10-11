@@ -33,7 +33,7 @@ export default function Index() {
           >
             <span className="font-bold text-xl uppercase mr-4">1.</span>
             <span className="text-xl">
-              {isConnected ? `Connected as ${address}` : 'Connect wallet'}
+              {isConnected ? `Linked with ${address}` : 'Link wallet'}
             </span>
           </button>
         </div>

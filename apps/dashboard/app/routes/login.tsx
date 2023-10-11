@@ -34,12 +34,12 @@ export const loader: LoaderFunction = async ({
 export default function Index() {
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <div className="flex flex-1 bg-zinc-800 text-background">
-        <div className="flex flex-col justify-center md:items-start md:justify-between py-6 px-10 w-full">
+      <div className="flex lg:basis-7/12 flex-1 bg-primary">
+        <div className="flex flex-col justify-center md:items-start md:justify-between py-8 px-10 w-full">
           <div>
-            <Logo width={200} />
-            <h1 className="text-3xl font-bold mb-8">
-              No-code tools for web2
+            <Logo size={160} />
+            <h1 className="text-3xl font-bold mb-8 mt-3">
+              No-Code tools for Web2
               <span className="mx-0.5 text-2xl">&amp;</span>3
             </h1>
           </div>
@@ -54,7 +54,7 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 items-center justify-center order-first md:order-none">
+      <div className="flex lg:basis-5/12 flex-1 items-center justify-center order-first md:order-none">
         <div className="px-8 py-16 flex flex-col w-full max-w-md">
           <h2 className="text-4xl font-bold text-center mb-10 flex items-center justify-center mr-6">
             <KeySquare className="mr-3" size={32} strokeWidth={2.5} />

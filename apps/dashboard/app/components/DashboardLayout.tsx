@@ -9,9 +9,8 @@ import {
   LogOut,
 } from 'lucide-react'
 import { cn } from '@/common/lib/utils'
-import Logo from '@@/assets/img/logo-white.svg'
-import LogoSq from '@@/assets/img/logo-sq.svg'
-import LogoSqW from '@@/assets/img/logo-sq-white.svg'
+import LogoSquare from '@@/components/svgs/LogoSquare'
+import Logo from '@@/components/svgs/Logo'
 import { sidebarAtom } from '~/atoms'
 import { useAtom, useAtomValue } from 'jotai'
 import { Dialog, DialogContent, DialogTrigger } from '@@/components/ui/dialog'
@@ -49,10 +48,10 @@ export default function DashboardLayout({
       <Menu />
       <nav
         className={cn(
-          'fixed bg-background/80 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-primary z-40 flex sm:hidden items-center justify-between'
+          'fixed bg-background/80 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-foreground z-40 flex sm:hidden items-center justify-between'
         )}
       >
-        <img className="block md:hidden" src={LogoSq} width={54} alt="FRKT" />
+        <LogoSquare size={54} />
         <HeaderButton />
       </nav>
       <main
@@ -84,12 +83,11 @@ const Menu = () => {
           sidebar.isFull ? 'px-4' : 'px-1'
         )}
       >
-        <img
-          className="mx-auto"
-          src={sidebar.isFull || sidebar.navOpen ? Logo : LogoSqW}
-          width={sidebar.isFull || sidebar.navOpen ? 80 : 54}
-          alt="FRKT"
-        />
+        {sidebar.isFull || sidebar.navOpen ? (
+          <Logo size={80} />
+        ) : (
+          <LogoSquare size={54} />
+        )}
       </h1>
       <ul>
         <button
@@ -204,7 +202,9 @@ const UserProfile = () => {
         </span>
       </DialogTrigger>
       <DialogContent>
-        <div className="bg-gray-100 h-64"></div>
+        <div className="bg-gray-100 w-full h-full">
+          <img src="" />
+        </div>
         <Form method="post" action="/auth/logout" className="px-8">
           <button className="btn flex items-center w-full py-2 justify-center">
             <LogOut />
