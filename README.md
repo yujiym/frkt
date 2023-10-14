@@ -18,3 +18,5 @@ Build for [ETHOnline 2023](https://ethglobal.com/events/ethonline2023).
 │   └── common      -> Common libs
 ...
 ```
+
+[FRKT integration demo](https://frkt-demo-app.web.app/)
