@@ -86,7 +86,9 @@ const LoginButton = () => {
     <>
       <button
         className="btn bg-gray-400/80 hover:opacity-90 border-none text-white px-5 normal-case rounded-full"
-        onClick={() => document.getElementById('login_modal').showModal()}
+        onClick={() =>
+          (document as any).getElementById('login_modal')!.showModal()
+        }
       >
         Login to try
       </button>

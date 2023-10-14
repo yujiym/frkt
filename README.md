@@ -19,4 +19,4 @@ Build for [ETHOnline 2023](https://ethglobal.com/events/ethonline2023).
 ...
 ```
 
-[FRKT integration demo](https://frkt-demo-app.web.app/)
+[FRKT integration demo](https://frkt-demo.web.app/)
