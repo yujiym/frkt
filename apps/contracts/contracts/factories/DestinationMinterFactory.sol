@@ -4,9 +4,9 @@ pragma solidity 0.8.19;
 import { DestinationMinter } from "./../cross-chain-nft/DestinationMinter.sol";
 
 /**
- * FactoryContract Contract
+ * DestinationMinterFactory Contract
  */
-contract FactoryContract {
+contract DestinationMinterFactory {
   // SourceMinter's Array
   DestinationMinter[] public minters;
 
