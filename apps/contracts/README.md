@@ -150,3 +150,6 @@
   SourceMinter deployed to 0x10C2B0276F761074B946B23527890BcF32B8356C
   ======================== sender side deploy end  ========================
   ```
+
+  CCIP Transaction  
+  [CCIP Explorer 0x10C2B0276F761074B946B23527890BcF32B8356C](https://ccip.chain.link/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
