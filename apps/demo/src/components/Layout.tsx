@@ -15,7 +15,6 @@ export default function Layout({
   name?: string
 }) {
   const { user, loading, logout } = useAuth()
-  console.log(user)
 
   return (
     <div>
