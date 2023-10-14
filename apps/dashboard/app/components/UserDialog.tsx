@@ -11,8 +11,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@@/components/ui/AlertDialog'
+import WalletDialog from '~/components/WalletDialog'
 
-export default function UserDialogContent({
+export default function UserDialog({
   children,
 }: {
   children: React.ReactNode
@@ -24,7 +25,7 @@ export default function UserDialogContent({
       </DialogTrigger>
       <DialogContent>
         <div className="pt-16 pb-12">
-          <div className="mx-auto rounded-full bg-orange-300 h-20 w-20" />
+          <div className="mx-auto rounded-full bg-slate-300 h-20 w-20" />
         </div>
         <div className="px-8 py-6 border-t border-b border-foreground">
           <label>name</label>
@@ -32,7 +33,9 @@ export default function UserDialogContent({
           <label>bio</label>
           <input className="w-full mb-4" />
           <label>wallet</label>
-          <input className="w-full mb-4" />
+          <WalletDialog>
+            <button className="btn-outline w-full">Connect</button>
+          </WalletDialog>
           <button className="btn flex items-center w-full py-2 justify-center h-14">
             <Save />
             <span className="ml-6">Save</span>
@@ -48,9 +51,9 @@ export default function UserDialogContent({
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Log out?</AlertDialogTitle>
+                <AlertDialogTitle>Logout?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Are you sure to Logout FRKT Dashboard?
+                  Are you sure to logout from FRKT Dashboard?
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
