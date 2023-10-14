@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "hardhat test",
+    "clean": "hardhat clean",
     "compile": "hardhat compile",
     "deploy:scrollAlpha": "hardhat run scripts/deploy.ts --network scrollAlpha",
     "deploy:mumbai": "hardhat run scripts/deploy.ts --network mumbai",
@@ -18,6 +19,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@chainlink/contracts": "0.7.1",
+    "@chainlink/contracts-ccip": "0.7.6",
+    "@openzeppelin/contracts": "4.9.3",
     "eth-gas-reporter": "^0.2.27",
     "hardhat": "^2.18.1"
   },
