@@ -7,7 +7,7 @@ This repo is build for [ETHOnline 2023](https://ethglobal.com/events/ethonline20
 
 [FRKT demos](https://frkt-demo.web.app/)
 
-### This repo structure
+### Folder structure
 
 ```
 ├── apps
@@ -23,13 +23,13 @@ This repo is build for [ETHOnline 2023](https://ethglobal.com/events/ethonline20
 
 ### 🎩 Contracts
 
-FRKT integration demos.
+Smart contracts for FRKT widget.
 
 - Hardhat
 
 ### 🛠️ Dashboard
 
-Description (TBD)
+Dashborad for setup app, configre recipe and generate widget code.
 
 - Next.js (React, TypeScript)
 - Tailwind CSS
@@ -38,16 +38,16 @@ Description (TBD)
 
 ### ⚽ Demo
 
-FRKT integration demo app.
+FRKT widget integration demo app.
 -> [FRKT demos](https://frkt-demo.web.app/)
 
 - Vite (React, TypeScript)
-- Tailwind CSS
+- Tailwind CSS, daisyUI
 - Firebase Hosting, Firebase Auth(Google OAuth)
 
 ### 👓 Widget
 
-Description (TBD)
+Widget component for recipes.
 
 - Next.js (React, TypeScript)
 - Tailwind CSS
@@ -56,7 +56,7 @@ Description (TBD)
 
 ### ✈️ Landing page
 
-[FRKT](https://frktio/)
+[FRKT LP](https://frkt.io/)
 
 - Vite (React, TypeScript)
 - Tailwind CSS
