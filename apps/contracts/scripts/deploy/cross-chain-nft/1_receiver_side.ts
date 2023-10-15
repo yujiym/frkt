@@ -91,21 +91,6 @@ async function main() {
   desFactory.removeAllListeners()
 
   console.log(
-    ` ======================= transfer ownership start ========================= `
-  )
-
-  desAddress = '0x9bE9aC69125c5dEcd0BD14AC15A1872431aF7e15'
-
-  // transfer ownership
-  const tx = await nftFactory.transferOwnerShipDestinationMinter(
-    ethers.getAddress(nftAddress),
-    ethers.getAddress(desAddress!)
-  )
-  await tx.wait()
-
-  console.log(`transfer ownership result: ${tx}`)
-
-  console.log(
     ` ======================== receiver side deploy end  ======================== `
   )
 }

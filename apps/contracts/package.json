@@ -23,6 +23,7 @@
     "deploy:receiverSide:mumbai": "hardhat run scripts/deploy/cross-chain-nft/1_receiver_side.ts --network mumbai",
     "deploy:senderSide:fuji": "hardhat run scripts/deploy/cross-chain-nft/2_sender_side.ts --network fuji",
     "task:sendLinkToken:fuji": "hardhat run scripts/deploy/cross-chain-nft/3_send_link_token.ts --network fuji",
+    "task:transferOwnerShip:mumbai": "hardhat run scripts/deploy/cross-chain-nft/4_transfer_ownership.ts --network mumbai",
     "verify:scrollAlpha": "hardhat verify --network scrollAlpha 0x2B5914De5D5166eBaa423C92BAb8518c85EAA0cb 1695472571"
   },
   "keywords": [],
