@@ -44,7 +44,7 @@ export default function Layout({
               </label>
               <ul
                 tabIndex={0}
-                className="mt-3 z-[1] p-4 shadow menu menu-sm dropdown-content bg-base-300 rounded-box w-36"
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-100 rounded-box w-36"
               >
                 <li>
                   <a

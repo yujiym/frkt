@@ -1,9 +1,11 @@
 {
   "include": [
+    "types/global.d.ts",
     "remix.env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "../../packages/common/components/Toaster.tsx"
+    "../../packages/common/**/*.ts",
+    "../../packages/common/**/*.tsx"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
@@ -17,6 +19,7 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "typeRoots": ["node_modules/@types", "types"],
     "paths": {
       "~/*": ["./app/*"],
       "@/*": ["./../../packages/*"],

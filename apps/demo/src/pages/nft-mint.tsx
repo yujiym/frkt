@@ -7,9 +7,9 @@ export default function Home() {
 
   return (
     <Layout name={meta.name}>
-      <div className="bg-green-300 text-white px-6">
+      <div className="bg-green-300 text-white px-6 text-center">
         <div className="mx-auto max-w-2xl py-20">
-          <h2 className="font-dot font-bold text-6xl mt-6 mb-8 text-center">
+          <h2 className="font-dot font-bold text-6xl mt-6 mb-8">
             {meta.appName}
           </h2>
           <div>
@@ -24,7 +24,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 pb-10">
+      <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8 pb-10">
         <div className="col-span-2 pt-10">
           <img src="/img/nft1.png" className="object-fill w-full rounded-lg" />
         </div>
@@ -46,8 +46,23 @@ export default function Home() {
           <button className="btn btn-success w-full mt-12" disabled={!user}>
             {user ? 'Mint' : 'Login to mint'}
           </button>
+          <Widget user={user || {}} />
         </div>
       </div>
     </Layout>
   )
+}
+
+const Widget = ({ user }: { user: any }) => {
+  if (!user || !user.accessToken) return
+
+  const decoded = JSON.parse(atob(user.accessToken.split('.')[1]))
+
+  return user ? (
+    <iframe
+      src={`http://localhost:3003/a/000/r/001?sub=${decoded.sub}&aud=${decoded.aud}`}
+      width={320}
+      height={480}
+    />
+  ) : null
 }

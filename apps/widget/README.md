@@ -1,38 +1,57 @@
-# Welcome to Remix!
+---
+name: Vercel Postgres + Prisma Next.js Starter
+slug: postgres-prisma
+description: Simple Next.js template that uses Vercel Postgres as the database and Prisma as the ORM.
+framework: Next.js
+useCase: Starter
+css: Tailwind
+database: Vercel Postgres
+deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-prisma&project-name=postgres-prisma&repository-name=postgres-prisma&demo-title=Vercel%20Postgres%20%2B%20Prisma%20Next.js%20Starter&demo-description=Simple%20Next.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database%20and%20Prisma%20as%20the%20ORM.&demo-url=https%3A%2F%2Fpostgres-prisma.vercel.app%2F&demo-image=https%3A%2F%2Fpostgres-prisma.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D
+demoUrl: https://postgres-prisma.vercel.app/
+relatedTemplates:
+  - postgres-starter
+  - postgres-kysely
+  - postgres-sveltekit
+---
 
-- [Remix Docs](https://remix.run/docs)
+# Vercel Postgres + Prisma Next.js Starter
 
-## Development
+Simple Next.js template that uses [Vercel Postgres](https://vercel.com/postgres) as the database and [Prisma](https://prisma.io/) as the ORM.
 
-From your terminal:
+## Demo
 
-```sh
-npm run dev
+https://postgres-prisma.vercel.app/
+
+## How to Use
+
+You can choose from one of the following two methods to use this repository:
+
+### One-Click Deploy
+
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fstorage%2Fpostgres-prisma&project-name=postgres-prisma&repository-name=postgres-prisma&demo-title=Vercel%20Postgres%20%2B%20Prisma%20Next.js%20Starter&demo-description=Simple%20Next.js%20template%20that%20uses%20Vercel%20Postgres%20as%20the%20database%20and%20Prisma%20as%20the%20ORM.&demo-url=https%3A%2F%2Fpostgres-prisma.vercel.app%2F&demo-image=https%3A%2F%2Fpostgres-prisma.vercel.app%2Fopengraph-image.png&stores=%5B%7B"type"%3A"postgres"%7D%5D)
+
+### Clone and Deploy
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+
+```bash
+pnpm create next-app --example https://github.com/vercel/examples/tree/main/storage/postgres-prisma
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+Once that's done, copy the .env.example file in this directory to .env.local (which will be ignored by Git):
 
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
+```bash
+cp .env.example .env.local
 ```
 
-Then run the app in production mode:
+Then open `.env.local` and set the environment variables to match the ones in your Vercel Storage Dashboard.
 
-```sh
-npm start
+Next, run Next.js in development mode:
+
+```bash
+pnpm dev
 ```
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) ([Documentation](https://nextjs.org/docs/deployment)).

@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* common */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+
+    /* shadcn/ui */
+    --background: 83 4% 95%;
+    --foreground: 0 1% 17%;
+  }
+  html,
+  body,
+  body > div {
+    @apply h-full;
+  }
+  body {
+    @apply min-h-screen relative overflow-x-hidden antialiased;
+  }
+}
+
+@layer components {
+  .loader-sq {
+    width: 55px;
+    aspect-ratio: 1;
+    --g1: conic-gradient(
+      from 90deg at 3px 3px,
+      transparent 90deg,
+      currentColor 0
+    );
+    --g2: conic-gradient(
+      from -90deg at 22px 22px,
+      transparent 90deg,
+      currentColor 0
+    );
+    background: var(--g1), var(--g1), var(--g1), var(--g2), var(--g2), var(--g2);
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    animation: l7 1.5s infinite;
+  }
+  @keyframes l7 {
+    0% {
+      background-position:
+        0 0,
+        0 100%,
+        100% 100%;
+    }
+    25% {
+      background-position:
+        100% 0,
+        0 100%,
+        100% 100%;
+    }
+    50% {
+      background-position:
+        100% 0,
+        0 0,
+        100% 100%;
+    }
+    75% {
+      background-position:
+        100% 0,
+        0 0,
+        0 100%;
+    }
+    100% {
+      background-position:
+        100% 100%,
+        0 0,
+        0 100%;
+    }
+  }
+}

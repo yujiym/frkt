@@ -7,7 +7,7 @@
     "build": "remix build",
     "deploy": "wrangler deploy",
     "dev": "remix dev --manual -c \"npm start\"",
-    "start": "wrangler dev --port 3002 ./build/index.js",
+    "start": "wrangler dev --port 3002 --ip '127.0.0.1' ./build/index.js",
     "migrations:gen": "drizzle-kit generate:sqlite",
     "local:migrations:apply": "wrangler d1 migrations apply frkt-db --local",
     "migrations:apply": "NO_D1_WARNING=true wrangler d1 migrations apply frkt-db",
@@ -48,7 +48,7 @@
     "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.1.6",
-    "wrangler": "^3.1.1",
+    "wrangler": "^3.13.1",
     "zod": "^3.22.4"
   },
   "engines": {
