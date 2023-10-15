@@ -34,6 +34,10 @@ const config: HardhatUserConfig = {
       url: `https://rpc.public.zkevm-test.net`,
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
     },
+    fuji: {
+      url: `https://api.avax-test.network/ext/bc/C/rpc`,
+      accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+    },
   },
   mocha: {
     reporter: 'eth-gas-reporter',

@@ -13,8 +13,8 @@ export default function Recipe() {
     <>
       <div className="px-4 pt-16 pb-16 flex items-center justify-center bg-yellow-100">
         <h2 className="font-bold text-3xl text-center">
-          <p className="text-5xl mb-3">🖼️</p>
-          Welocome to NFT Recipe
+          <p className="text-5xl mb-3">👋</p>
+          Welocome to submit New Recipe page!
         </h2>
       </div>
       <div className="mx-auto max-w-2xl py-12 px-6">
@@ -49,11 +49,11 @@ export default function Recipe() {
         </div>
         <div>
           <button className="btn-outline w-full py-5 px-8" onClick={() => {}}>
-            <span className="text-xl">1. Setup Your NFT Contract Info</span>
+            <span className="text-xl">1. Setup Your Contract Info</span>
           </button>
         </div>
         <div className="bg-white shadow-md rounded p-6 my-6">
-          <h2 className="text-xl mb-4 font-semibold">Your NFT info</h2>
+          <h2 className="text-xl mb-4 font-semibold">Your Contract info</h2>
           <form>
             <div className="mb-4">
               <label

@@ -1,7 +1,7 @@
+import { toast } from '@@/components/Toaster'
+import { SITE_TITLE } from '@@/lib/const'
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { BookCopy, CopyPlus } from 'lucide-react'
-import { SITE_TITLE } from '@@/lib/const'
-import { toast } from '@@/components/Toaster'
 
 export const meta: MetaFunction = () => {
   return [{ title: `Recipes | ${SITE_TITLE} Dashboard` }]
@@ -21,7 +21,7 @@ export default function Recipes() {
           className="card bg-white relative"
           onClick={() => toast.error('ok gooooooood', { icon: '😔' })}
         >
-          <a className="flex flex-col h-full">
+          <a className="flex flex-col h-full" href="/recipes/new">
             <div className="py-12 px-4 flex flex-1 items-center justify-center text-gray-500">
               <CopyPlus size={48} strokeWidth={1} />
             </div>
