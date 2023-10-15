@@ -4,19 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "www": "pnpm --filter www",
     "dashboard": "pnpm --filter dashboard",
     "widget": "pnpm --filter widget",
     "demo": "pnpm --filter demo",
-    "common": "pnpm --filter common",
-    "contracts": "pnpm --filter contracts",
-    "lint": "eslint .",
-    "format": "rettier --write ."
+    "common": "pnpm --filter frkt-common",
+    "contracts": "pnpm --filter contracts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3"

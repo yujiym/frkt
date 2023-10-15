@@ -18,7 +18,7 @@
     "@remix-run/cloudflare": "^2.0.1",
     "@remix-run/css-bundle": "^2.0.1",
     "@remix-run/react": "^2.0.1",
-    "common": "workspace:*",
+    "frkt-common": "workspace:*",
     "isbot": "^3.6.8",
     "jotai": "^2.4.3",
     "lucide-react": "^0.284.0",

@@ -12,7 +12,7 @@
     "@lit-protocol/constants": "^2.2.61",
     "@lit-protocol/lit-auth-client": "^2.2.61",
     "@lit-protocol/lit-node-client-nodejs": "^2.2.61",
-    "common": "workspace:*",
+    "frkt-common": "workspace:*",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
