@@ -31,6 +31,15 @@ contract NftFactory {
   }
 
   /**
+   * transfer ownership to DestinationMinter
+   */
+  function transferOwnerShipDestinationMinter(address nft, address desMinter) public {
+    // call transferOwnerShipmethod
+    FrktNFT nftContract = FrktNFT(nft);
+    nftContract.transferOwnership(desMinter);
+  }
+
+  /**
    * get all NFTs info
    */
   function getNfts()public view returns (FrktNFT[] memory coll) {
