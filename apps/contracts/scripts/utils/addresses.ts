@@ -19,3 +19,29 @@ export const MUMBAI_ROUTER_ADDRESS =
 export const FUJI_SOURCE_ADDRESS = '0x9bE9aC69125c5dEcd0BD14AC15A1872431aF7e15'
 // link token addresses
 export const FUJI_LINK_ADDRESS = '0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846'
+
+import { PayFeesIn } from './constants'
+
+export const getPayFeesIn = (payFeesIn: string) => {
+  let fees
+
+  switch (payFeesIn) {
+    case 'Native':
+      fees = PayFeesIn.Native
+      break
+    case 'native':
+      fees = PayFeesIn.Native
+      break
+    case 'LINK':
+      fees = PayFeesIn.LINK
+      break
+    case 'link':
+      fees = PayFeesIn.LINK
+      break
+    default:
+      fees = PayFeesIn.Native
+      break
+  }
+
+  return fees
+}

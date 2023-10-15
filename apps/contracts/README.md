@@ -11,7 +11,7 @@
 | 5   | DestinationMinterFactory | [0xCd915EF6f984cd448349C375fDE90581f8FE260f](https://mumbai.polygonscan.com/address/0xCd915EF6f984cd448349C375fDE90581f8FE260f)       | Mumbai   |
 | 6   |                          |                                                                                                                                       |          |
 
-## How to run
+## How to run (Sample)
 
 - install
 
