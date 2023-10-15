@@ -50,7 +50,7 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
   console.log('----004: ', authMethod)
 
   const keyId = session.getAuthMethodId(authMethod)
-  const pubKey = session.litNodeClient.computePubkey(keyId)
+  // const pubKey = session.litNodeClient.computePubkey(keyId)
 
-  return { keyId, pubKey }
+  return { keyId, pubKey: 'pubKey' }
 }
