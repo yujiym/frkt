@@ -2,6 +2,18 @@ import Layout from '../components/Layout'
 import useAuth from '../hooks/useAuth'
 import { metaNFT as meta } from '../utils/const'
 
+function handleClick(url: string) {
+  const popup = window.open(url, '_blank', 'width=480,height=780')
+  // Check if the popup was blocked
+  if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+    // Popup blocked, fallback to redirect flow
+    window.location.href = url
+  } else {
+    // If the popup wasn't blocked, proceed with the popup flow
+    // (e.g., listen for messages from the popup, etc.)
+  }
+}
+
 export default function Home() {
   const { user } = useAuth()
 
@@ -43,26 +55,19 @@ export default function Home() {
               ready to safeguard his realm's pixelated legacy.
             </p>
           </div>
-          <button className="btn btn-success w-full mt-12" disabled={!user}>
+          <button
+            className="btn btn-success w-full mt-12"
+            disabled={!user}
+            onClick={() =>
+              handleClick(
+                `http://localhost:3003/a/000/r/001?token=${user.accessToken}`
+              )
+            }
+          >
             {user ? 'Mint' : 'Login to mint'}
           </button>
-          <Widget user={user || {}} />
         </div>
       </div>
     </Layout>
   )
-}
-
-const Widget = ({ user }: { user: any }) => {
-  if (!user || !user.accessToken) return
-
-  const decoded = JSON.parse(atob(user.accessToken.split('.')[1]))
-
-  return user ? (
-    <iframe
-      src={`http://localhost:3003/a/000/r/001?sub=${decoded.sub}&aud=${decoded.aud}`}
-      width={320}
-      height={480}
-    />
-  ) : null
 }

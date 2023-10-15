@@ -266,15 +266,33 @@ importers:
 
   apps/widget:
     dependencies:
+      '@lit-protocol/auth-helpers':
+        specifier: ^3.0.6
+        version: 3.0.6(ethers@5.7.2)
       '@lit-protocol/constants':
-        specifier: ^2.2.61
-        version: 2.2.61
+        specifier: ^3.0.6
+        version: 3.0.6
       '@lit-protocol/lit-auth-client':
-        specifier: ^2.2.61
-        version: 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+        specifier: ^3.0.6
+        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/lit-node-client':
+        specifier: 3.0.6
+        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
       '@lit-protocol/lit-node-client-nodejs':
-        specifier: ^2.2.61
-        version: 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+        specifier: ^3.0.6
+        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      '@lit-protocol/pkp-ethers':
+        specifier: ^3.0.6
+        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/types':
+        specifier: ^3.0.6
+        version: 3.0.6
+      '@walletconnect/keyvaluestorage':
+        specifier: ^1.0.2
+        version: 1.0.2
+      client-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       common:
         specifier: workspace:*
         version: link:../../packages/common
@@ -287,6 +305,9 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@20.8.6)(typescript@5.2.2)
@@ -1849,7 +1870,6 @@ packages:
   /@ethereumjs/rlp@4.0.1:
     resolution: {integrity: sha512-tqsQiBQDQdmPWE1xkkBq4rlSW5QZpLOUJ5RJh2/9fug+q9tnUhuZoVLk7s0scUIKTOzEtR72DFBXI4WiZcMpvw==}
     engines: {node: '>=14'}
-    dev: true
 
   /@ethereumjs/util@8.1.0:
     resolution: {integrity: sha512-zQ0IqbdX8FZ9aw11vP+dZkKDkS+kgIvQPHnSAXzP9pLu+Rfu3D3XEeLbicvoXJTYnhZiPmsZUxgdzXwNKxRPbA==}
@@ -1858,7 +1878,6 @@ packages:
       '@ethereumjs/rlp': 4.0.1
       ethereum-cryptography: 2.1.2
       micro-ftch: 0.3.1
-    dev: true
 
   /@ethersproject/abi@5.7.0:
     resolution: {integrity: sha512-351ktp42TiRcYB3H1OP8yajPeAQstMW/yCFokj/AthP9bLHzQFPlOrxOcwYEDkUAICmOHljvN4K39OMTMUa9RA==}
@@ -2769,15 +2788,16 @@ packages:
     resolution: {integrity: sha512-jnOD+/+dSrfTWYfSXBXlo5l5f0q1UuJo3tkbMDCYA2lKUYq79jaxqtGEvnRoh049nt1vdo1+45RinipU6FGY2g==}
     dev: false
 
-  /@lit-protocol/access-control-conditions@2.2.61:
-    resolution: {integrity: sha512-DXOSZXL7bSAv+UqzNtLuKyGdqjUSCSQ1R5FjtGIlw1vgvaV///DCZQFKLD0892LuIfpguk6MjxpGI0gdU9yWgA==}
+  /@lit-protocol/access-control-conditions@3.0.6:
+    resolution: {integrity: sha512-aJcRdVXcLzeUXOkuAhczTOH9pjFmwEvs+XO3Zux1vjEPsCbBgT0voFAQGArEEkqR3x/+caoy+2BKalMXux+SJw==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -2786,18 +2806,19 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/auth-browser@2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
-    resolution: {integrity: sha512-sl1twYpWCWj2k2WhNm22eDWvSmJNluceOXpHwy/qeAVe+QUxjnPXOFyQm1ElRi48RIduBGFD+5w4p76ekNnl7A==}
+  /@lit-protocol/auth-browser@3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
+    resolution: {integrity: sha512-p75xu2Mbt84tiSn9jYw2Fgs8xC3F+Acv5oECjpjF3pO+FBk1mM3h+6s3nxW2Ei7STtniln9TUIQJ98cWi2XHsQ==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/misc-browser': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/misc-browser': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       '@walletconnect/ethereum-provider': 2.9.2(@walletconnect/modal@2.6.1)
       '@walletconnect/modal': 2.6.1(react@18.2.0)
       ethers: 5.7.2
+      jszip: 3.10.1
       lit-siwe: 1.1.8(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
@@ -2819,8 +2840,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/auth-helpers@2.2.61(ethers@5.7.2):
-    resolution: {integrity: sha512-2VzwFaHwMHN4raQ5RsKfXz02KqQ2hbPHCf0GPfXify79ZAUYp/BIsOyo1mpVlVkA1moaQ0zadHAlTdcBVNCVtQ==}
+  /@lit-protocol/auth-helpers@3.0.6(ethers@5.7.2):
+    resolution: {integrity: sha512-kwL+t7kDJS1mhhifHp1hRXIOpLFfeCBaAC3TIgCZhULK86s87FHFOsx16DQoxGF1Rl4rTjamWBJfk8lryrihhQ==}
     dependencies:
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
@@ -2829,19 +2850,20 @@ packages:
       - ethers
     dev: false
 
-  /@lit-protocol/bls-sdk@2.2.61:
-    resolution: {integrity: sha512-XcUmXqZGMrLINDrEALlBIBA7C9/a2DkZzMpvG8PMYnD6msmSftDlCyZI4b7BY1pXgwSMfSVMlDw0811RtiSVnA==}
+  /@lit-protocol/bls-sdk@3.0.6:
+    resolution: {integrity: sha512-w0si3PfJ8t+pADuq6SSPNv0qT/VH/Epv/4P3C2CiIph4f4w+x1zVAVaVNpwGiVdA1ICVYc9bwCTq4WXsVCnTyA==}
     dependencies:
       pako: 2.1.0
       tslib: 2.6.2
     dev: false
 
-  /@lit-protocol/constants@2.2.61:
-    resolution: {integrity: sha512-M4jvbawMX0QgPriTT8H4iymkh7uJXjqPZvm+pr/5bIsDbarng5eRpHd1gB6DPX9n5RV9X+rSk1FFSoahUeWieg==}
+  /@lit-protocol/constants@3.0.6:
+    resolution: {integrity: sha512-CtJIUz/l9bu/12e+OfhSMzemhieZ/3Pdj9RmoXWHboYMa1z5CnbFJJpHTlEUm3lSfemLhPbzqExPO1PXPXvIAQ==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/types': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/types': 3.0.6
       ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -2850,20 +2872,21 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/core@2.2.61:
-    resolution: {integrity: sha512-J67M1OHNr4aCx9Snb9nv5/wUZf1wXTwxicwyn+XM7V3ZRuYocs2diaZIJPQLY2EqBCGGGbtE3KRnMu2TArirEw==}
+  /@lit-protocol/core@3.0.6:
+    resolution: {integrity: sha512-Lvfve92oR6JXbG3+o501CjKlio0rMkIoOrPjZ7ebCG1n3TnhEcG/pksE0+uMiN/xFjOdR5EnbHowHsob9z/2kw==}
     dependencies:
-      '@lit-protocol/access-control-conditions': 2.2.61
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/bls-sdk': 2.2.61
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/crypto': 2.2.61
-      '@lit-protocol/ecdsa-sdk': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/nacl': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/access-control-conditions': 3.0.6
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -2872,18 +2895,19 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/crypto@2.2.61:
-    resolution: {integrity: sha512-79bp5lm+YWrDhj602cY5KGyy5TWQ31lmRATVkDh8Awd1qokDCaVGZ/s5dnq2lZtqBJrGIC10L9/Mz/wdIz+v1A==}
+  /@lit-protocol/crypto@3.0.6:
+    resolution: {integrity: sha512-W9my07OrLPkWWFm6ktxzphaEW1+5c0hQpUy/yv8/jEJ6odwUz7P08Cwc6UzPJwUX+0Tr349MRn+jgsEKfFgrpg==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/bls-sdk': 2.2.61
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/ecdsa-sdk': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/nacl': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -2892,24 +2916,24 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/ecdsa-sdk@2.2.61:
-    resolution: {integrity: sha512-xvt3arLJwr2sQg3uKBlzTOtws3/3sDFIJpxG6+icsmJXmV6bGqD9dgoa/MhULHgjaqgy2PLM5UBYOCjqxkoUHg==}
+  /@lit-protocol/ecdsa-sdk@3.0.6:
+    resolution: {integrity: sha512-XERUVEr+B2CHlx02vnFMsa+1XmGHSp57I/e4ceIXN2c3srvi79FnTqvI+Ym8IBhRvm+Jjo5uAgQrs7LsX0Af7A==}
     dependencies:
       tslib: 2.6.2
     dev: false
 
-  /@lit-protocol/encryption@2.2.61(node-fetch@2.7.0):
-    resolution: {integrity: sha512-I4SsdwuQiVv3iIjP2iQq+i74O5QbJaa2kBI3GOz83U4LiSGxwoADRgeu5X/aYrhhNJCjUAhWWo74FHi7IemSug==}
+  /@lit-protocol/encryption@3.0.6(node-fetch@2.7.0):
+    resolution: {integrity: sha512-Lq5537MWIIBtFyQ5H4h7WSDgs7sssjrMdNUDa+Tf69AZVGZ+AzWA9uuqyA6EVvih4E+1GpqDDIz5CuFiDZM/fA==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/bls-sdk': 2.2.61
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/crypto': 2.2.61
-      '@lit-protocol/ecdsa-sdk': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/nacl': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       ethers: 5.7.2
       ipfs-http-client: 56.0.0(node-fetch@2.7.0)
       jszip: 3.10.1
@@ -2924,28 +2948,28 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/lit-auth-client@2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
-    resolution: {integrity: sha512-I/XYshCHG6ebEjH7fRb3YpAyjAxRpZVqGC70re0mJ1B+GV77Es5lfIxwpBNrmefQc36TEtzsBXrKrE4/pF7KHA==}
+  /@lit-protocol/lit-auth-client@3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
+    resolution: {integrity: sha512-MfQVALGQszwTnaHSfyLRCJY0GjB2AFZ9n8A0RrdmrgOlh6Cqs/2bTUgCBdxKjzRjGGEJ+jqN1s/qhoVJ2BgwkQ==}
     dependencies:
       '@cosmjs/proto-signing': 0.30.1
       '@cosmjs/stargate': 0.30.1
-      '@lit-protocol/access-control-conditions': 2.2.61
-      '@lit-protocol/auth-browser': 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/bls-sdk': 2.2.61
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/core': 2.2.61
-      '@lit-protocol/crypto': 2.2.61
-      '@lit-protocol/ecdsa-sdk': 2.2.61
-      '@lit-protocol/encryption': 2.2.61(node-fetch@2.7.0)
-      '@lit-protocol/lit-node-client': 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
-      '@lit-protocol/lit-node-client-nodejs': 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
-      '@lit-protocol/lit-third-party-libs': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/misc-browser': 2.2.61
-      '@lit-protocol/nacl': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/access-control-conditions': 3.0.6
+      '@lit-protocol/auth-browser': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/core': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/encryption': 3.0.6(node-fetch@2.7.0)
+      '@lit-protocol/lit-node-client': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/lit-node-client-nodejs': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      '@lit-protocol/lit-third-party-libs': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/misc-browser': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       '@simplewebauthn/browser': 7.4.0
       '@simplewebauthn/typescript-types': 7.4.0
       '@walletconnect/ethereum-provider': 2.9.2(@walletconnect/modal@2.6.1)
@@ -2981,25 +3005,25 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/lit-node-client-nodejs@2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0):
-    resolution: {integrity: sha512-+7F7Y1FpTGjlVAtiKPpaN1QHqC9DxqJRrzQaVlmMfEfhAGhqZu9awrDAdCLASr/LUQaM/yEeYl3dCBK+Fld2qw==}
+  /@lit-protocol/lit-node-client-nodejs@3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0):
+    resolution: {integrity: sha512-iVVJ/bMRl2UQ7aBi+3ucJbFmZeEsJCP7/SMKkSuJ+GuvLY/5KDWIy6w/pk6Qz2yoaQH333ipGNkDwEq6ojsbog==}
     dependencies:
       '@cosmjs/proto-signing': 0.30.1
       '@cosmjs/stargate': 0.30.1
-      '@lit-protocol/access-control-conditions': 2.2.61
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/bls-sdk': 2.2.61
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/core': 2.2.61
-      '@lit-protocol/crypto': 2.2.61
-      '@lit-protocol/ecdsa-sdk': 2.2.61
-      '@lit-protocol/encryption': 2.2.61(node-fetch@2.7.0)
-      '@lit-protocol/lit-third-party-libs': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/misc-browser': 2.2.61
-      '@lit-protocol/nacl': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/access-control-conditions': 3.0.6
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/core': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/encryption': 3.0.6(node-fetch@2.7.0)
+      '@lit-protocol/lit-third-party-libs': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/misc-browser': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       blockstore-core: 3.0.0
       ethers: 5.7.2
       ipfs-http-client: 56.0.0(node-fetch@2.7.0)
@@ -3022,27 +3046,27 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/lit-node-client@2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
-    resolution: {integrity: sha512-yAWKFDsyJoJCFVyivDPgvQH3UJ34KpFV1NxMI8lMDsGtu4BfdI9kS/Hb/8OpBEsbrEXoJ1FfH+8r3k6sl1bAOw==}
+  /@lit-protocol/lit-node-client@3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
+    resolution: {integrity: sha512-PJ1u50Ghb++Vgq9HIPvXg4vnaVRR3x9q8AB/ApsbdxImJVTvtooBpD5zFUQ+DX4w8SAfCyPOoNmNc9MmwdwPIw==}
     dependencies:
       '@cosmjs/proto-signing': 0.30.1
       '@cosmjs/stargate': 0.30.1
-      '@lit-protocol/access-control-conditions': 2.2.61
-      '@lit-protocol/auth-browser': 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/bls-sdk': 2.2.61
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/core': 2.2.61
-      '@lit-protocol/crypto': 2.2.61
-      '@lit-protocol/ecdsa-sdk': 2.2.61
-      '@lit-protocol/encryption': 2.2.61(node-fetch@2.7.0)
-      '@lit-protocol/lit-node-client-nodejs': 2.2.61(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
-      '@lit-protocol/lit-third-party-libs': 2.2.61
-      '@lit-protocol/misc': 2.2.61
-      '@lit-protocol/misc-browser': 2.2.61
-      '@lit-protocol/nacl': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/access-control-conditions': 3.0.6
+      '@lit-protocol/auth-browser': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/core': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/encryption': 3.0.6(node-fetch@2.7.0)
+      '@lit-protocol/lit-node-client-nodejs': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      '@lit-protocol/lit-third-party-libs': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/misc-browser': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       '@walletconnect/ethereum-provider': 2.9.2(@walletconnect/modal@2.6.1)
       '@walletconnect/modal': 2.6.1(react@18.2.0)
       blockstore-core: 3.0.0
@@ -3072,8 +3096,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/lit-third-party-libs@2.2.61:
-    resolution: {integrity: sha512-mn50pOvy7QkECRU22gLnuiX0LskzkFdxunOV40DqaGV82IJZOCL35R+smd8rFRx206mrERWlDengsAW9ocpoBg==}
+  /@lit-protocol/lit-third-party-libs@3.0.6:
+    resolution: {integrity: sha512-5rrFIi1GCqIMiPV5P2SAY8NZlk5tbARN+a3sTu3zS5Cc3D4auenqHK7OzWIXXCiqADx/bhhhMhvJap41Y3N+0A==}
     dependencies:
       '@cosmjs/proto-signing': 0.30.1
       '@cosmjs/stargate': 0.30.1
@@ -3088,14 +3112,15 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/misc-browser@2.2.61:
-    resolution: {integrity: sha512-SO+/Y5RjyX9JrU2D7jyJxGZde/bPcxNwu7wYCu7pKOKPoB3WhJGiQS40N+YpslSu2jioRN/oaGDBFzoIQvIFoA==}
+  /@lit-protocol/misc-browser@3.0.6:
+    resolution: {integrity: sha512-un3mW51o3UKdDHW5pP4vLpO3ws3PSRv5WppmuIFedRH6W0mOYrwOIU/qf88yj3MfylAODGditiJ9cc2rMYRIGw==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/types': 2.2.61
-      '@lit-protocol/uint8arrays': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
       ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -3104,13 +3129,14 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/misc@2.2.61:
-    resolution: {integrity: sha512-UXPK8Rz/n5ju0f8Br2e0BoGIgO1tnQUWrNmqbHaUdMlgfHlvQHNO0ky/lnku5Aq66w59iGpKFntbFtM4DNZmpQ==}
+  /@lit-protocol/misc@3.0.6:
+    resolution: {integrity: sha512-9Fx6BFwYeVr4kcZxjN5LoTwT2sS5nisF6h/AoOi6iypktRtapRwXAzoqyH5f4r3becIqztXDCuYL//CceT4OMQ==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
-      '@lit-protocol/constants': 2.2.61
-      '@lit-protocol/types': 2.2.61
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/types': 3.0.6
       ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -3119,17 +3145,126 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/nacl@2.2.61:
-    resolution: {integrity: sha512-ZUWQCmb9KoclLHDU+8Olxyf0V7T2w+z1a8xtO6v5cQNfVTTxBMYtIS4hh38Dn4aMnpl35/Alkvn3aI1bk5fq6A==}
+  /@lit-protocol/nacl@3.0.6:
+    resolution: {integrity: sha512-eHzO+AOzfxVeUsaMEmUpKrZccHmLIPJGQhiC5S9MeVFFpBAMhg/yBz4mpcxx5qCyCLAtMXYQBPi2tlGLwQiqbg==}
     dependencies:
       tslib: 2.6.2
     dev: false
 
-  /@lit-protocol/types@2.2.61:
-    resolution: {integrity: sha512-5BFOFZlrlWPNvkROcw3690uypFdeIr/e7Kqr3JS/22RH1dsAz9Oq0kJGXe+qEF4hp699BvyLQzsqd15CzY5+oA==}
+  /@lit-protocol/pkp-base@3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
+    resolution: {integrity: sha512-xGOnosOAbicJtn4n5X8gWza+k2AR2l8Cj/NrqfA7pwNUTA50Tk6wjwT3x8zW6Pr/zjlbMf53JrOmva8xy9cYOw==}
     dependencies:
-      '@lit-protocol/auth-helpers': 2.2.61(ethers@5.7.2)
+      '@cosmjs/proto-signing': 0.30.1
+      '@cosmjs/stargate': 0.30.1
+      '@lit-protocol/access-control-conditions': 3.0.6
+      '@lit-protocol/auth-browser': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/core': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/encryption': 3.0.6(node-fetch@2.7.0)
+      '@lit-protocol/lit-node-client': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/lit-node-client-nodejs': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      '@lit-protocol/lit-third-party-libs': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/misc-browser': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
+      '@walletconnect/ethereum-provider': 2.9.2(@walletconnect/modal@2.6.1)
+      '@walletconnect/modal': 2.6.1(react@18.2.0)
+      blockstore-core: 3.0.0
       ethers: 5.7.2
+      ipfs-http-client: 56.0.0(node-fetch@2.7.0)
+      ipfs-unixfs-importer: 12.0.1
+      jszip: 3.10.1
+      lit-siwe: 1.1.8(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      node-fetch: 2.7.0
+      secp256k1: 5.0.0
+      siwe: 2.1.4(ethers@5.7.2)
+      siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
+      tslib: 2.6.2
+      tweetnacl: 1.0.3
+      tweetnacl-util: 0.15.1
+      uint8arrays: 4.0.6
+    transitivePeerDependencies:
+      - '@ethersproject/contracts'
+      - '@ethersproject/hash'
+      - '@ethersproject/providers'
+      - '@ethersproject/wallet'
+      - '@react-native-async-storage/async-storage'
+      - bufferutil
+      - debug
+      - encoding
+      - lokijs
+      - react
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@lit-protocol/pkp-ethers@3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0):
+    resolution: {integrity: sha512-xXQ+akuWsqJ+MQ+IpwJ5VzsQXbDNVg0Szy1htRYs0x/UUrXADMIt+oh6hbxWH7iXUtVtgllxtdIpPuOsz+9LyQ==}
+    dependencies:
+      '@cosmjs/proto-signing': 0.30.1
+      '@cosmjs/stargate': 0.30.1
+      '@lit-protocol/access-control-conditions': 3.0.6
+      '@lit-protocol/auth-browser': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      '@lit-protocol/bls-sdk': 3.0.6
+      '@lit-protocol/constants': 3.0.6
+      '@lit-protocol/core': 3.0.6
+      '@lit-protocol/crypto': 3.0.6
+      '@lit-protocol/ecdsa-sdk': 3.0.6
+      '@lit-protocol/encryption': 3.0.6(node-fetch@2.7.0)
+      '@lit-protocol/lit-node-client': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/lit-node-client-nodejs': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      '@lit-protocol/lit-third-party-libs': 3.0.6
+      '@lit-protocol/misc': 3.0.6
+      '@lit-protocol/misc-browser': 3.0.6
+      '@lit-protocol/nacl': 3.0.6
+      '@lit-protocol/pkp-base': 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
+      '@lit-protocol/types': 3.0.6
+      '@lit-protocol/uint8arrays': 3.0.6
+      '@metamask/eth-sig-util': 5.0.2
+      '@walletconnect/ethereum-provider': 2.9.2(@walletconnect/modal@2.6.1)
+      '@walletconnect/modal': 2.6.1(react@18.2.0)
+      blockstore-core: 3.0.0
+      ethers: 5.7.2
+      ipfs-http-client: 56.0.0(node-fetch@2.7.0)
+      ipfs-unixfs-importer: 12.0.1
+      jszip: 3.10.1
+      lit-siwe: 1.1.8(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
+      node-fetch: 2.7.0
+      secp256k1: 5.0.0
+      siwe: 2.1.4(ethers@5.7.2)
+      siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
+      tslib: 2.6.2
+      tweetnacl: 1.0.3
+      tweetnacl-util: 0.15.1
+      uint8arrays: 4.0.6
+    transitivePeerDependencies:
+      - '@ethersproject/contracts'
+      - '@ethersproject/hash'
+      - '@ethersproject/providers'
+      - '@ethersproject/wallet'
+      - '@react-native-async-storage/async-storage'
+      - bufferutil
+      - debug
+      - encoding
+      - lokijs
+      - react
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@lit-protocol/types@3.0.6:
+    resolution: {integrity: sha512-e0KsbZOz9Lz3vZIZ9O0pyYYw45VSwWp/RbZir7yg5EVHhnQAqKR8w0OElA5PR3eK37ZMJkeE2JfuUM+qu5guuQ==}
+    dependencies:
+      '@lit-protocol/auth-helpers': 3.0.6(ethers@5.7.2)
+      ethers: 5.7.2
+      jszip: 3.10.1
       siwe: 2.1.4(ethers@5.7.2)
       siwe-recap: 0.0.2-alpha.0(ethers@5.7.2)
       tslib: 2.6.2
@@ -3138,8 +3273,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@lit-protocol/uint8arrays@2.2.61:
-    resolution: {integrity: sha512-Dk9BAD+5YaCe6Jy2K50Bqk0NL7+ZmVfmL3zLRERZ93BqzPiFl/dDhCLGSKabvItqRVTjRGlLnfTT0yHcq6Cppw==}
+  /@lit-protocol/uint8arrays@3.0.6:
+    resolution: {integrity: sha512-ll1m3hok4CJTN1lOv/XC0aJIBL3L0qmmvuOXPidU7XqsuA3DYGurfcH7WMoS2pMTovHaP4hCtsl2a2YyF8nhKw==}
     dependencies:
       tslib: 2.6.2
     dev: false
@@ -3183,6 +3318,18 @@ packages:
       ethjs-util: 0.1.6
       tweetnacl: 1.0.3
       tweetnacl-util: 0.15.1
+
+  /@metamask/eth-sig-util@5.0.2:
+    resolution: {integrity: sha512-RU6fG/H6/UlBol221uBkq5C7w3TwLK611nEZliO2u+kO0vHKGBXnIPlhI0tzKUigjhUeOd9mhCNbNvhh0LKt9Q==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      '@ethereumjs/util': 8.1.0
+      bn.js: 4.12.0
+      ethereum-cryptography: 1.2.0
+      ethjs-util: 0.1.6
+      tweetnacl: 1.0.3
+      tweetnacl-util: 0.15.1
+    dev: false
 
   /@metamask/safe-event-emitter@2.0.0:
     resolution: {integrity: sha512-/kSXhY692qiV1MXu6EeOZvg5nECLclxNXcKCxJ3cXQgYuRymRHpdx/t7JXfsK+JLjwA1e1c1/SBrlQYpusC29Q==}
@@ -3370,7 +3517,6 @@ packages:
     resolution: {integrity: sha512-091oBExgENk/kGj3AZmtBDMpxQPDtxQABR2B9lb1JbVTs6ytdzZNwvhxQ4MWasRNEzlbEH8jCWFCwhF/Obj5AA==}
     dependencies:
       '@noble/hashes': 1.3.1
-    dev: true
 
   /@noble/curves@1.2.0:
     resolution: {integrity: sha512-oYclrNgRaM9SsBUBVbb8M6DTV7ZHRTKugureoYEncY5c65HOmRzvSiTE3y5CYaPYJA/GVkrhXEoF0M3Ya9PMnw==}
@@ -3383,7 +3529,6 @@ packages:
   /@noble/hashes@1.3.1:
     resolution: {integrity: sha512-EbqwksQwz9xDRGfDST86whPBgM65E0OH/pCgqW0GBVzO22bNE+NuIbeTb714+IfSjU3aRk47EUvXIb5bTsenKA==}
     engines: {node: '>= 16'}
-    dev: true
 
   /@noble/hashes@1.3.2:
     resolution: {integrity: sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==}
@@ -4640,7 +4785,6 @@ packages:
       '@noble/curves': 1.1.0
       '@noble/hashes': 1.3.2
       '@scure/base': 1.1.3
-    dev: true
 
   /@scure/bip32@1.3.2:
     resolution: {integrity: sha512-N1ZhksgwD3OBlwTv3R6KFEcPojl/W4ElJOeCZdi+vuI5QmTFwLq3OFf2zd2ROpKvxFdgZ6hUpb0dx9bVNEwYCA==}
@@ -9102,7 +9246,6 @@ packages:
       '@noble/hashes': 1.3.1
       '@scure/bip32': 1.3.1
       '@scure/bip39': 1.2.1
-    dev: true
 
   /ethereumjs-abi@0.6.8:
     resolution: {integrity: sha512-Tx0r/iXI6r+lRsdvkFDlut0N08jWMnKRZ6Gkq+Nmw75lZe4e6o3EkSnkaBP5NF6+m5PTGAr9JP43N3LyeoglsA==}
@@ -11535,7 +11678,6 @@ packages:
 
   /micro-ftch@0.3.1:
     resolution: {integrity: sha512-/0LLxhzP0tfiR5hcQebtudP56gUurs2CLkGarnCiB/OqEyUFQ6U3paQi/tgLv0hBJYt2rnr9MNpxz4fiiugstg==}
-    dev: true
 
   /micromark-core-commonmark@1.1.0:
     resolution: {integrity: sha512-BgHO1aRbolh2hcrzL2d1La37V0Aoz73ymF8rAcKnohLy93titmv62E0gP8Hrx9PKcKrqCZ1BbLGbP3bEhoXYlw==}
@@ -12187,6 +12329,10 @@ packages:
 
   /node-addon-api@2.0.2:
     resolution: {integrity: sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==}
+
+  /node-addon-api@5.1.0:
+    resolution: {integrity: sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA==}
+    dev: false
 
   /node-emoji@1.11.0:
     resolution: {integrity: sha512-wo2DpQkQp7Sjm2A0cq+sN7EHKO6Sl0ctXeBdFZrL9T9+UywORbufTcTZxom8YqpLQt/FqNMUkOpkZrJVYSKD3A==}
@@ -13764,6 +13910,16 @@ packages:
       node-addon-api: 2.0.2
       node-gyp-build: 4.6.1
 
+  /secp256k1@5.0.0:
+    resolution: {integrity: sha512-TKWX8xvoGHrxVdqbYeZM9w+izTF4b9z3NhSaDkdn81btvuh+ivbIMGT/zQvDtTFWhRlThpoz6LEYTr7n8A5GcA==}
+    engines: {node: '>=14.0.0'}
+    requiresBuild: true
+    dependencies:
+      elliptic: 6.5.4
+      node-addon-api: 5.1.0
+      node-gyp-build: 4.6.1
+    dev: false
+
   /selfsigned@2.1.1:
     resolution: {integrity: sha512-GSL3aowiF7wa/WtSFwnUrludWFoNhftq8bUkH9pkzjpN2XSPOAYEgg6e0sS9s0rZwgJzJiQRPU18A6clnoW5wQ==}
     engines: {node: '>=10'}
@@ -13818,6 +13974,10 @@ packages:
       send: 0.18.0
     transitivePeerDependencies:
       - supports-color
+
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+    dev: false
 
   /set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
