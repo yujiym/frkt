@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* common */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+
+    /* shadcn/ui */
+    --background: 83 4% 95%;
+    --foreground: 0 1% 17%;
+    --card: var(--white);
+    --card-foreground: var(--foreground);
+    --popover: var(--white);
+    --popover-foreground: 0 1% 17%;
+    --primary: 73 67% 70%;
+    --primary-foreground: var(--foreground);
+    --secondary: 4 67% 70%;
+    --secondary-foreground: var(--foreground);
+    --muted: 20 22% 92%;
+    --muted-foreground: var(--foreground);
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: var(--foreground);
+    --input: var(--white);
+    --ring: 240 5% 64.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+  html,
+  body,
+  body > div {
+    @apply h-full;
+  }
+  body {
+    @apply min-h-screen relative overflow-x-hidden antialiased font-sans bg-background;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply border-2 border-foreground bg-foreground flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-primary text-background hover:text-foreground disabled:bg-stone-200 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply border-2 border-foreground bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-white disabled:bg-stone-200 disabled:cursor-not-allowed;
+  }
+
+  .card {
+    @apply border border-zinc-800 rounded-md hover:shadow-solid shadow-none;
+  }
+}

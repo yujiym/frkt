@@ -28,13 +28,13 @@ export default {
       events: true,
     },
   },
-  serverNodeBuiltinsPolyfill: {
-    modules: {
-      fs: 'empty',
-      zlib: 'empty',
-      assert: 'empty',
-      stream: 'empty',
-      crypto: 'empty',
-    },
-  },
+  // serverNodeBuiltinsPolyfill: {
+  //   modules: {
+  //     fs: 'empty',
+  //     zlib: 'empty',
+  //     assert: 'empty',
+  //     stream: 'empty',
+  //     crypto: 'empty',
+  //   },
+  // },
 }

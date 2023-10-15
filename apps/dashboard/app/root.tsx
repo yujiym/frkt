@@ -1,4 +1,3 @@
-import stylesheet from './globals.css'
 import {
   json,
   type LinksFunction,
@@ -16,6 +15,7 @@ import {
 import { SITE_TITLE, SITE_DESCRIPTION } from '@@/lib/const'
 import Toaster from '@@/components/Toaster'
 import faviconUrl from '@@/assets/img/favicon.svg'
+import stylesheet from '@@/css/dashboard.css'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
