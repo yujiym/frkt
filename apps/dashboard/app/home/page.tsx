@@ -1,5 +1,5 @@
 'use client'
-import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { useAccount, useConnect } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 
 export default function Home() {
@@ -7,7 +7,6 @@ export default function Home() {
   const { connect } = useConnect({
     connector: new InjectedConnector(),
   })
-  const { disconnect } = useDisconnect()
 
   return (
     <>
