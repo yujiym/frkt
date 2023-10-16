@@ -6,8 +6,10 @@ const {
   REPORT_GAS,
   PRIVATE_KEY,
   COINMARKETCAP_API_KEY,
+  BLOCKSOUT_API_KEY,
   MUMBAI_API_URL,
   OPTIMISM_GOERLI_URL,
+  POLYGONSCAN_API_KEY,
 } = process.env
 
 const config: HardhatUserConfig = {
@@ -51,7 +53,8 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      scrollAlpha: 'abc',
+      scrollAlpha: BLOCKSOUT_API_KEY!,
+      polygonMumbai: POLYGONSCAN_API_KEY!,
     },
     customChains: [
       {

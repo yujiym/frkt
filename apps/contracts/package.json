@@ -38,7 +38,10 @@
     "sandbox:ccip:fuji:opGoerli:5": "hardhat run scripts/deploy/cross-chain-nft/sandbox/5_send_link_token.ts --network fuji",
     "sandbox:ccip:fuji:opGoerli:6": "hardhat run scripts/deploy/cross-chain-nft/sandbox/opGoerli/6_mint_nft.ts --network fuji",
     "sandbox:ccip:fuji:opGoerli:7": "hardhat run scripts/deploy/cross-chain-nft/sandbox/opGoerli/7_balanceOf_nft.ts --network opGoerli",
-    "verify:scrollAlpha": "hardhat verify --network scrollAlpha 0x2B5914De5D5166eBaa423C92BAb8518c85EAA0cb 1695472571"
+    "sandbox:deploy:signContract:scrollAlpha": "hardhat run scripts/deploy/signContract/sandbox/deploy.ts --network scrollAlpha",
+    "sandbox:verify:signContract:scrollAlpha": "hardhat verify --network scrollAlpha 0x8DF7e6234f76e8fAC829feF83E7520635359094C ",
+    "sandbox:deploy:signContract:mumbai": "hardhat run scripts/deploy/signContract/sandbox/deploy.ts --network mumbai",
+    "sandbox:verify:signContract:mumbai": "hardhat verify --network mumbai 0xc48810543c1299deA42E9f03A921d727dcED9714"
   },
   "keywords": [],
   "author": "",
