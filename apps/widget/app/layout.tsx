@@ -1,4 +1,5 @@
 import '@@/css/widget.css'
+import faviconUrl from '@@/assets/img/favicon.svg'
 
 export const metadata = {
   title: 'FRKT widget',
@@ -12,6 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href={faviconUrl.src} type="image/svg+xml" />
+      </head>
+
       <body>{children}</body>
     </html>
   )

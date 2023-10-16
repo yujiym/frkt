@@ -90,30 +90,6 @@ importers:
 
   apps/dashboard:
     dependencies:
-      '@lit-protocol/auth-helpers':
-        specifier: ^3.0.6
-        version: 3.0.6(ethers@5.7.2)
-      '@lit-protocol/constants':
-        specifier: ^3.0.6
-        version: 3.0.6
-      '@lit-protocol/lit-auth-client':
-        specifier: ^3.0.6
-        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
-      '@lit-protocol/lit-node-client':
-        specifier: 3.0.6
-        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
-      '@lit-protocol/lit-node-client-nodejs':
-        specifier: ^3.0.6
-        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)
-      '@lit-protocol/pkp-ethers':
-        specifier: ^3.0.6
-        version: 3.0.6(@ethersproject/contracts@5.7.0)(@ethersproject/hash@5.7.0)(@ethersproject/providers@5.7.2)(@ethersproject/wallet@5.7.0)(react@18.2.0)
-      '@lit-protocol/types':
-        specifier: ^3.0.6
-        version: 3.0.6
-      '@walletconnect/keyvaluestorage':
-        specifier: ^1.0.2
-        version: 1.0.2
       client-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -123,6 +99,9 @@ importers:
       jotai:
         specifier: ^2.4.3
         version: 2.4.3(@types/react@18.2.25)(react@18.2.0)
+      lucide-react:
+        specifier: ^0.284.0
+        version: 0.284.0(react@18.2.0)
       next:
         specifier: 13.5.4
         version: 13.5.4(react-dom@18.2.0)(react@18.2.0)

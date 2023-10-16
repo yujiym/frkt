@@ -4,23 +4,16 @@
   "sideEffects": false,
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 3002",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p 3002",
     "lint": "next lint"
   },
   "dependencies": {
-    "@lit-protocol/auth-helpers": "^3.0.6",
-    "@lit-protocol/constants": "^3.0.6",
-    "@lit-protocol/lit-auth-client": "^3.0.6",
-    "@lit-protocol/lit-node-client": "3.0.6",
-    "@lit-protocol/lit-node-client-nodejs": "^3.0.6",
-    "@lit-protocol/pkp-ethers": "^3.0.6",
-    "@lit-protocol/types": "^3.0.6",
-    "@walletconnect/keyvaluestorage": "^1.0.2",
     "client-only": "^0.0.1",
     "common": "workspace:*",
     "jotai": "^2.4.3",
+    "lucide-react": "^0.284.0",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
@@ -41,8 +34,5 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5",
     "zod": "^3.22.4"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }

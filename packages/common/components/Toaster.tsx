@@ -1,3 +1,4 @@
+'use client'
 import { useMediaQuery } from 'usehooks-ts'
 import { toast, Toaster } from 'react-hot-toast'
 

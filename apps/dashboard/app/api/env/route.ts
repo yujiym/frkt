@@ -1,9 +1,7 @@
 'use server'
 
 export async function GET() {
-  const env = {
-    LIT_RELAY_API_KEY: process.env.LIT_RELAY_API_KEY,
-  }
+  const env = {}
 
   return Response.json({ env })
 }
