@@ -1,0 +1,30 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SignContract
+    network: base-testnet
+    source:
+      address: "0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8"
+      abi: SignContract
+      startBlock: 11133499
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ChangeApproveStatus
+        - SignContractCreated
+        - SignatureAdded
+      abis:
+        - name: SignContract
+          file: SignContract/abis/SignContract.json
+      eventHandlers:
+        - event: ChangeApproveStatus(string,string,uint256,bool)
+          handler: handleChangeApproveStatus
+        - event: SignContractCreated(string,string,uint256,string,uint256,string,address[],address)
+          handler: handleSignContractCreated
+        - event: SignatureAdded(string,string,uint256,string)
+          handler: handleSignatureAdded
+      file: SignContract/SignContract.wasm

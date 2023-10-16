@@ -129,3 +129,48 @@
 
   - setUp Transaction  
     [0x9b14d8f29852096e1bd9525adf15d0db09d6aa34c96d987b71cf55e3bd136575](https://goerli.basescan.org/tx/0x9b14d8f29852096e1bd9525adf15d0db09d6aa34c96d987b71cf55e3bd136575)
+
+  - SubGraph
+
+    [https://api.studio.thegraph.com/query/44992/frkt-signcontract/v0.0.01](https://api.studio.thegraph.com/query/44992/frkt-signcontract/v0.0.01)
+
+    sample Query
+
+    ```gql
+    query MyQuery {
+      signContractCreateds(
+        orderBy: signId
+        orderDirection: desc
+        where: { signId: "0" }
+      ) {
+        appId
+        name
+        receipeId
+        required
+        safeAddress
+        signId
+        uri
+        owners
+      }
+      changeApproveStatuses(
+        orderBy: signId
+        orderDirection: desc
+        where: { signId: "0" }
+      ) {
+        appId
+        receipeId
+        signId
+        approveStatus
+      }
+      signatureAddeds(
+        orderBy: signId
+        orderDirection: desc
+        where: { signId: "0" }
+      ) {
+        appId
+        receipeId
+        signId
+        signature
+      }
+    }
+    ```

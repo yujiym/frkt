@@ -1,0 +1,36 @@
+type ChangeApproveStatus @entity(immutable: true) {
+  id: Bytes!
+  appId: String! # string
+  receipeId: String! # string
+  signId: BigInt! # uint256
+  approveStatus: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SignContractCreated @entity(immutable: true) {
+  id: Bytes!
+  appId: String! # string
+  receipeId: String! # string
+  signId: BigInt! # uint256
+  name: String! # string
+  required: BigInt! # uint256
+  uri: String! # string
+  owners: [Bytes!]! # address[]
+  safeAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SignatureAdded @entity(immutable: true) {
+  id: Bytes!
+  appId: String! # string
+  receipeId: String! # string
+  signId: BigInt! # uint256
+  signature: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
