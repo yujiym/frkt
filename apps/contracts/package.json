@@ -41,7 +41,10 @@
     "sandbox:deploy:signContract:scrollAlpha": "hardhat run scripts/deploy/signContract/sandbox/deploy.ts --network scrollAlpha",
     "sandbox:verify:signContract:scrollAlpha": "hardhat verify --network scrollAlpha 0x8DF7e6234f76e8fAC829feF83E7520635359094C ",
     "sandbox:deploy:signContract:mumbai": "hardhat run scripts/deploy/signContract/sandbox/deploy.ts --network mumbai",
-    "sandbox:verify:signContract:mumbai": "hardhat verify --network mumbai 0xc48810543c1299deA42E9f03A921d727dcED9714"
+    "sandbox:verify:signContract:mumbai": "hardhat verify --network mumbai 0xc48810543c1299deA42E9f03A921d727dcED9714",
+    "sandbox:deploy:signContract:baseGoerli": "hardhat run scripts/deploy/signContract/sandbox/deploy.ts --network baseGoerli",
+    "sandbox:verify:signContract:baseGoerli": "hardhat verify --network baseGoerli 0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8",
+    "sandbox:setup:signContract:baseGoerli": "hardhat run scripts/deploy/signContract/sandbox/setup.ts --network baseGoerli"
   },
   "keywords": [],
   "author": "",
