@@ -1,7 +1,7 @@
 'use client'
 import { LitAuthClient, GoogleProvider } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
-import { ProviderType } from '@lit-protocol/constants'
+import { ProviderType, AuthMethodType } from '@lit-protocol/constants'
 
 const getEnv = async () => {
   const res = await fetch('/api/env')
@@ -9,7 +9,7 @@ const getEnv = async () => {
   return env
 }
 
-const litNodeClient = new LitNodeClient({
+const client = new LitNodeClient({
   litNetwork: 'cayenne',
   debug: false,
 })
@@ -27,30 +27,46 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
   const { LIT_RELAY_API_KEY } = await getEnv()
   if (!LIT_RELAY_API_KEY) return
 
-  await litNodeClient.connect()
+  await client.connect()
 
-  const authClient = new LitAuthClient({
-    litRelayConfig: {
-      relayApiKey: LIT_RELAY_API_KEY,
+  let authMethod = {
+    AuthMethodType: AuthMethodType.Google,
+    accessToken: token,
+  }
+
+  let claimReq: ClaimRequest<ContractClaimProcessor> = {
+    authMethod,
+    signer: new ethers.Wallet(
+      LIT_RELAY_API_KEY, // <your private key>
+      new JsonRpcProvider('https://chain-rpc.litprotocol.com/http')
+    ),
+    mintCallback: (claimRes: ClaimResponse<ClientClaimProcessor>) => {
+      const litContracts = new LitContracts({ signer: claimRes.signer })
+      await litContracts.connect()
+      let tokenId = litContracts.claimAndMint(
+        claimRes.keyId,
+        claimRes.signatures
+      )
     },
-    litNodeClient,
-  })
+  }
 
-  const decodedToken = JSON.parse(atob(token.split('.')[1]))
-  const { sub, aud } = decodedToken
+  const res = await client.claimKeyId(claimReq)
 
-  const session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
-    appId: sub,
-    userId: aud,
-    redirectUri: 'http://localhost:3003',
-  })
-  console.log('----003: ', session)
+  console.log('mint tx hash: ', res.mintTx)
+  console.log('pkp public key: ', res.pubkey)
 
-  const authMethod = await session.authenticate()
-  console.log('----004: ', authMethod)
+  // const session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
+  //   appId: sub,
+  //   userId: aud,
+  //   redirectUri: 'http://localhost:3003',
+  // })
+  // console.log('----003: ', session)
 
-  const keyId = session.getAuthMethodId(authMethod)
+  // const authMethod = await session.authenticate()
+  // console.log('----004: ', authMethod)
+
+  // const keyId = client.computeHdKeyId('<your user id>', '<your project id>')
+
+  // const keyId = session.getAuthMethodId(authMethod)
   // const pubKey = session.litNodeClient.computePubkey(keyId)
-
-  return { keyId, pubKey: 'pubKey' }
 }
