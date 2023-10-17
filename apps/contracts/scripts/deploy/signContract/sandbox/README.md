@@ -141,7 +141,7 @@
       signContractCreateds(
         orderBy: signId
         orderDirection: desc
-        where: { signId: "0" }
+        where: { signId: "1" }
       ) {
         appId
         name
@@ -155,7 +155,7 @@
       changeApproveStatuses(
         orderBy: signId
         orderDirection: desc
-        where: { signId: "0" }
+        where: { signId: "1" }
       ) {
         appId
         receipeId
@@ -165,7 +165,7 @@
       signatureAddeds(
         orderBy: signId
         orderDirection: desc
-        where: { signId: "0" }
+        where: { signId: "1" }
       ) {
         appId
         receipeId
