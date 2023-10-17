@@ -10,6 +10,7 @@ const {
   MUMBAI_API_URL,
   OPTIMISM_GOERLI_URL,
   POLYGONSCAN_API_KEY,
+  BASESCAN_API_KEY,
 } = process.env
 
 const config: HardhatUserConfig = {
@@ -24,9 +25,9 @@ const config: HardhatUserConfig = {
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
     },
     baseGoerli: {
-      url: 'https://goerli.base.org',
+      url: 'https://rpc.ankr.com/base_goerli',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-      gasPrice: 1000000000,
+      gasPrice: 3000000000,
     },
     opGoerli: {
       url: OPTIMISM_GOERLI_URL,
@@ -55,6 +56,7 @@ const config: HardhatUserConfig = {
     apiKey: {
       scrollAlpha: BLOCKSOUT_API_KEY!,
       polygonMumbai: POLYGONSCAN_API_KEY!,
+      baseGoerli: BASESCAN_API_KEY!,
     },
     customChains: [
       {

@@ -1,6 +1,26 @@
 # SignContract Sandbox Info
 
-[sample PDF](https://bafybeifw2wc4m3k6sfwbegldppbimyme6pkhs6scifqmlpkwy4numw43wm.ipfs.dweb.link/SIMPLE_CONTRACT_AGREEMENT.pdf)
+[sample PDF](https://bafybeibawd4uszujdype4emondxzksmbsxputel6tip5ocgr3plv746z3e.ipfs.dweb.link/SIMPLE%20CONTRACT%20AGREEMENT.pdf)
+
+## sandbox Sign data
+
+- appId  
+  0002
+- receipeIs  
+  0002
+- SignContractName  
+  FrktSampleSignContract2
+- required  
+  2
+- initUri  
+  https://bafybeibawd4uszujdype4emondxzksmbsxputel6tip5ocgr3plv746z3e.ipfs.dweb.link/SIMPLE%20CONTRACT%20AGREEMENT.pdf
+- owners  
+  0x1a29B04E144e0EC9ECA49851e65F589877a47268
+  0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072
+- safeAddress  
+  0x0a2839ffacA8424b0532b2BC214F9Ea8B45268Fc
+
+## deployed Contract Info
 
 - Mumbai network
 
@@ -70,4 +90,87 @@
 
     Successfully verified contract SignContract on the block explorer.
     https://sepolia-blockscout.scroll.io/address/0x8DF7e6234f76e8fAC829feF83E7520635359094C#code
+    ```
+
+- Base Goerli network
+
+  [0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8](https://goerli.basescan.org/address/0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8#code)
+
+  - deploy
+
+    ```bash
+    pnpm run sandbox:deploy:signContract:baseGoerli
+    ```
+
+    result
+
+    ```bash
+    ======================= start =========================
+    signContracty deployed to 0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8
+    ======================== end  ========================
+    ```
+
+  - verify
+
+    ```bash
+    pnpm run sandbox:verify:signContract:baseGoerli
+    ```
+
+    result
+
+    ```bash
+    Successfully submitted source code for contract
+    contracts/signContract/SignContract.sol:SignContract at 0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8
+    for verification on the block explorer. Waiting for verification result...
+
+    Successfully verified contract SignContract on the block explorer.
+    https://goerli.basescan.org/address/0x50f2f66Eb93E7B5864c192F197af76D4611Ae7b8#code
+    ```
+
+  - setUp Transaction  
+    [0x9b14d8f29852096e1bd9525adf15d0db09d6aa34c96d987b71cf55e3bd136575](https://goerli.basescan.org/tx/0x9b14d8f29852096e1bd9525adf15d0db09d6aa34c96d987b71cf55e3bd136575)
+
+  - SubGraph
+
+    [https://api.studio.thegraph.com/query/44992/frkt-signcontract/v0.0.01](https://api.studio.thegraph.com/query/44992/frkt-signcontract/v0.0.01)
+
+    sample Query
+
+    ```gql
+    query MyQuery {
+      signContractCreateds(
+        orderBy: signId
+        orderDirection: desc
+        where: { signId: "1" }
+      ) {
+        appId
+        name
+        receipeId
+        required
+        safeAddress
+        signId
+        uri
+        owners
+      }
+      changeApproveStatuses(
+        orderBy: signId
+        orderDirection: desc
+        where: { signId: "1" }
+      ) {
+        appId
+        receipeId
+        signId
+        approveStatus
+      }
+      signatureAddeds(
+        orderBy: signId
+        orderDirection: desc
+        where: { signId: "1" }
+      ) {
+        appId
+        receipeId
+        signId
+        signature
+      }
+    }
     ```

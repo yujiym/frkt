@@ -26,6 +26,18 @@ export default function Home() {
           </a>
         </div>
       </div>
+      <div className="py-28 px-6 bg-blue-500 text-white">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-black text-3xl mb-6">🖋Sign Contract</h2>
+          <p className="mb-14">widget description here</p>
+          <a
+            className="btn bg-gray-500 hover:opacity-90 border-none normal-case text-white px-12"
+            href="/sign-contract"
+          >
+            Try this
+          </a>
+        </div>
+      </div>
     </Layout>
   )
 }
