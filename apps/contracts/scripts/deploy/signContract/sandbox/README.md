@@ -1,6 +1,6 @@
 # SignContract Sandbox Info
 
-[sample PDF](https://bafybeifw2wc4m3k6sfwbegldppbimyme6pkhs6scifqmlpkwy4numw43wm.ipfs.dweb.link/SIMPLE_CONTRACT_AGREEMENT.pdf)
+[sample PDF](https://bafybeibawd4uszujdype4emondxzksmbsxputel6tip5ocgr3plv746z3e.ipfs.dweb.link/SIMPLE%20CONTRACT%20AGREEMENT.pdf)
 
 ## sandbox Sign data
 
@@ -9,11 +9,11 @@
 - receipeIs  
   0002
 - SignContractName  
-  FrktSampleSignContract
+  FrktSampleSignContract2
 - required  
   2
 - initUri  
-  https://bafybeifw2wc4m3k6sfwbegldppbimyme6pkhs6scifqmlpkwy4numw43wm.ipfs.dweb.link/SIMPLE_CONTRACT_AGREEMENT.pdf
+  https://bafybeibawd4uszujdype4emondxzksmbsxputel6tip5ocgr3plv746z3e.ipfs.dweb.link/SIMPLE%20CONTRACT%20AGREEMENT.pdf
 - owners  
   0x1a29B04E144e0EC9ECA49851e65F589877a47268
   0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072
