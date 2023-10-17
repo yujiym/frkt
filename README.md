@@ -58,6 +58,6 @@ Widget component for recipes.
 
 [FRKT LP](https://frkt.io/)
 
-- Vite (React, TypeScript)
+- Hono, Vite (React, TypeScript)
 - Tailwind CSS
-- Hosted on Cloudflare Workers
+- Hosted on Cloudflare Pages

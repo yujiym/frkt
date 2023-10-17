@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Dialog,
   DialogTitle,
@@ -26,14 +28,14 @@ export default function WalletDialog({
     children
   ) : (
     <Dialog>
-      <DialogTrigger className="w-full h-full flex items-center">
+      <DialogTrigger className="flex h-full w-full items-center">
         {children}
       </DialogTrigger>
-      <DialogContent className="px-10 py-16 ">
+      {/* <DialogContent className="px-10 py-16 ">
         <DialogTitle>Connect Wallet</DialogTitle>
         <div className="mt-10 space-y-5">
           <button
-            className="btn-outline flex items-center w-full py-2 justify-between px-10 h-14"
+            className="btn-outline flex h-14 w-full items-center justify-between px-10 py-2"
             disabled={!getConnector('injected').ready}
             onClick={() => connect(getConnector('injected'))}
           >
@@ -41,7 +43,7 @@ export default function WalletDialog({
             <span className="ml-2 flex-1">Browser wallet</span>
           </button>
           <button
-            className="btn-outline flex items-center w-full py-2 justify-between px-10 h-14"
+            className="btn-outline flex h-14 w-full items-center justify-between px-10 py-2"
             disabled={!getConnector('metaMask').ready}
             onClick={() => connect(getConnector('metaMask'))}
           >
@@ -49,7 +51,7 @@ export default function WalletDialog({
             <span className="ml-2 flex-1">MetaMask</span>
           </button>
           <button
-            className="btn-outline flex items-center w-full py-2 justify-between px-10 h-14"
+            className="btn-outline flex h-14 w-full items-center justify-between px-10 py-2"
             disabled={!getConnector('walletConnect').ready}
             onClick={() => connect(getConnector('walletConnect'))}
           >
@@ -57,7 +59,7 @@ export default function WalletDialog({
             <span className="ml-2 flex-1">WalletConnect</span>
           </button>
         </div>
-      </DialogContent>
+      </DialogContent> */}
     </Dialog>
   )
 }

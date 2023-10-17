@@ -1,9 +1,11 @@
-import react from '@vitejs/plugin-react'
-import ssr from 'vike/plugin'
-import { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
+import sonik from 'sonik/vite'
+import pages from '@sonikjs/cloudflare-pages'
 
-const config: UserConfig = {
-  plugins: [react(), ssr()],
-}
-
-export default config
+export default defineConfig({
+  // @ts-ignore
+  plugins: [sonik(), pages()],
+  server: {
+    port: 3001,
+  },
+})

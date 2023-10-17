@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 import { useAtom, useAtomValue } from 'jotai'
 import UserDialog from '~components/UserDialog'
-import WagmiWrapper from '~components/WagmiWrapper'
+import Providers from '~components/Providers'
 import { sidebarAtom } from '~store/index'
 import { cn } from '@@/lib/utils'
 import LogoSquare from '@@/components/svgs/LogoSquare'
@@ -46,11 +46,11 @@ export default function DashboardLayout({
   const sidebar = useAtomValue(sidebarAtom)
 
   return (
-    <WagmiWrapper>
+    <Providers>
       <Menu />
       <nav
         className={cn(
-          'fixed bg-background/80 backdrop-blur-sm top-0 right-0 left-0 h-16 border-b border-foreground z-40 flex sm:hidden items-center justify-between'
+          'bg-background/80 border-foreground fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between border-b backdrop-blur-sm sm:hidden'
         )}
       >
         <LogoSquare size={54} />
@@ -58,14 +58,14 @@ export default function DashboardLayout({
       </nav>
       <main
         className={cn(
-          'mt-16 sm:mt-0 fixed top-0 right-0 bottom-0 left-0 ml-0 overflow-y-scroll',
+          'fixed bottom-0 left-0 right-0 top-0 ml-0 mt-16 overflow-y-scroll sm:mt-0',
           sidebar.isFull ? 'md:ml-64' : 'md:ml-20'
         )}
       >
         {children}
       </main>
       <Toaster />
-    </WagmiWrapper>
+    </Providers>
   )
 }
 
@@ -75,14 +75,14 @@ const Menu = () => {
   return (
     <div
       className={cn(
-        'h-screen bg-zinc-800 transition-all duration-300 fixed sm:relative z-50',
+        'fixed z-50 h-screen bg-zinc-800 transition-all duration-300 sm:relative',
         sidebar.isFull ? 'w-64' : 'w-64 sm:w-20',
-        sidebar.navOpen ? 'top-0 left-0' : 'top-0 -left-64 sm:left-0'
+        sidebar.navOpen ? 'left-0 top-0' : '-left-64 top-0 sm:left-0'
       )}
     >
       <h1
         className={cn(
-          'text-white font-bold flex items-center justify-center border-b border-zinc-600 h-16',
+          'flex h-16 items-center justify-center border-b border-zinc-600 font-bold text-white',
           sidebar.isFull ? 'px-4' : 'px-1'
         )}
       >
@@ -95,12 +95,12 @@ const Menu = () => {
       <ul>
         <button
           onClick={() => setSideBar({ ...sidebar, isFull: !sidebar.isFull })}
-          className="hidden sm:block focus:outline-none absolute p-1 -right-3 top-5 bg-zinc-800 rounded-full shadow-xl"
+          className="absolute -right-3 top-5 hidden rounded-full bg-zinc-800 p-1 shadow-xl focus:outline-none sm:block"
         >
           <ChevronRight
             strokeWidth={4}
             className={cn(
-              'h-4 w-4 transition-all duration-300 text-white transform',
+              'h-4 w-4 transform text-white transition-all duration-300',
               sidebar.isFull ? '' : 'rotate-180'
             )}
           />
@@ -115,10 +115,10 @@ const Menu = () => {
           />
         ))}
       </ul>
-      <ul className="absolute bottom-0 right-0 left-0">
+      <ul className="absolute bottom-0 left-0 right-0">
         <li
           className={cn(
-            'h-16 px-6 text-white relative hover:bg-zinc-600 border-zinc-600 border-t',
+            'relative h-16 border-t border-zinc-600 px-6 text-white hover:bg-zinc-600',
             sidebar.isFull ? 'justify-start' : 'sm:justify-center'
           )}
         >
@@ -155,7 +155,7 @@ const MenuItem = ({
       <a
         href={href}
         className={cn(
-          'h-16 px-6 text-white relative flex items-center hover:bg-zinc-600 border-zinc-600',
+          'relative flex h-16 items-center border-zinc-600 px-6 text-white hover:bg-zinc-600',
           sidebar.isFull ? 'justify-start' : 'sm:justify-center',
           pathname === href && 'font-bold',
           position === 'top' ? 'border-b' : 'border-t'
@@ -176,7 +176,7 @@ const HeaderButton = () => {
   return (
     <>
       <button
-        className="sm:hidden absolute top-5 right-5 focus:outline-none"
+        className="absolute right-5 top-5 focus:outline-none sm:hidden"
         onClick={() => setSideBar({ ...sidebar, navOpen: !sidebar.navOpen })}
       >
         <svg

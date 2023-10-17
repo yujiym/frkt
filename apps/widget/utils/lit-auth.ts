@@ -1,7 +1,7 @@
 'use client'
-import { LitAuthClient, GoogleProvider } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
-import { ProviderType, AuthMethodType } from '@lit-protocol/constants'
+import { AuthMethodType } from '@lit-protocol/constants'
+import type { ClaimRequest, AuthMethod } from '@lit-protocol/types'
 
 const getEnv = async () => {
   const res = await fetch('/api/env')
@@ -21,52 +21,28 @@ export async function getWebAuthnPkp(): Promise<any | void> {
 /*
   ref: https://github.com/LIT-Protocol/claim-key-demo-nodejs/blob/main/index.ts
 */
-export async function getLitGooglePkp(token: string): Promise<any | void> {
-  if (!token) return
+export async function getLitGooglePkp(
+  accessToken: string
+): Promise<any | void> {
+  if (!accessToken) return
 
   const { LIT_RELAY_API_KEY } = await getEnv()
   if (!LIT_RELAY_API_KEY) return
 
   await client.connect()
 
-  let authMethod = {
-    AuthMethodType: AuthMethodType.Google,
-    accessToken: token,
+  let authMethod: AuthMethod = {
+    authMethodType: AuthMethodType.Google,
+    accessToken,
   }
 
-  let claimReq: ClaimRequest<ContractClaimProcessor> = {
+  let claimReq: ClaimRequest = {
     authMethod,
-    signer: new ethers.Wallet(
-      LIT_RELAY_API_KEY, // <your private key>
-      new JsonRpcProvider('https://chain-rpc.litprotocol.com/http')
-    ),
-    mintCallback: (claimRes: ClaimResponse<ClientClaimProcessor>) => {
-      const litContracts = new LitContracts({ signer: claimRes.signer })
-      await litContracts.connect()
-      let tokenId = litContracts.claimAndMint(
-        claimRes.keyId,
-        claimRes.signatures
-      )
-    },
+    relayApiKey: LIT_RELAY_API_KEY,
   }
+
+  console.log('claimReq', claimReq)
 
   const res = await client.claimKeyId(claimReq)
-
-  console.log('mint tx hash: ', res.mintTx)
-  console.log('pkp public key: ', res.pubkey)
-
-  // const session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
-  //   appId: sub,
-  //   userId: aud,
-  //   redirectUri: 'http://localhost:3003',
-  // })
-  // console.log('----003: ', session)
-
-  // const authMethod = await session.authenticate()
-  // console.log('----004: ', authMethod)
-
-  // const keyId = client.computeHdKeyId('<your user id>', '<your project id>')
-
-  // const keyId = session.getAuthMethodId(authMethod)
-  // const pubKey = session.litNodeClient.computePubkey(keyId)
+  console.log(res)
 }

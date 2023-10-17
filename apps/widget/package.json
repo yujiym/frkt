@@ -11,18 +11,17 @@
   "dependencies": {
     "@lit-protocol/auth-helpers": "^3.0.6",
     "@lit-protocol/constants": "^3.0.6",
+    "@lit-protocol/contracts-sdk": "^2.2.61",
     "@lit-protocol/lit-auth-client": "^3.0.6",
     "@lit-protocol/lit-node-client": "3.0.6",
     "@lit-protocol/lit-node-client-nodejs": "^3.0.6",
     "@lit-protocol/pkp-ethers": "^3.0.6",
     "@lit-protocol/types": "^3.0.6",
     "@walletconnect/keyvaluestorage": "^1.0.2",
-    "client-only": "^0.0.1",
     "common": "workspace:*",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "server-only": "^0.0.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
