@@ -1,6 +1,13 @@
+import { useEffect, useState } from 'react'
+import { Document, Page, pdfjs } from 'react-pdf'
+import { useQuery } from 'urql'
 import Layout from '../components/Layout'
+import Loading from '../components/Loading'
+import query from '../graphql/query'
 import useAuth from '../hooks/useAuth'
-import { signContract as meta } from '../utils/const'
+import { SignContractInfos, signContract as meta } from '../utils/const'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
 
 function handleClick(url: string) {
   const popup = window.open(url, '_blank', 'width=480,height=780')
@@ -15,7 +22,37 @@ function handleClick(url: string) {
 }
 
 export default function Home() {
+  const [encodeUri, setEncodeUri] = useState<string>('')
+  const [numPages, setNumPages] = useState<number>()
+  const [pageNumber, setPageNumber] = useState<number>(1)
+
+  // signId
+  const signId = 1
+
+  // execute subgraph query
+  const [result] = useQuery({
+    query,
+    variables: { signId },
+  })
+  const { data, fetching } = result
+  const queryResult: SignContractInfos = data
+
+  console.log('data:', queryResult)
+
   const { user } = useAuth()
+
+  useEffect(() => {
+    if (data != undefined) {
+      const uri = data.signContractCreateds[0].uri
+      console.log('uri:', uri)
+      //const encodedUri = encodeURI(uri)
+      setEncodeUri(uri)
+    }
+  })
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+    setNumPages(numPages)
+  }
 
   return (
     <Layout name={meta.name}>
@@ -36,22 +73,33 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8 pb-10">
-        <div className="pt-10 flex flex-col">
-          <button
-            className="btn btn-success w-full mt-12"
-            disabled={!user}
-            onClick={() =>
-              handleClick(
-                `http://localhost:3003/a/000/r/001?token=${user.accessToken!}`
-              )
-            }
-          >
-            {user ? 'Sign' : 'Login to Sign'}
-          </button>
-          <div className="col-span-2 pt-10">Contract is here</div>
+      {fetching ? (
+        <Loading />
+      ) : (
+        <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8 pb-10">
+          <div className="pt-10 flex flex-col">
+            <button
+              className="btn btn-success w-full mt-12"
+              disabled={!user}
+              onClick={() =>
+                handleClick(
+                  `http://localhost:3003/a/000/r/001?token=${user.accessToken!}`
+                )
+              }
+            >
+              {user ? 'Sign' : 'Login to Sign'}
+            </button>
+            <div className="col-span-2 pt-10">
+              <Document file={encodeUri} onLoadSuccess={onDocumentLoadSuccess}>
+                <Page pageNumber={pageNumber} height={1000} />
+              </Document>
+              <p>
+                Page {pageNumber} of {numPages}
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   )
 }
