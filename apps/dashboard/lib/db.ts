@@ -1,7 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 
-let prisma: PrismaClient
-
 const globalForPrisma = global as unknown as {
   prisma: PrismaClient | undefined
 }
@@ -9,6 +7,6 @@ const globalForPrisma = global as unknown as {
 if (!globalForPrisma.prisma) {
   globalForPrisma.prisma = new PrismaClient()
 }
-prisma = globalForPrisma.prisma
+const prisma: PrismaClient = globalForPrisma.prisma
 
 export default prisma

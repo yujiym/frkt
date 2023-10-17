@@ -6,8 +6,8 @@ import { toast } from '@@/components/Toaster'
 export default function MyAppsPage() {
   return (
     <>
-      <div className="px-4 pt-16 pb-12 flex items-center justify-center">
-        <h2 className="font-bold text-3xl">
+      <div className="flex items-center justify-center px-4 pb-12 pt-16">
+        <h2 className="text-3xl font-bold">
           <LayoutPanelLeft
             size={48}
             strokeWidth={1}
@@ -16,31 +16,31 @@ export default function MyAppsPage() {
           My Apps
         </h2>
       </div>
-      <div className="py-8 px-6 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 py-8 md:grid-cols-2 lg:grid-cols-3">
         <div
-          className="card bg-white relative"
+          className="card relative bg-white"
           onClick={() => toast.error('ok gooooooood', { icon: '😔' })}
         >
-          <a className="flex flex-col h-full">
-            <div className="py-12 px-4 flex flex-1 items-center justify-center text-gray-500">
+          <a className="flex h-full flex-col">
+            <div className="flex flex-1 items-center justify-center px-4 py-12 text-gray-500">
               <PlusSquare size={48} strokeWidth={1} />
             </div>
-            <button className="w-full px-4 py-2 border-t border-black font-bold text-center uppercase">
+            <button className="w-full border-t border-black px-4 py-2 text-center font-bold uppercase">
               Create new app
             </button>
           </a>
         </div>
         <div className="card bg-white">
-          <a className="flex flex-col h-full">
-            <div className="py-12 px-4 flex-1 bg-slate-100">
+          <a className="flex h-full flex-col">
+            <div className="flex-1 bg-slate-100 px-4 py-12">
               <div className="flex items-center justify-center text-lg ">
                 My EC App
               </div>
             </div>
-            <div className="w-full px-4 py-2 border-t border-black text-sm text-right">
+            <div className="w-full border-t border-black px-4 py-2 text-right text-sm">
               Created at .....
             </div>
-            <button className="w-full px-4 py-2 border-t border-black font-bold text-center uppercase">
+            <button className="w-full border-t border-black px-4 py-2 text-center font-bold uppercase">
               Show
             </button>
           </a>
