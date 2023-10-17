@@ -25,6 +25,7 @@ const handler: LayoutHandler = ({ children, head }) => {
           href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap"
           rel="stylesheet"
         />
+        <script async src="https://tally.so/widgets/embed.js" />
       </head>
       <body>{children}</body>
     </html>

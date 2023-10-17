@@ -7,7 +7,10 @@ const LINKS = [
     memo: '⚠️ Demo only runs in testnet, but use at your own risk.',
   },
   { name: '👩‍💻 Dashboard', href: 'https://example.com' },
-  { name: '📮 Contact', href: 'https://example.com' },
+  {
+    name: '📮 Contact',
+    href: 'https://tally.so#tally-open=nP9vr0&tally-emoji-text=👋&tally-emoji-animation=wave',
+  },
 ]
 
 export default function Index(c: Context) {
