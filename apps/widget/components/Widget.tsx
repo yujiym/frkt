@@ -38,29 +38,29 @@ export default async function Widget() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex h-screen items-center justify-center">
       <div
-        className="container mx-auto max-w-sm relative border sm:rounded-lg rounded-none sm:shadow-solid shadow-none"
+        className="sm:shadow-solid container relative mx-auto max-w-sm rounded-none border shadow-none sm:rounded-lg"
         style={{
           color: textColor,
           backgroundColor: bgColor,
           borderColor: textColor,
         }}
       >
-        <div className="px-6 pt-8 pb-16">
-          <h1 className="font-bold text-2xl text-center pb-6">NFT widget</h1>
+        <div className="px-6 pb-16 pt-8">
+          <h1 className="pb-6 text-center text-2xl font-bold">NFT widget</h1>
           <p>Description here.....</p>
-          <div className="w-full flex justify-center items-center min-h-[196px]">
+          <div className="flex min-h-[196px] w-full items-center justify-center">
             {error ? (
-              <div className="text-center my-24 text-lg">
-                <div className="text-6xl mb-2">😵‍💫</div>Something wrong
+              <div className="my-24 text-center text-lg">
+                <div className="mb-2 text-6xl">😵‍💫</div>Something wrong
               </div>
             ) : (
               <div className="loader-sq" />
             )}
           </div>
         </div>
-        <footer className="absolute bottom-0 right-0 left-0 text-sm text-center pb-5 flex items-center justify-center">
+        <footer className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-5 text-center text-sm">
           Powerd by{' '}
           <a href={HOST} target="_blank" className="mx-2">
             <Logo size={54} />

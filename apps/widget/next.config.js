@@ -5,6 +5,7 @@ const nextConfig = {
     externalDir: true,
   },
   webpack: (config, { isServer }) => {
+    config.externals.push('pino-pretty', 'lokijs', 'encoding')
     if (!isServer) {
       config.resolve.fallback = {
         fs: false,

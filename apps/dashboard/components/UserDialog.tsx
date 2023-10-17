@@ -1,4 +1,9 @@
+/* eslint-disable */
+'use client'
+
 import { LogOut, Save } from 'lucide-react'
+import { signOut } from 'next-auth/react'
+import WalletDialog from '~components/WalletDialog'
 import { Dialog, DialogContent, DialogTrigger } from '@@/components/ui/Dialog'
 import {
   AlertDialog,
@@ -10,7 +15,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@@/components/ui/AlertDialog'
-import WalletDialog from '~components/WalletDialog'
+import { DASHBOARD_HOST } from '@@/lib/const'
 
 export default function UserDialog({
   children,
@@ -19,34 +24,34 @@ export default function UserDialog({
 }) {
   return (
     <Dialog>
-      <DialogTrigger className="w-full h-full flex items-center">
+      <DialogTrigger className="flex h-full w-full items-center">
         {children}
       </DialogTrigger>
       <DialogContent>
-        <div className="pt-16 pb-12">
-          <div className="mx-auto rounded-full bg-slate-300 h-20 w-20" />
+        <div className="pb-12 pt-16">
+          <div className="mx-auto h-20 w-20 rounded-full bg-slate-300" />
         </div>
-        <div className="px-8 py-6 border-t border-b border-foreground">
+        <div className="border-foreground border-b border-t px-8 py-6">
           <label>name</label>
-          <input className="w-full mb-4" />
+          <input className="mb-4 w-full" />
           <label>bio</label>
-          <input className="w-full mb-4" />
+          <input className="mb-4 w-full" />
           <label>wallet</label>
           <WalletDialog>
-            <button className="btn-outline w-full">Connect</button>
+            <a className="btn-outline w-full">Connect</a>
           </WalletDialog>
-          <button className="btn flex items-center w-full py-2 justify-center h-14">
+          <a className="btn flex h-14 w-full items-center justify-center py-2">
             <Save />
             <span className="ml-6">Save</span>
-          </button>
+          </a>
         </div>
-        <div className="px-8 py-6">
+        {/* <div className="px-8 py-6">
           <AlertDialog>
             <AlertDialogTrigger className="w-full">
-              <button className="btn-outline flex items-center w-full py-2 justify-center h-14">
+              <a className="btn-outline flex h-14 w-full items-center justify-center py-2">
                 <LogOut />
                 <span className="ml-6">Logout</span>
-              </button>
+              </a>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
@@ -57,14 +62,19 @@ export default function UserDialog({
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <button className="flex items-center justify-center w-full h-full hover:bg-primary">
+                <a
+                  className="hover:bg-primary flex h-full w-full items-center justify-center"
+                  onClick={() =>
+                    signOut({ callbackUrl: `${DASHBOARD_HOST}/login` })
+                  }
+                >
                   <LogOut />
                   <span className="ml-3">Logout</span>
-                </button>
+                </a>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
-        </div>
+        </div> */}
       </DialogContent>
     </Dialog>
   )
