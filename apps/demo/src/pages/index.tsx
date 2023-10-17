@@ -3,9 +3,9 @@ import Layout from '../components/Layout'
 export default function Home() {
   return (
     <Layout hideHeader>
-      <div className="bg-pink-500 text-white py-32 px-6">
+      <div className="bg-violet-600 px-6 py-32 text-white">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-dot font-bold text-8xl mb-6">FRKT demos</h2>
+          <h2 className="font-dot mb-6 text-8xl font-bold">FRKT demos</h2>
           <p className="text-2xl">
             <a href="https://frkt.io" target="_blank" className="underline">
               FRKT
@@ -14,25 +14,49 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="py-28 px-6 bg-slate-300 text-white">
+      <div className="bg-green-50 px-6 py-28 text-gray-600">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-black text-3xl mb-6">🖼️ Mint omnichain NFT</h2>
+          <h2 className="mb-6 text-3xl font-black">🖼️ Mint Omnichain NFT</h2>
           <p className="mb-14">widget description here</p>
           <a
-            className="btn bg-gray-500 hover:opacity-90 border-none normal-case text-white px-12"
+            className="rounded-full bg-gray-500 px-12 py-4 text-white hover:opacity-90"
             href="/nft-mint"
           >
             Try this
           </a>
         </div>
       </div>
-      <div className="py-28 px-6 bg-blue-500 text-white">
+      <div className="bg-blue-300 px-6 py-28 text-white">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-black text-3xl mb-6">🖋Sign Contract</h2>
+          <h2 className="mb-6 text-3xl font-black">🖋 Sign Document Onchain</h2>
           <p className="mb-14">widget description here</p>
           <a
-            className="btn bg-gray-500 hover:opacity-90 border-none normal-case text-white px-12"
-            href="/sign-contract"
+            className="rounded-full bg-blue-500 px-12 py-4 normal-case text-white hover:opacity-90"
+            href="/sign-document"
+          >
+            Try this
+          </a>
+        </div>
+      </div>
+      <div className="bg-pink-50 px-6 py-28 text-stone-600">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="mb-6 text-3xl font-black">Demo 3</h2>
+          <p className="mb-14">widget description here</p>
+          <a
+            className="rounded-full bg-pink-500 px-12 py-4 text-white hover:opacity-90"
+            href="/"
+          >
+            Try this
+          </a>
+        </div>
+      </div>
+      <div className="bg-slate-400 px-6 py-28 text-white">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="mb-6 text-3xl font-black">Demo 4</h2>
+          <p className="mb-14">widget description here</p>
+          <a
+            className="rounded-full bg-slate-500 px-12 py-4 normal-case text-white hover:opacity-90"
+            href="/"
           >
             Try this
           </a>

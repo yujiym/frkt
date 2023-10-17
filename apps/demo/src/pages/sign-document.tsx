@@ -19,16 +19,16 @@ export default function Home() {
 
   return (
     <Layout name={meta.name}>
-      <div className="bg-blue-300 text-white px-6 text-center">
+      <div className="bg-blue-300 px-6 text-center text-white">
         <div className="mx-auto max-w-2xl py-20">
-          <h2 className="font-dot font-bold text-6xl mt-6 mb-8">
+          <h2 className="font-dot mb-8 mt-6 text-6xl font-bold">
             {meta.appName}
           </h2>
           <div>
             <p className="text-2xl">{meta.description}</p>
-            <div className="space-y-2 mt-2">
+            <div className="mt-2 space-y-2">
               {meta.stacks.map((stack) => (
-                <div className="rounded-full px-4 py-1.5 bg-slate-50/90 text-sm text-gray-600 inline-flex mr-3">
+                <div className="mr-3 inline-flex rounded-full bg-slate-50/90 px-4 py-1.5 text-sm text-gray-600">
                   {stack}
                 </div>
               ))}
@@ -36,10 +36,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8 pb-10">
-        <div className="pt-10 flex flex-col">
+      <div className="container mx-auto grid max-w-4xl grid-cols-1 gap-0 px-6 pb-10 md:grid-cols-3 md:gap-8">
+        <div className="flex flex-col pt-10">
           <button
-            className="btn btn-success w-full mt-12"
+            className="btn btn-neutral mt-12 w-full"
             disabled={!user}
             onClick={() =>
               handleClick(
@@ -47,7 +47,7 @@ export default function Home() {
               )
             }
           >
-            {user ? 'Sign' : 'Login to Sign'}
+            {user ? 'Sign document' : 'Login to Sign document'}
           </button>
           <div className="col-span-2 pt-10">Contract is here</div>
         </div>

@@ -6,7 +6,7 @@ import { components, hooks, utils } from '@generouted/react-router/client'
 export type Path =
   | `/`
   | `/nft-mint`
-  | `/sign-contract`
+  | `/sign-document`
 
 export type Params = {
   
