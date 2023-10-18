@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 export default function Home() {
   return (
     <Layout hideHeader>
-      <div className="bg-violet-600 px-6 py-32 text-white">
+      <div className="bg-pink-600 px-6 py-32 text-white">
         <div className="mx-auto max-w-2xl">
           <h2 className="font-dot mb-6 text-8xl font-bold">FRKT demos</h2>
           <p className="text-2xl">
@@ -38,12 +38,12 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <div className="bg-pink-50 px-6 py-28 text-stone-600">
+      <div className="bg-purple-100 px-6 py-28 text-stone-600">
         <div className="mx-auto max-w-2xl">
           <h2 className="mb-6 text-3xl font-black">Demo 3</h2>
           <p className="mb-14">widget description here</p>
           <a
-            className="rounded-full bg-pink-500 px-12 py-4 text-white hover:opacity-90"
+            className="rounded-full bg-violet-500 px-12 py-4 text-white hover:opacity-90"
             href="/"
           >
             Try this

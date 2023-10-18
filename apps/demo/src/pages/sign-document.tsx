@@ -28,7 +28,10 @@ export default function Home() {
             <p className="text-2xl">{meta.description}</p>
             <div className="mt-2 space-y-2">
               {meta.stacks.map((stack) => (
-                <div className="mr-3 inline-flex rounded-full bg-slate-50/90 px-4 py-1.5 text-sm text-gray-600">
+                <div
+                  key={stack.toLocaleLowerCase()}
+                  className="mr-3 inline-flex rounded-full bg-slate-50/90 px-4 py-1.5 text-sm text-gray-600"
+                >
                   {stack}
                 </div>
               ))}
