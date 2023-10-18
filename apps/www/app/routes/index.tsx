@@ -16,8 +16,8 @@ const LINKS = [
 export default function Index(c: Context) {
   return c.render(
     <main class="flex min-h-screen flex-col overflow-hidden">
-      <div class="flex-1 -skew-y-3 bg-white text-blue-600">
-        <div class="skew-y-3 px-12 py-14">
+      <div class="flex-1 -skew-y-3 text-blue-600">
+        <div class="skew-y-3 px-8 py-10 sm:px-12 sm:py-14">
           <Logo size={290} />
           <p class="mt-4 text-3xl font-semibold">
             No-Code tools for Web2
@@ -26,7 +26,7 @@ export default function Index(c: Context) {
         </div>
       </div>
       <div class="relative -skew-y-3 bg-blue-600 text-white">
-        <div class="z-10 flex skew-y-3 justify-end px-12 pb-10 pt-24">
+        <div class="z-10 flex skew-y-3 justify-end px-8 pb-10 pt-14 sm:px-12 sm:pb-10 sm:pt-24">
           <div class="flex flex-col justify-between text-right">
             <ul class="list mb-12 text-right text-3xl leading-loose">
               {LINKS.map((item) => (

@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white font-sans;
+  @apply font-sans;
+  background: #fafaf9;
 }
