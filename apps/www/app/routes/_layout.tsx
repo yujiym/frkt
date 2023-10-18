@@ -5,6 +5,7 @@ const handler: LayoutHandler = ({ children, head }) => {
     <html lang="en">
       <head>
         <title>FRKT</title>
+        <meta name="description" content="No-Code tools for Web2&3" />
         <meta property="og:title" content="FRKT - No-Code tools for Web2&3" />
         <meta property="og:site_name" content="FRKT" />
         <meta property="og:url" content="https://frkt.io" />
@@ -13,7 +14,12 @@ const handler: LayoutHandler = ({ children, head }) => {
           content="FRKT(/furɪkt/) provides a frictionless UX for any app"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/static/favicon.svg" />
+        <meta
+          property="og:image"
+          content={`${
+            import.meta.env.PROD ? 'https://frkt.io' : 'http://localhost:3001'
+          }/static/ogp.png`}
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
         {import.meta.env.PROD ? (

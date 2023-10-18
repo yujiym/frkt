@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "vite build && vite build --mode client",
+    "build": "vite build && vite build --mode client && pnpm run cp:static",
+    "cp:static": "cp public/static/* dist/static",
     "dev": "vite",
     "deploy": "pnpm run build && wrangler pages deploy ./dist"
   },

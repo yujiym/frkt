@@ -1,6 +1,6 @@
 # FRKT
 
-No-Code tool for Web2 & 3.<br />
+No-Code tools for Web2 & 3.<br />
 FRKT(/furɪkt/) provides a frictionless UX for any app.<br />
 <br />
 This repo is build for [ETHOnline 2023](https://ethglobal.com/events/ethonline2023).

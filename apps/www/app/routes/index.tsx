@@ -18,15 +18,15 @@ export default function Index(c: Context) {
     <main class="flex min-h-screen flex-col overflow-hidden">
       <div class="flex-1 -skew-y-3 text-blue-600">
         <div class="skew-y-3 px-8 py-10 sm:px-12 sm:py-14">
-          <Logo size={290} />
+          <Logo size={275} />
           <p class="mt-4 text-3xl font-semibold">
             No-Code tools for Web2
-            <span class="px-0.5 text-2xl">&</span>3.
+            <span class="px-0.5 text-2xl">&</span>3
           </p>
         </div>
       </div>
-      <div class="relative -skew-y-3 bg-blue-600 text-white">
-        <div class="z-10 flex skew-y-3 justify-end px-8 pb-10 pt-14 sm:px-12 sm:pb-10 sm:pt-24">
+      <div class="-skew-y-3 bg-blue-600 text-white">
+        <div class="flex skew-y-3 justify-end px-8 pb-10 pt-14 sm:px-12 sm:pb-10 sm:pt-24">
           <div class="flex flex-col justify-between text-right">
             <ul class="list mb-12 text-right text-3xl leading-loose">
               {LINKS.map((item) => (
@@ -38,11 +38,10 @@ export default function Index(c: Context) {
                 </li>
               ))}
             </ul>
-            <small>&copy; FRKT</small>
           </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-10 skew-y-3 bg-blue-600 text-center"></div>
       </div>
+      <div class="absolute bottom-0 left-0 right-0 -z-[1] h-[30vh] bg-blue-600 text-center" />
     </main>
   )
 }
