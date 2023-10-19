@@ -2,8 +2,9 @@
 import { LitAbility, LitActionResource } from '@lit-protocol/auth-helpers'
 import { ProviderType } from '@lit-protocol/constants'
 import {
+  GoogleProvider,
   LitAuthClient,
-  WebAuthnProvider
+  WebAuthnProvider,
 } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
@@ -15,7 +16,7 @@ const getEnv = async () => {
   return env
 }
 
-const client = new LitNodeClient({
+const litNodeClient = new LitNodeClient({
   litNetwork: 'cayenne',
   debug: false,
 })
@@ -86,30 +87,38 @@ export async function getWebAuthnPkp(): Promise<any | void> {
 /*
   ref: https://github.com/LIT-Protocol/claim-key-demo-nodejs/blob/main/index.ts
 */
-export async function getLitGooglePkp(
-  accessToken: string
-): Promise<any | void> {
-  if (!accessToken) return
+export async function getLitGooglePkp(token: string): Promise<any | void> {
+  if (!token) return
 
   const { LIT_RELAY_API_KEY } = await getEnv()
   if (!LIT_RELAY_API_KEY) return
 
-  await client.connect()
+  await litNodeClient.connect()
 
-  let authMethod: AuthMethod = {
-    authMethodType: AuthMethodType.Google,
-    accessToken,
-  }
+  const authClient = new LitAuthClient({
+    litRelayConfig: {
+      relayApiKey: LIT_RELAY_API_KEY,
+    },
+    litNodeClient,
+  })
 
-  let claimReq: ClaimRequest = {
-    authMethod,
-    relayApiKey: LIT_RELAY_API_KEY,
-  }
+  const decodedToken = JSON.parse(atob(token.split('.')[1]))
+  const { sub, aud } = decodedToken
 
-  console.log('claimReq', claimReq)
+  const session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
+    appId: sub,
+    userId: aud,
+    redirectUri: 'http://localhost:3003',
+  })
+  console.log('----003: ', session)
 
-  const res = await client.claimKeyId(claimReq)
-  console.log(res)
+  const authMethod = await session.authenticate()
+  console.log('----004: ', authMethod)
+
+  const keyId = session.getAuthMethodId(authMethod)
+  // const pubKey = session.litNodeClient.computePubkey(keyId)
+
+  return { keyId, pubKey: 'pubKey' }
 }
 
 export async function getPkpWallet(

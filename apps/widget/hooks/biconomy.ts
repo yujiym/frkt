@@ -44,14 +44,14 @@ export const createSmartWallet = async (
 
   // set bandler Info
   const bundler = new Bundler({
-    bundlerUrl: `https://bundler.biconomy.io/api/v2/${this.chainId.toString()}/${BICONOMY_BUNDLER_KEY!}`,
+    bundlerUrl: `https://bundler.biconomy.io/api/v2/${this!.chainId.toString()}/${BICONOMY_BUNDLER_KEY!}`,
     chainId: selectedChainId,
     entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
   })
 
   // set paymaster Info
   const paymaster = new BiconomyPaymaster({
-    paymasterUrl: `https://paymaster.biconomy.io/api/v1/${this.chainId.toString()}/${BICONOMY_PAYMASTER_KEY!}`,
+    paymasterUrl: `https://paymaster.biconomy.io/api/v1/${this!.chainId.toString()}/${BICONOMY_PAYMASTER_KEY!}`,
   })
 
   // eslint-disable-next-line @next/next/no-assign-module-variable
