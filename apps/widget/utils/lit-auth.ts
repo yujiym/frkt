@@ -16,6 +16,11 @@ const getEnv = async () => {
   return env
 }
 
+const AuthType = {
+  WebAuthn: 'webauthn',
+  Google: 'google',
+}
+
 const litNodeClient = new LitNodeClient({
   litNetwork: 'cayenne',
   debug: false,
@@ -122,6 +127,7 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
 }
 
 export async function getPkpWallet(
+  authType: string,
   pkpPublicKey: any,
   authMethod: AuthMethod,
   rpc_url: string
@@ -138,7 +144,13 @@ export async function getPkpWallet(
     litNodeClient,
   })
 
-  let provider = authClient.getProvider(ProviderType.WebAuthn)
+  let provider
+
+  if (authType === AuthType.Google) {
+    provider = authClient.initProvider<GoogleProvider>(ProviderType.Google)
+  } else if (authType === AuthType.WebAuthn) {
+    provider = authClient.initProvider<WebAuthnProvider>(ProviderType.WebAuthn)
+  }
 
   console.log('provider:', provider)
   console.log('authMethod:', authMethod)
