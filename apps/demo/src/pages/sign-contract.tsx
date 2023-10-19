@@ -22,6 +22,7 @@ function handleClick(url: string) {
 }
 
 export default function Home() {
+  const [fileName, setFileName] = useState<string | null>(null)
   const [encodeUri, setEncodeUri] = useState<string>('')
   const [numPages, setNumPages] = useState<number>()
   const [pageNumber, setPageNumber] = useState<number>(1)
@@ -45,8 +46,8 @@ export default function Home() {
     if (data != undefined) {
       const uri = data.signContractCreateds[0].uri
       console.log('uri:', uri)
-      //const encodedUri = encodeURI(uri)
       setEncodeUri(uri)
+      setFileName(data.signContractCreateds[0].name)
     }
   })
 
@@ -78,6 +79,7 @@ export default function Home() {
       ) : (
         <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8 pb-10">
           <div className="pt-10 flex flex-col">
+            <h1>{fileName}</h1>
             <button
               className="btn btn-success w-full mt-12"
               disabled={!user}
