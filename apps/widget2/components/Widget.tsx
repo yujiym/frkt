@@ -1,32 +1,33 @@
 'use client'
 import Logo from '@@/components/svgs/Logo'
 import { HOST } from '@@/lib/const'
-import { BiconomySmartAccountV2 } from '@biconomy/account'
 import { ChainId } from '@biconomy/core-types'
-import { ethers } from 'ethers'
+import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { FUJI_RPC_URL } from '~/utils/constants'
+import { BASE_RPC_URL } from '~/utils/constants'
 import {
   getLitGooglePkp,
   getPkpWallet,
   getWebAuthnPkp,
   registerWebAuthn,
 } from '~/utils/lit-auth'
-import { createSmartWallet, crossMintNft } from './../hooks/biconomy'
+import { addSigNature } from './../hooks/safe'
 import Loading from './Loading'
 
 export default async function Widget() {
   const { appId, recipeId } = useParams()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
+  const signId = searchParams.get('signId')
+  const safeAddress = searchParams.get('safeAddress')
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
-  const [smartAccount, setSmartAccount] =
-    useState<BiconomySmartAccountV2 | null>(null)
   const [pkpWalletAddress, setPkpWalletAddress] = useState<string | null>(null)
   const [resultMessage, setResultMessage] = useState<string | null>(null)
+  const [chainId, setChainId] = useState<number>(ChainId.BASE_GOERLI_TESTNET)
+  const [pkpWallet, setPkpWallet] = useState<PKPEthersWallet | null>(null)
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
@@ -82,18 +83,10 @@ export default async function Widget() {
       newPkpWallet = await getPkpWallet(
         pkpPublicKey,
         authMethodInfo,
-        FUJI_RPC_URL
+        BASE_RPC_URL
       )
+      setPkpWallet(newPkpWallet)
       setPkpWalletAddress(newPkpEthAddress)
-
-      // create SmartWallet for biconomy
-      // TODO Change chain ID by recepiId
-      const { biconomySmartAccount } = await createSmartWallet(
-        ChainId.AVALANCHE_TESTNET,
-        newPkpWallet
-      )
-      // set SmartAccount
-      setSmartAccount(biconomySmartAccount)
     } catch (error) {
       console.log(':::::Errror:::::', error)
       setError(error)
@@ -102,19 +95,34 @@ export default async function Widget() {
     }
   }
 
-  const handleMintCrossNFT = async () => {
+  const handleSignContract = async () => {
     // TODO set rpc url info from DB
-    const provider = new ethers.providers.JsonRpcProvider(FUJI_RPC_URL)
+
     try {
       setIsLoading(true)
 
-      // call crossMintNft method
-      const ccipLink = await crossMintNft(
-        smartAccount!,
-        provider,
-        pkpWalletAddress!
+      // get signature
+      const signature = await pkpWallet!.signMessage(
+        `I sign to ${appId}/${recipeId}/${signId}/${safeAddress} Contract!`
       )
-      setResultMessage(ccipLink!)
+
+      // call addSignature method
+      const response = await addSigNature(
+        appId,
+        recipeId,
+        signId,
+        chainId,
+        safeAddress,
+        signature
+      )
+
+      console.log(
+        `Relay Transaction Task ID: https://relay.gelato.digital/tasks/status/${response.taskId}`
+      )
+
+      setResultMessage(
+        `https://relay.gelato.digital/tasks/status/${response.taskId}`
+      )
     } catch (err: any) {
       console.log(':::::Errror:::::', error)
       setError(error)
@@ -139,7 +147,9 @@ export default async function Widget() {
         }}
       >
         <div className="px-6 pt-8 pb-16">
-          <h1 className="font-bold text-2xl text-center pb-6">NFT widget</h1>
+          <h1 className="font-bold text-2xl text-center pb-6">
+            SignContract widget
+          </h1>
           <p>Description here.....</p>
           <div className="w-full flex justify-center items-center min-h-[196px]">
             {isLoading ? (
@@ -155,9 +165,9 @@ export default async function Widget() {
                     <div className="loader-sq" />
                     <button
                       className="btn btn-success w-full mt-12"
-                      onClick={handleMintCrossNFT}
+                      onClick={handleSignContract}
                     >
-                      Mint NFT
+                      Sign Contract
                     </button>
                     {resultMessage !== null ?? <p>result : {resultMessage}</p>}
                   </>

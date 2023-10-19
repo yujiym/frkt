@@ -22,6 +22,7 @@ function handleClick(url: string) {
 }
 
 export default function Home() {
+  const [safeAddress, setSafeAddress] = useState<string | null>(null)
   const [fileName, setFileName] = useState<string | null>(null)
   const [encodeUri, setEncodeUri] = useState<string>('')
   const [numPages, setNumPages] = useState<number>()
@@ -48,6 +49,7 @@ export default function Home() {
       console.log('uri:', uri)
       setEncodeUri(uri)
       setFileName(data.signContractCreateds[0].name)
+      setSafeAddress(data.signContractCreateds[0].safeAddress)
     }
   })
 
@@ -85,7 +87,7 @@ export default function Home() {
               disabled={!user}
               onClick={() =>
                 handleClick(
-                  `http://localhost:3003/a/000/r/001?token=${user.accessToken!}`
+                  `http://localhost:3005/a/0002/r/0002?token=${user.accessToken!}&signId=${signId}&safeAddress=${safeAddress}`
                 )
               }
             >
