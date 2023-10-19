@@ -56,17 +56,16 @@ export default async function Widget() {
       } else if (authType === AuthType.WebAuthn) {
         console.log('webauthn here')
 
-        try {
-          // get pkp Info by webAuthn
-          const { authMethod, pkp } = await getWebAuthnPkp()
-          console.log('pkp info by webAuth:', pkp)
-          console.log('authMethod by webAuth:', authMethod)
+        // get pkp Info by webAuthn
+        const { authMethod, pkp } = await getWebAuthnPkp()
+        console.log('pkp info by webAuth:', pkp)
+        console.log('authMethod by webAuth:', authMethod)
 
-          pkpPublicKey = pkp.publicKey
-          authMethodInfo = authMethod
-          newPkpEthAddress = pkp.pkpEthAddress
-        } catch (err) {
-          console.error(':::::Errror:::::', error)
+        pkpPublicKey = pkp.publicKey
+        authMethodInfo = authMethod
+        newPkpEthAddress = pkp.pkpEthAddress
+
+        if (authMethod === null || pkp === null) {
           // call register method
           await registerWebAuthn()
           const { authMethod, pkp } = await getWebAuthnPkp()
@@ -81,6 +80,7 @@ export default async function Widget() {
 
       // get pkp Wallet
       newPkpWallet = await getPkpWallet(
+        authType,
         pkpPublicKey,
         authMethodInfo,
         BASE_RPC_URL

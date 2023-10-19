@@ -16,6 +16,11 @@ const getEnv = async () => {
   return env
 }
 
+const AuthType = {
+  WebAuthn: 'webauthn',
+  Google: 'google',
+}
+
 const litNodeClient = new LitNodeClient({
   litNetwork: 'cayenne',
   debug: false,
@@ -75,6 +80,8 @@ export async function getWebAuthnPkp(): Promise<any | void> {
   if (!provider) {
     provider = authClient.initProvider<WebAuthnProvider>(ProviderType.WebAuthn)
   }
+
+  // try {
   // authenticate by WebAuthn
   const authMethod = await provider!.authenticate()
   const pkps = await provider!.fetchPKPsThroughRelayer(authMethod)
@@ -82,6 +89,10 @@ export async function getWebAuthnPkp(): Promise<any | void> {
   console.log('pkpInfo:', pkpInfo)
   console.log('authMethod:', authMethod)
   return { authMethod, pkp: pkpInfo }
+  //} catch (err) {
+  //  console.error('err:', err)
+  //  return { authMethod: null, pkp: null }
+  // }
 }
 
 /*
@@ -122,6 +133,7 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
 }
 
 export async function getPkpWallet(
+  authType: string,
   pkpPublicKey: any,
   authMethod: AuthMethod,
   rpc_url: string
@@ -138,7 +150,13 @@ export async function getPkpWallet(
     litNodeClient,
   })
 
-  let provider = authClient.getProvider(ProviderType.WebAuthn)
+  let provider
+
+  if (authType === AuthType.Google) {
+    provider = authClient.initProvider<GoogleProvider>(ProviderType.Google)
+  } else if (authType === AuthType.WebAuthn) {
+    provider = authClient.initProvider<WebAuthnProvider>(ProviderType.WebAuthn)
+  }
 
   console.log('provider:', provider)
   console.log('authMethod:', authMethod)

@@ -38,7 +38,7 @@ export default async function Widget() {
     Google: 'google',
   }
 
-  const authType = 'webauthn'
+  const authType = 'google'
 
   const initFunc = async () => {
     var newPkpWallet
@@ -80,6 +80,7 @@ export default async function Widget() {
 
       // get pkp Wallet
       newPkpWallet = await getPkpWallet(
+        authType,
         pkpPublicKey,
         authMethodInfo,
         FUJI_RPC_URL
