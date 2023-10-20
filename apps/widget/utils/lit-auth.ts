@@ -108,6 +108,7 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
   })
 
   const decodedToken = JSON.parse(atob(token.split('.')[1]))
+  console.log('----002: ', decodedToken)
   const { sub, aud } = decodedToken
 
   let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
