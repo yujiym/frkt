@@ -116,11 +116,19 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
   const decodedToken = JSON.parse(atob(token.split('.')[1]))
   const { sub, aud } = decodedToken
 
-  const session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
+  let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
     appId: sub,
     userId: aud,
     redirectUri: 'http://localhost:3003',
   })
+
+  if (!session) {
+    session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
+      appId: sub,
+      userId: aud,
+      redirectUri: 'http://localhost:3003',
+    })
+  }
   console.log('----003: ', session)
 
   const authMethod = await session.authenticate()
@@ -129,7 +137,7 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
   const keyId = session.getAuthMethodId(authMethod)
   // const pubKey = session.litNodeClient.computePubkey(keyId)
 
-  return { keyId, pubKey: 'pubKey' }
+  return { authMethod, pubKey: 'pubKey' }
 }
 
 export async function getPkpWallet(
