@@ -106,11 +106,10 @@ export async function getLitGooglePkp(
     accessToken,
   }
 
-  let claimReq: ClaimRequest = {
-    authMethod,
-    relayApiKey: LIT_RELAY_API_KEY,
-  }
-
+  const decodedToken = JSON.parse(atob(token.split('.')[1]))
+  console.log('----002: ', decodedToken)
+  const { sub, aud } = decodedToken
+  
   let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
     appId: sub,
     userId: aud,
