@@ -15,6 +15,9 @@ function handleClick(url: string) {
 }
 
 export default function Home() {
+  // signId 
+  const signId = 4
+
   const { user } = useAuth()
 
   return (
@@ -40,19 +43,21 @@ export default function Home() {
         </div>
       </div>
       <div className="container mx-auto grid max-w-4xl grid-cols-1 gap-0 px-6 pb-10 md:grid-cols-3 md:gap-8">
-        <div className="flex flex-col pt-10">
+        <div className="col-span-2 pt-10">
+          <img src="/img/simpleContract.png" className="w-full rounded-lg object-fill" />
+        </div>
+        <div className="flex flex-col justify-between pt-10">
           <button
-            className="btn btn-neutral mt-12 w-full"
-            disabled={!user}
-            onClick={() =>
-              handleClick(
-                `http://localhost:3003/a/000/r/001?token=${user.accessToken!}`
-              )
-            }
-          >
-            {user ? 'Sign document' : 'Login to Sign document'}
-          </button>
-          <div className="col-span-2 pt-10">Contract is here</div>
+              className="btn btn-success w-full mt-12"
+              disabled={!user}
+              onClick={() =>
+                handleClick(
+                  `http://localhost:3005/a/0002/r/0002?token=${user.accessToken!}&signId=${signId}`
+                )
+              }
+            >
+              {user ? 'Sign' : 'Login to Sign'}
+            </button>
         </div>
       </div>
     </Layout>

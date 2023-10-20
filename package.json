@@ -7,6 +7,7 @@
     "www": "pnpm --filter www",
     "dashboard": "pnpm --filter dashboard",
     "widget": "pnpm --filter widget",
+    "widget2": "pnpm --filter widget2",
     "demo": "pnpm --filter demo",
     "common": "pnpm --filter common",
     "contracts": "pnpm --filter contracts",

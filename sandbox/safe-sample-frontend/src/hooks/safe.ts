@@ -31,7 +31,8 @@ export const initProtocolKit = async() => {
   const safeAccountConfig: SafeAccountConfig = {
     owners: [
       await owner1Signer.getAddress(),
-      pkpWalletAddress
+      pkpWalletAddress,
+      "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072"
     ],
     threshold: 1,
   }
@@ -73,7 +74,7 @@ export const initProtocolKit = async() => {
   });
 
   // 生成済みのsafeAccounts一覧を取得するメソッド
-  const safes = await safeService.getSafesByOwner(pkpWalletAddress);
+  const safes = await safeService.getSafesByOwner(await owner1Signer.getAddress());
   console.log("safes:", safes.safes);
 
   var safeSdkOwner1;

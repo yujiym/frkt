@@ -1,21 +1,15 @@
 {
-  "name": "widget",
+  "name": "widget2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3003",
+    "dev": "next dev -p 3005",
     "build": "next build",
-    "start": "next start -p 3003",
+    "start": "next start -p 3005",
     "lint": "next lint"
   },
   "dependencies": {
-    "@biconomy/account": "^3.1.0",
-    "@biconomy/bundler": "^3.1.0",
-    "@biconomy/common": "^3.1.0",
     "@biconomy/core-types": "^3.1.0",
-    "@biconomy/modules": "^3.1.0",
-    "@biconomy/particle-auth": "^3.1.0",
-    "@biconomy/paymaster": "^3.1.0",
     "@lit-protocol/auth-helpers": "^3.0.12",
     "@lit-protocol/constants": "^3.0.12",
     "@lit-protocol/lit-auth-client": "^3.0.12",
@@ -23,16 +17,21 @@
     "@lit-protocol/lit-node-client-nodejs": "^3.0.12",
     "@lit-protocol/pkp-ethers": "^3.0.12",
     "@lit-protocol/types": "^3.0.12",
+    "@safe-global/protocol-kit": "^1.3.0",
+    "@safe-global/relay-kit": "^1.3.0",
+    "@safe-global/safe-core-sdk-types": "^2.3.0",
     "@walletconnect/keyvaluestorage": "^1.0.2",
+    "client-only": "^0.0.1",
     "common": "workspace:*",
     "ethers": "5.7.2",
+    "graphql": "16.6.0",
     "next": "13.5.4",
-    "node-fetch": "2.7.0",
     "react": "^18",
     "react-dom": "^18",
     "react-loading-indicators": "0.1.1",
     "server-only": "^0.0.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "urql": "4.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",

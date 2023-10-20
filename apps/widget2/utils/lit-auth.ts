@@ -2,8 +2,9 @@
 import { LitAbility, LitActionResource } from '@lit-protocol/auth-helpers'
 import { ProviderType } from '@lit-protocol/constants'
 import {
+  GoogleProvider,
   LitAuthClient,
-  WebAuthnProvider
+  WebAuthnProvider,
 } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
@@ -79,6 +80,8 @@ export async function getWebAuthnPkp(): Promise<any | void> {
   if (!provider) {
     provider = authClient.initProvider<WebAuthnProvider>(ProviderType.WebAuthn)
   }
+
+  // try {
   // authenticate by WebAuthn
   const authMethod = await provider!.authenticate()
   const pkps = await provider!.fetchPKPsThroughRelayer(authMethod)
@@ -86,30 +89,33 @@ export async function getWebAuthnPkp(): Promise<any | void> {
   console.log('pkpInfo:', pkpInfo)
   console.log('authMethod:', authMethod)
   return { authMethod, pkp: pkpInfo }
+  //} catch (err) {
+  //  console.error('err:', err)
+  //  return { authMethod: null, pkp: null }
+  // }
 }
 
 /*
   ref: https://github.com/LIT-Protocol/claim-key-demo-nodejs/blob/main/index.ts
 */
-export async function getLitGooglePkp(
-  accessToken: string
-): Promise<any | void> {
-  if (!accessToken) return
+export async function getLitGooglePkp(token: string): Promise<any | void> {
+  if (!token) return
 
   const { LIT_RELAY_API_KEY } = await getEnv()
   if (!LIT_RELAY_API_KEY) return
 
-  await client.connect()
+  await litNodeClient.connect()
 
-  let authMethod: AuthMethod = {
-    authMethodType: AuthMethodType.Google,
-    accessToken,
-  }
+  const authClient = new LitAuthClient({
+    litRelayConfig: {
+      relayApiKey: LIT_RELAY_API_KEY,
+    },
+    litNodeClient,
+  })
 
   const decodedToken = JSON.parse(atob(token.split('.')[1]))
-  console.log('----002: ', decodedToken)
   const { sub, aud } = decodedToken
-  
+
   let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
     appId: sub,
     userId: aud,
@@ -123,7 +129,6 @@ export async function getLitGooglePkp(
       redirectUri: 'http://localhost:3003',
     })
   }
-
   console.log('----003: ', session)
 
   const authMethod = await session.authenticate()
