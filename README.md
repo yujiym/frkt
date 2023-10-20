@@ -1,3 +1,5 @@
+![Test Image 3](/packages/common/assets/img/ogp-dark.png)
+
 # FRKT
 
 No-Code tools for Web2 & 3.<br />
@@ -5,20 +7,38 @@ FRKT(/furɪkt/) provides a frictionless UX for any app.<br />
 <br />
 This repo is build for [ETHOnline 2023](https://ethglobal.com/events/ethonline2023).
 
-[FRKT demos](https://frkt-demo.web.app/)
+[Demo](https://frkt-demo.web.app/) is here.
+
+## Project
+
+### 🤔 Problem
+
+When I was thinking about dApps ideas, I always ran into two onboarding UX issues. User's wallet and initial gas-fee.
+
+### 💡 Solution
+
+Based on Account Abstraction by Biconomy (we can also use other AA stack) and MPC by Lit protocol, we wrap protocols, smart contracts, and other APIs etc. And we made integrating them together as a toolkit. This toolkit provides Zapier or IFTTT like functionality with embedded widgets into any app.
+
+### 🏓 Workflow
+
+1. [App owner] Setup App, Select a recipe to use, Generate widget code in FRKT dashboard
+1. [App owner] Install widget code into apps. (paste 1 javascript file & script tag)
+1. [App users] When the application user opens the widget.
+   1. Create a user's wallet (a. Google Oauth or b. webauthn).
+   1. Execute function in a widget (gas-less tx by AA).
 
 ### Folder structure
 
 ```
 ├── apps
-│   ├── contracts      -> 🎩 Smart contracts
 │   ├── dashboard      -> 🛠️ Dashboard frontend
 │   ├── demo           -> ⚽ Demo app frontend
-│   ├── frkt-subgraph  -> 📈 Thegraph code
+│   ├── frkt-subgraph  -> 📈 The Graph subgraph for widget
 │   ├── widget         -> 👓 Widget
 │   └── www            -> ✈️ Landing page (frkt.io)
 ├── packages
-│   └── common      -> Common libs
+│   ├── contracts      -> 🎩 Smart contracts
+│   └── common         -> Common libs
 ...
 ```
 
