@@ -62,11 +62,6 @@ export default function Home() {
             className="btn btn-success mt-12 w-full"
             disabled={!user}
             data-frkt-widget="open"
-            // onClick={() =>
-            //   handleClick(
-            //     `http://localhost:3003/a/000/r/001?token=${user.accessToken}`
-            //   )
-            // }
           >
             {user ? 'Mint' : 'Login to mint'}
           </button>

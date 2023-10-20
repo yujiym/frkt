@@ -11,11 +11,12 @@ This repo is build for [ETHOnline 2023](https://ethglobal.com/events/ethonline20
 
 ```
 ├── apps
-│   ├── contracts   -> 🎩 Smart contracts
-│   ├── dashboard   -> 🛠️ Dashboard frontend
-│   ├── demo        -> ⚽ Demo app frontend
-│   ├── widget      -> 👓 Widget
-│   └── www         -> ✈️ Landing page (frkt.io)
+│   ├── contracts      -> 🎩 Smart contracts
+│   ├── dashboard      -> 🛠️ Dashboard frontend
+│   ├── demo           -> ⚽ Demo app frontend
+│   ├── frkt-subgraph  -> 📈 Thegraph code
+│   ├── widget         -> 👓 Widget
+│   └── www            -> ✈️ Landing page (frkt.io)
 ├── packages
 │   └── common      -> Common libs
 ...
@@ -29,7 +30,7 @@ Smart contracts for FRKT widget.
 
 ### 🛠️ Dashboard
 
-Dashborad for setup app, configre recipe and generate widget code.
+Dashborad for generationg widget code.
 
 - Next.js (React, TypeScript)
 - Tailwind CSS

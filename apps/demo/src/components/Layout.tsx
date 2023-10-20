@@ -4,6 +4,7 @@ import {
   signInWithGoogle,
 } from '../utils/auth'
 import useAuth from '../hooks/useAuth'
+import { useLocalStorage } from 'usehooks-ts'
 
 export default function Layout({
   hideHeader = false,
@@ -19,17 +20,17 @@ export default function Layout({
   return (
     <div>
       {loading && (
-        <div className="flex items-center justify-center h-screen w-screen fixed top-0 right-0 left-0 bg-slate-600/30 text-gray-700">
+        <div className="fixed left-0 right-0 top-0 flex h-screen w-screen items-center justify-center bg-slate-600/30 text-gray-700">
           <span className="loading loading-dots loading-lg" />
         </div>
       )}
       {!hideHeader && (
-        <nav className="fixed top-0 right-0 left-0 h-16 flex items-center px-6">
+        <nav className="fixed left-0 right-0 top-0 flex h-16 items-center px-6">
           <div className="flex-1">
             <div className="breadcrumbs">
               <ul>
                 <li>
-                  <a href="/">FRKT demos</a>
+                  <a href="/">🏠</a>
                 </li>
                 <li className="font-bold">{name}</li>
               </ul>
@@ -38,13 +39,13 @@ export default function Layout({
           {user ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="">
-                <a className="rounded-full bg-slate-50/90 px-5 py-2.5 cursor-pointer">
+                <a className="cursor-pointer rounded-full bg-slate-50/90 px-5 py-2.5">
                   {user.email}
                 </a>
               </label>
               <ul
                 tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-gray-100 rounded-box w-36"
+                className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-36 bg-gray-100 p-2 shadow"
               >
                 <li>
                   <a
@@ -81,10 +82,17 @@ const LoginButton = () => {
   //   }
   // }
 
+  const [, setGoogleAccessToken] = useLocalStorage('googleAccessToken', '')
+
+  const handleGoogleAuth = async () => {
+    const res = await signInWithGoogle()
+    setGoogleAccessToken(res?.accessToken)
+  }
+
   return (
     <>
       <button
-        className="btn bg-gray-400/80 hover:opacity-90 border-none text-white px-5 normal-case rounded-full"
+        className="btn rounded-full border-none bg-gray-400/80 px-5 normal-case text-white hover:opacity-90"
         onClick={() =>
           (document as any).getElementById('login_modal')!.showModal()
         }
@@ -93,12 +101,12 @@ const LoginButton = () => {
       </button>
       <dialog id="login_modal" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box text-gray-800">
-          <h3 className="text-4xl text-center font-dot mt-6 mb-10">Login</h3>
+          <h3 className="font-dot mb-10 mt-6 text-center text-4xl">Login</h3>
           <a
-            className="btn btn-lg w-full mb-0 bg-gray-200 normal-case"
-            onClick={() => signInWithGoogle()}
+            className="btn btn-lg mb-0 w-full bg-gray-200 normal-case"
+            onClick={() => handleGoogleAuth()}
           >
-            <span className="text-xl mr-1">
+            <span className="mr-1 text-xl">
               <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" />
             </span>{' '}
             Login with Google

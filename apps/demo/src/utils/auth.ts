@@ -4,8 +4,10 @@ import { auth, googleProvider } from './firebase'
 export async function signInWithGoogle() {
   try {
     const res = await signInWithPopup(auth, googleProvider)
-    // console.log(':::::', res._tokenResponse.oauthAccessToken)
-    return res.user
+    return {
+      user: res.user,
+      accessToken: res._tokenResponse.oauthAccessToken,
+    }
   } catch (e) {
     console.log(e)
   }
