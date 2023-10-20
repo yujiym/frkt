@@ -5,6 +5,8 @@ import { ChainId } from '@biconomy/core-types'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { Client, Provider, cacheExchange, fetchExchange, useQuery } from 'urql'
+import query from '~/graphql/query'
 import { BASE_RPC_URL } from '~/utils/constants'
 import {
   getLitGooglePkp,
@@ -13,15 +15,31 @@ import {
   registerWebAuthn,
 } from '~/utils/lit-auth'
 import { addSigNature } from './../hooks/safe'
+import { GRAPHQL_API_ENDPOINT, SignContractInfos } from './../utils/constants'
 import Loading from './Loading'
 
+
+// create client instance for GraphQL
+const client = new Client({
+  url: GRAPHQL_API_ENDPOINT,
+  exchanges: [cacheExchange, fetchExchange],
+})
+
 export default function Widget() {
+  return (
+    <Provider value={client}>
+      <WidgetContent/>
+    </Provider>
+  )
+}
+
+function WidgetContent() {
+
   const { appId, recipeId } = useParams()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
   const signId = searchParams.get('signId')
-  const safeAddress = searchParams.get('safeAddress')
-
+ 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
   const [pkpWalletAddress, setPkpWalletAddress] = useState<string | null>(null)
@@ -29,11 +47,27 @@ export default function Widget() {
   const [chainId, setChainId] = useState<number>(ChainId.BASE_GOERLI_TESTNET)
   const [pkpWallet, setPkpWallet] = useState<PKPEthersWallet | null>(null)
   const [txLink, setTxLink] = useState<string | null>(null)
+  // TODO get fileName & safeAddress from DB or grahpql
+  const [fileName, setFileName ] = useState<string | null>("FrktSampleContract4")
+  const [safeAddress, setSafeAddres] = useState<string | null>("0x9aC51CfdCdF343D6d7410a23880Eb25F20756098");
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
   const bgColor: string = null ?? '#fff'
   // const authType: 'google' | 'webauthn' = 'google'
+
+  console.log("signId:", signId)
+
+  // execute subgraph query
+  const [result] = useQuery({
+    query,
+    variables: { signId: signId },
+  })
+  const { data, fetching } = result
+  
+
+  const queryResult: SignContractInfos = data
+  console.log('data:', queryResult)
 
   const AuthType = {
     WebAuthn: 'webauthn',
@@ -49,6 +83,14 @@ export default function Widget() {
 
     try {
       setIsLoading(true)
+
+      /*
+      if (data != undefined) {
+        setFileName(data.signContractCreateds[0].name);
+        setSafeAddres(data.signContractCreateds[0].safeAddress);
+      }
+      */
+      
       if (authType === AuthType.Google) {
         if (!token) return
         const res = await getLitGooglePkp(token)
@@ -126,8 +168,8 @@ export default function Widget() {
 
       setResultMessage('🎉Congratulations!🎉')
     } catch (err: any) {
-      console.log(':::::Errror:::::', error)
-      setError(error)
+      console.log(':::::Errror:::::', err)
+      setError(err)
     } finally {
       setIsLoading(false)
     }
@@ -137,7 +179,7 @@ export default function Widget() {
     if (!appId || !recipeId) return
     setTimeout(() => initFunc(), 600)
   }, [])
-
+  
   return (
     <div className="flex items-center justify-center h-screen">
       <div
@@ -152,7 +194,7 @@ export default function Widget() {
           <h1 className="font-bold text-2xl text-center pb-6">
             SignContract widget
           </h1>
-          <p>Description here.....</p>
+          <p>fileName: {fileName}</p>
           <div className="w-full flex justify-center items-center min-h-[196px]">
             {isLoading ? (
               <Loading />
