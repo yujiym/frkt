@@ -153,9 +153,7 @@ export const crossMintNft = async (
       `CCIP Explorer Link:  https://ccip.chain.link/msg/${receipt.transactionHash}`
     )
 
-    const ccipLink = `https://ccip.chain.link/msg/${receipt.transactionHash}`
-
-    return ccipLink
+    return receipt.transactionHash
   } catch (err: any) {
     console.error('err', err)
     console.log('err:', err)

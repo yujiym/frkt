@@ -27,6 +27,7 @@ export default function Widget() {
     useState<BiconomySmartAccountV2 | null>(null)
   const [pkpWalletAddress, setPkpWalletAddress] = useState<string | null>(null)
   const [resultMessage, setResultMessage] = useState<string | null>(null)
+  const [txLink, setTxLink] = useState<string | null>(null)
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
@@ -111,13 +112,13 @@ export default function Widget() {
       setIsLoading(true)
 
       // call crossMintNft method
-      const ccipLink = await crossMintNft(
+      const transactionHash = await crossMintNft(
         smartAccount!,
         provider,
         pkpWalletAddress!
       )
 
-      console.log('ccipLink:', ccipLink)
+      setTxLink(`https://testnet.snowtrace.io/tx/${transactionHash}`)
 
       setResultMessage('🎉Congratulations!🎉')
     } catch (err: any) {
@@ -158,7 +159,14 @@ export default function Widget() {
                 ) : (
                   <>
                     {resultMessage !== null ? (
-                      <p>{resultMessage}</p>
+                      <>
+                        <div>
+                          {resultMessage}
+                          <br />
+                          You can see result:
+                          <a href={txLink!}> here </a>
+                        </div>
+                      </>
                     ) : (
                       <>
                         <div className="loader-sq" />
