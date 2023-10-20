@@ -3,6 +3,7 @@ import Logo from '@@/components/svgs/Logo'
 import { HOST } from '@@/lib/const'
 import { BiconomySmartAccountV2 } from '@biconomy/account'
 import { ChainId } from '@biconomy/core-types'
+import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
 import { ethers } from 'ethers'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -39,13 +40,12 @@ export default function Widget() {
     Google: 'google',
   }
 
-  const authType = 'webauthn'
+  const authType = 'google'
 
   const initFunc = async () => {
-    let newPkpWallet
+    let newPkpWallet: PKPEthersWallet
     let pkpPublicKey
     let authMethodInfo
-    let newPkpEthAddress
 
     try {
       setIsLoading(true)
@@ -54,6 +54,11 @@ export default function Widget() {
         if (!token) return
         const res = await getLitGooglePkp(token)
         console.log('::::', res)
+        console.log('pkp info by googleAuth:', res.pubKey)
+        console.log('authMethod by googleAuth:', res.authMethod)
+
+        pkpPublicKey = res.pubKey
+        authMethodInfo = res.authMethod
       } else if (authType === AuthType.WebAuthn) {
         console.log('webauthn here')
 
@@ -64,7 +69,6 @@ export default function Widget() {
 
         pkpPublicKey = pkp.publicKey
         authMethodInfo = authMethod
-        newPkpEthAddress = pkp.ethAddress
 
         if (authMethod === null || pkp === null) {
           // call register method
@@ -75,7 +79,6 @@ export default function Widget() {
 
           pkpPublicKey = pkp.publicKey
           authMethodInfo = authMethod
-          newPkpEthAddress = pkp.ethAddress
         }
       }
 
@@ -86,7 +89,7 @@ export default function Widget() {
         authMethodInfo,
         FUJI_RPC_URL
       )
-      setPkpWalletAddress(newPkpEthAddress)
+      setPkpWalletAddress(await newPkpWallet.getAddress())
 
       // create SmartWallet for biconomy
       // TODO Change chain ID by recepiId

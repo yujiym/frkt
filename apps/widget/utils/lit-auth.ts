@@ -111,10 +111,29 @@ export async function getLitGooglePkp(
     relayApiKey: LIT_RELAY_API_KEY,
   }
 
-  console.log('claimReq', claimReq)
+  let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
+    appId: sub,
+    userId: aud,
+    redirectUri: 'http://localhost:3003',
+  })
 
-  const res = await client.claimKeyId(claimReq)
-  console.log(res)
+  if (!session) {
+    session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
+      appId: sub,
+      userId: aud,
+      redirectUri: 'http://localhost:3003',
+    })
+  }
+
+  console.log('----003: ', session)
+
+  const authMethod = await session.authenticate()
+  console.log('----004: ', authMethod)
+
+  const keyId = session.getAuthMethodId(authMethod)
+  // const pubKey = session.litNodeClient.computePubkey(keyId)
+
+  return { authMethod, pubKey: 'pubKey' }
 }
 
 export async function getPkpWallet(
