@@ -34,7 +34,7 @@ export default function Home() {
   // execute subgraph query
   const [result] = useQuery({
     query,
-    variables: { signId },
+    variables: { signId: signId },
   })
   const { data, fetching } = result
   const queryResult: SignContractInfos = data

@@ -28,6 +28,7 @@ export default function Widget() {
   const [resultMessage, setResultMessage] = useState<string | null>(null)
   const [chainId, setChainId] = useState<number>(ChainId.BASE_GOERLI_TESTNET)
   const [pkpWallet, setPkpWallet] = useState<PKPEthersWallet | null>(null)
+  const [txLink, setTxLink] = useState<string | null>(null)
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
@@ -119,6 +120,7 @@ export default function Widget() {
       console.log(
         `Relay Transaction Task ID: https://relay.gelato.digital/tasks/status/${response.taskId}`
       )
+      setTxLink(`https://relay.gelato.digital/tasks/status/${response.taskId}`)
 
       setResultMessage('🎉Congratulations!🎉')
     } catch (err: any) {
@@ -161,7 +163,14 @@ export default function Widget() {
                 ) : (
                   <>
                     {resultMessage !== null ? (
-                      <p>{resultMessage}</p>
+                      <>
+                        <div>
+                          {resultMessage}
+                          <br />
+                          You can see result:
+                          <a href={txLink!}> here </a>
+                        </div>
+                      </>
                     ) : (
                       <>
                         <div className="loader-sq" />
@@ -169,7 +178,7 @@ export default function Widget() {
                           className="btn btn-success w-full mt-12"
                           onClick={handleSignContract}
                         >
-                          Sign Contract
+                          Sign
                         </button>
                       </>
                     )}
