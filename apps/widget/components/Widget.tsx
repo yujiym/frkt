@@ -16,7 +16,7 @@ import {
 import { createSmartWallet, crossMintNft } from './../hooks/biconomy'
 import Loading from './Loading'
 
-export default async function Widget() {
+export default function Widget() {
   const { appId, recipeId } = useParams()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
@@ -38,16 +38,17 @@ export default async function Widget() {
     Google: 'google',
   }
 
-  const authType = 'google'
+  const authType = 'webauthn'
 
   const initFunc = async () => {
-    var newPkpWallet
-    var pkpPublicKey
-    var authMethodInfo
-    var newPkpEthAddress
+    let newPkpWallet
+    let pkpPublicKey
+    let authMethodInfo
+    let newPkpEthAddress
 
     try {
       setIsLoading(true)
+
       if (authType === AuthType.Google) {
         if (!token) return
         const res = await getLitGooglePkp(token)
@@ -55,17 +56,16 @@ export default async function Widget() {
       } else if (authType === AuthType.WebAuthn) {
         console.log('webauthn here')
 
-        try {
-          // get pkp Info by webAuthn
-          const { authMethod, pkp } = await getWebAuthnPkp()
-          console.log('pkp info by webAuth:', pkp)
-          console.log('authMethod by webAuth:', authMethod)
+        // get pkp Info by webAuthn
+        const { authMethod, pkp } = await getWebAuthnPkp()
+        console.log('pkp info by webAuth:', pkp)
+        console.log('authMethod by webAuth:', authMethod)
 
-          pkpPublicKey = pkp.publicKey
-          authMethodInfo = authMethod
-          newPkpEthAddress = pkp.pkpEthAddress
-        } catch (err) {
-          console.error(':::::Errror:::::', error)
+        pkpPublicKey = pkp.publicKey
+        authMethodInfo = authMethod
+        newPkpEthAddress = pkp.ethAddress
+
+        if (authMethod === null || pkp === null) {
           // call register method
           await registerWebAuthn()
           const { authMethod, pkp } = await getWebAuthnPkp()
@@ -74,7 +74,7 @@ export default async function Widget() {
 
           pkpPublicKey = pkp.publicKey
           authMethodInfo = authMethod
-          newPkpEthAddress = pkp.pkpEthAddress
+          newPkpEthAddress = pkp.ethAddress
         }
       }
 
@@ -95,6 +95,7 @@ export default async function Widget() {
       )
       // set SmartAccount
       setSmartAccount(biconomySmartAccount)
+      setError(null)
     } catch (error) {
       console.log(':::::Errror:::::', error)
       setError(error)
@@ -115,7 +116,10 @@ export default async function Widget() {
         provider,
         pkpWalletAddress!
       )
-      setResultMessage(ccipLink!)
+
+      console.log('ccipLink:', ccipLink)
+
+      setResultMessage('🎉Congratulations!🎉')
     } catch (err: any) {
       console.log(':::::Errror:::::', error)
       setError(error)
@@ -153,14 +157,19 @@ export default async function Widget() {
                   </div>
                 ) : (
                   <>
-                    <div className="loader-sq" />
-                    <button
-                      className="btn btn-success w-full mt-12"
-                      onClick={handleMintCrossNFT}
-                    >
-                      Mint NFT
-                    </button>
-                    {resultMessage !== null ?? <p>result : {resultMessage}</p>}
+                    {resultMessage !== null ? (
+                      <p>{resultMessage}</p>
+                    ) : (
+                      <>
+                        <div className="loader-sq" />
+                        <button
+                          className="btn btn-success w-full mt-12"
+                          onClick={handleMintCrossNFT}
+                        >
+                          Mint NFT
+                        </button>
+                      </>
+                    )}
                   </>
                 )}
               </>

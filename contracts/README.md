@@ -92,9 +92,9 @@
 
   | Name           | Address                                                                                                                         | Chain  |
   | :------------- | :------------------------------------------------------------------------------------------------------------------------------ | :----- |
-  | NFT            | [0x2bE3ea3f1a3D5D668367F28Be3072573FfAc70F4](https://mumbai.polygonscan.com/address/0x2bE3ea3f1a3D5D668367F28Be3072573FfAc70F4) | mumbai |
-  | Receiver       | [0x9bE9aC69125c5dEcd0BD14AC15A1872431aF7e15](https://mumbai.polygonscan.com/address/0x9bE9aC69125c5dEcd0BD14AC15A1872431aF7e15) | mumbai |
-  | sender         | [0xbF2e8A35484f23491F262fcc9151fab7400Abd9E](https://testnet.snowtrace.io/address/0xbF2e8A35484f23491F262fcc9151fab7400Abd9E)   | Fuji   |
+  | NFT            | [0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a](https://mumbai.polygonscan.com/address/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a) | mumbai |
+  | Receiver       | [0x1d0841b8eDf79cAa822Cf7a834d47f096cA5E27a](https://mumbai.polygonscan.com/address/0x1d0841b8eDf79cAa822Cf7a834d47f096cA5E27a) | mumbai |
+  | sender         | [0x7de91d76b13440A69C54375c337828C6c64dc268](https://testnet.snowtrace.io/address/0x7de91d76b13440A69C54375c337828C6c64dc268)   | Fuji   |
   | Link Token     | [0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846](https://testnet.snowtrace.io/address/0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846)   | Fuji   |
   | Fuji Router    | [0x554472a2720E5E7D5D3C817529aBA05EEd5F82D8](https://testnet.snowtrace.io/address/0x554472a2720E5E7D5D3C817529aBA05EEd5F82D8)   | Fuji   |
   | Mumbai Router  | [0x70499c328e1E2a3c41108bd3730F6670a44595D1](https://mumbai.polygonscan.com/address/0x70499c328e1E2a3c41108bd3730F6670a44595D1) | Mumbai |
@@ -336,7 +336,8 @@
   - protocol-kit  
     [code is here]()
   - relay-kit  
-    [code is here]()
+    [code is here]()  
+    [Relay Transaction Task ID is 0x8d6ae383814cd4ca70aa72c042e9aaf6db517c6107258bb1c69dde2554bec659](https://relay.gelato.digital/tasks/status/0x8d6ae383814cd4ca70aa72c042e9aaf6db517c6107258bb1c69dde2554bec659)
   - safe-core-sdk-types  
     [code is here]()
 
@@ -370,9 +371,9 @@
 
     For UX optimization, we combined LitProtocol MPC and AA technologies to allow users to create wallets without being aware of the blockchain. All the user has to do is log in and press a button just like in existing apps.
 
-    [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0xbF2e8A35484f23491F262fcc9151fab7400Abd9E)
+    [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
 
-    [Polygon testnet's Reciver Contract is here](https://mumbai.polygonscan.com/address/0x9bE9aC69125c5dEcd0BD14AC15A1872431aF7e15)
+    [Polygon testnet's Reciver Contract is here](https://mumbai.polygonscan.com/address/0x1d0841b8eDf79cAa822Cf7a834d47f096cA5E27a)
 
     [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a/0)
 
@@ -440,10 +441,10 @@
 
     Our team has developed a gasless cross-chain NFT that combines the capabilities of Biconomy and Litprotocol to mint from the Avalanche testnet to the Polygon testnet.
 
-    [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0xbF2e8A35484f23491F262fcc9151fab7400Abd9E)
+    [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
 
-    [Polygon testnet's Reciver Contract is here](https://mumbai.polygonscan.com/address/0x9bE9aC69125c5dEcd0BD14AC15A1872431aF7e15)
+    [Polygon testnet's Reciver Contract is here](https://mumbai.polygonscan.com/address/0x1d0841b8eDf79cAa822Cf7a834d47f096cA5E27a)
 
-    [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a/0)
+    [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a/1)
 
     [CCIP Explorer's link](https://ccip.chain.link/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
