@@ -1,13 +1,6 @@
-import { useEffect, useState } from 'react'
-import { Document, Page, pdfjs } from 'react-pdf'
-import { useQuery } from 'urql'
 import Layout from '../components/Layout'
-import Loading from '../components/Loading'
-import query from '../graphql/query'
 import useAuth from '../hooks/useAuth'
-import { SignContractInfos, signContract as meta } from '../utils/const'
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`
+import { signContract as meta } from '../utils/const'
 
 function handleClick(url: string) {
   const popup = window.open(url, '_blank', 'width=480,height=780')
@@ -22,40 +15,10 @@ function handleClick(url: string) {
 }
 
 export default function Home() {
-  const [safeAddress, setSafeAddress] = useState<string | null>(null)
-  const [fileName, setFileName] = useState<string | null>(null)
-  const [encodeUri, setEncodeUri] = useState<string>('')
-  const [numPages, setNumPages] = useState<number>()
-  const [pageNumber, setPageNumber] = useState<number>(1)
-
-  // signId
-  const signId = 2
-
-  // execute subgraph query
-  const [result] = useQuery({
-    query,
-    variables: { signId: signId },
-  })
-  const { data, fetching } = result
-  const queryResult: SignContractInfos = data
-
-  console.log('data:', queryResult)
+  // signId 
+  const signId = 3
 
   const { user } = useAuth()
-
-  useEffect(() => {
-    if (data != undefined) {
-      const uri = data.signContractCreateds[0].uri
-      console.log('uri:', uri)
-      setEncodeUri(uri)
-      setFileName(data.signContractCreateds[0].name)
-      setSafeAddress(data.signContractCreateds[0].safeAddress)
-    }
-  })
-
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages)
-  }
 
   return (
     <Layout name={meta.name}>
@@ -79,34 +42,24 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {fetching ? (
-        <Loading />
-      ) : (
-        <div className="container max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-8 pb-10">
-          <div className="pt-10 flex flex-col">
-            <h1>{fileName}</h1>
-            <button
+      <div className="container mx-auto grid max-w-4xl grid-cols-1 gap-0 px-6 pb-10 md:grid-cols-3 md:gap-8">
+        <div className="col-span-2 pt-10">
+          <img src="/img/simpleContract.png" className="w-full rounded-lg object-fill" />
+        </div>
+        <div className="flex flex-col justify-between pt-10">
+          <button
               className="btn btn-success w-full mt-12"
               disabled={!user}
               onClick={() =>
                 handleClick(
-                  `http://localhost:3005/a/0002/r/0002?token=${user.accessToken!}&signId=${signId}&safeAddress=${safeAddress}`
+                  `http://localhost:3005/a/0002/r/0002?token=${user.accessToken!}&signId=${signId}`
                 )
               }
             >
               {user ? 'Sign' : 'Login to Sign'}
             </button>
-            <div className="col-span-2 pt-10">
-              <Document file={encodeUri} onLoadSuccess={onDocumentLoadSuccess}>
-                <Page pageNumber={pageNumber} height={1000} />
-              </Document>
-              <p>
-                Page {pageNumber} of {numPages}
-              </p>
-            </div>
-          </div>
         </div>
-      )}
+      </div>
     </Layout>
   )
 }
