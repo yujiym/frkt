@@ -20,6 +20,7 @@ import { abi as sourceMinterAbi } from '../utils/abis/SourceMinter.json'
 import { getPayFeesIn } from './../utils/PayFees'
 import {
   MUMBAI_CHAIN_SELECTOR,
+  MUMBAI_RECEIVER_ADDRESS,
   SOURCE_MINTER_ADDRESS,
 } from './../utils/constants'
 
@@ -44,14 +45,14 @@ export const createSmartWallet = async (
 
   // set bandler Info
   const bundler = new Bundler({
-    bundlerUrl: `https://bundler.biconomy.io/api/v2/${this!.chainId.toString()}/${BICONOMY_BUNDLER_KEY!}`,
+    bundlerUrl: `https://bundler.biconomy.io/api/v2/${chainId.toString()}/${BICONOMY_BUNDLER_KEY!}`,
     chainId: selectedChainId,
     entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
   })
 
   // set paymaster Info
   const paymaster = new BiconomyPaymaster({
-    paymasterUrl: `https://paymaster.biconomy.io/api/v1/${this!.chainId.toString()}/${BICONOMY_PAYMASTER_KEY!}`,
+    paymasterUrl: `https://paymaster.biconomy.io/api/v1/${chainId.toString()}/${BICONOMY_PAYMASTER_KEY!}`,
   })
 
   // eslint-disable-next-line @next/next/no-assign-module-variable
@@ -60,7 +61,7 @@ export const createSmartWallet = async (
     moduleAddress: DEFAULT_ECDSA_OWNERSHIP_MODULE,
   })
 
-  let biconomySmartAccount = await BiconomySmartAccountV2.create({
+  const biconomySmartAccount = await BiconomySmartAccountV2.create({
     chainId: chainId,
     bundler: bundler!,
     paymaster: paymaster!,
@@ -86,6 +87,8 @@ export const crossMintNft = async (
   provider: any,
   to: string
 ) => {
+  console.log('to', to)
+
   // sourceMinter contract
   const contract = new ethers.Contract(
     SOURCE_MINTER_ADDRESS,
@@ -99,24 +102,24 @@ export const crossMintNft = async (
     // create data
     const minTx = await contract.interface.encodeFunctionData('mint', [
       MUMBAI_CHAIN_SELECTOR,
-      SOURCE_MINTER_ADDRESS,
+      MUMBAI_RECEIVER_ADDRESS,
       to,
       fee,
     ])
-    console.log(minTx)
+    console.log('minTx:', minTx)
 
     const tx1 = {
       to: SOURCE_MINTER_ADDRESS,
       data: minTx,
     }
 
-    let userOp = await smartAccount.buildUserOp([tx1])
+    const userOp = await smartAccount.buildUserOp([tx1])
     console.log({ userOp })
 
     const biconomyPaymaster =
       smartAccount.paymaster as IHybridPaymaster<SponsorUserOperationDto>
 
-    let paymasterServiceData: SponsorUserOperationDto = {
+    const paymasterServiceData: SponsorUserOperationDto = {
       mode: PaymasterMode.SPONSORED,
       smartAccountInfo: {
         name: 'BICONOMY',
@@ -145,7 +148,7 @@ export const crossMintNft = async (
     console.log('userOpHash', userOpResponse)
 
     const { receipt } = await userOpResponse.wait(1)
-    console.log('txHash', receipt.transactionHash)
+    console.log('txHash', receipt)
     console.log(
       `CCIP Explorer Link:  https://ccip.chain.link/msg/${receipt.transactionHash}`
     )

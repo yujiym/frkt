@@ -15,7 +15,7 @@ import {
 import { addSigNature } from './../hooks/safe'
 import Loading from './Loading'
 
-export default async function Widget() {
+export default function Widget() {
   const { appId, recipeId } = useParams()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
@@ -42,10 +42,10 @@ export default async function Widget() {
   const authType = 'webauthn'
 
   const initFunc = async () => {
-    var newPkpWallet
-    var pkpPublicKey
-    var authMethodInfo
-    var newPkpEthAddress
+    let newPkpWallet
+    let pkpPublicKey
+    let authMethodInfo
+    let newPkpEthAddress
 
     try {
       setIsLoading(true)
@@ -56,14 +56,13 @@ export default async function Widget() {
       } else if (authType === AuthType.WebAuthn) {
         console.log('webauthn here')
 
-        // get pkp Info by webAuthn
         const { authMethod, pkp } = await getWebAuthnPkp()
         console.log('pkp info by webAuth:', pkp)
         console.log('authMethod by webAuth:', authMethod)
 
         pkpPublicKey = pkp.publicKey
         authMethodInfo = authMethod
-        newPkpEthAddress = pkp.pkpEthAddress
+        newPkpEthAddress = pkp.ethAddress
 
         if (authMethod === null || pkp === null) {
           // call register method
@@ -74,7 +73,7 @@ export default async function Widget() {
 
           pkpPublicKey = pkp.publicKey
           authMethodInfo = authMethod
-          newPkpEthAddress = pkp.pkpEthAddress
+          newPkpEthAddress = pkp.ethAddress
         }
       }
 
@@ -87,6 +86,7 @@ export default async function Widget() {
       )
       setPkpWallet(newPkpWallet)
       setPkpWalletAddress(newPkpEthAddress)
+      setError(null)
     } catch (error) {
       console.log(':::::Errror:::::', error)
       setError(error)
@@ -120,9 +120,7 @@ export default async function Widget() {
         `Relay Transaction Task ID: https://relay.gelato.digital/tasks/status/${response.taskId}`
       )
 
-      setResultMessage(
-        `https://relay.gelato.digital/tasks/status/${response.taskId}`
-      )
+      setResultMessage('🎉Congratulations!🎉')
     } catch (err: any) {
       console.log(':::::Errror:::::', error)
       setError(error)
@@ -162,14 +160,19 @@ export default async function Widget() {
                   </div>
                 ) : (
                   <>
-                    <div className="loader-sq" />
-                    <button
-                      className="btn btn-success w-full mt-12"
-                      onClick={handleSignContract}
-                    >
-                      Sign Contract
-                    </button>
-                    {resultMessage !== null ?? <p>result : {resultMessage}</p>}
+                    {resultMessage !== null ? (
+                      <p>{resultMessage}</p>
+                    ) : (
+                      <>
+                        <div className="loader-sq" />
+                        <button
+                          className="btn btn-success w-full mt-12"
+                          onClick={handleSignContract}
+                        >
+                          Sign Contract
+                        </button>
+                      </>
+                    )}
                   </>
                 )}
               </>

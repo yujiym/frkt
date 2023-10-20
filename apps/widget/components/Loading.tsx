@@ -1,22 +1,21 @@
-import { CircularProgress } from "react-loading-indicators";
+import { CircularProgress } from 'react-loading-indicators'
 
 /**
  * Spinner Component
- * @returns 
+ * @returns
  */
 const Loading = () => {
-    
   return (
     <div className="text-center">
-      <CircularProgress 
-        variant="dotted" 
-        color="#316acc" 
-        size="large" 
-        text="" 
-        textColor="" 
+      <CircularProgress
+        variant="dotted"
+        color="#316acc"
+        size="large"
+        text=""
+        textColor=""
       />
     </div>
-  );
-};
+  )
+}
 
-export default Loading;
+export default Loading
