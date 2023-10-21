@@ -9,7 +9,7 @@
 - receipeIs  
   0002
 - SignContractName  
-  FrktSampleSignContract3
+  FrktSampleSignContract4
 - required  
   2
 - initUri  
