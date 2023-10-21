@@ -1,10 +1,7 @@
 'use client'
 import { LitAbility, LitActionResource } from '@lit-protocol/auth-helpers'
 import { ProviderType } from '@lit-protocol/constants'
-import {
-  LitAuthClient,
-  WebAuthnProvider
-} from '@lit-protocol/lit-auth-client'
+import { LitAuthClient, WebAuthnProvider } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
 import { AuthMethod, IRelayPKP } from '@lit-protocol/types'
@@ -109,7 +106,7 @@ export async function getLitGooglePkp(
   const decodedToken = JSON.parse(atob(token.split('.')[1]))
   console.log('----002: ', decodedToken)
   const { sub, aud } = decodedToken
-  
+
   let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
     appId: sub,
     userId: aud,
@@ -189,8 +186,7 @@ export async function getPkpWallet(
   await pkpWallet.init()
 
   console.log('pkpWallet:', pkpWallet)
-  console.log("pkpWallet's address:", await pkpWallet.getAddress())
-  console.log("pkpWallet's add:", await pkpWallet.getAddress())
+  console.log('pkpWallets address:', await pkpWallet.getAddress())
 
   return pkpWallet
 }

@@ -2,7 +2,7 @@ import Logo from '@@/components/svgs/LogoSquare'
 
 export default function Home() {
   return (
-    <main className="h-screen w-full flex items-center justify-center flex-col text-4xl -mt-8 text-blue-700 font-bold">
+    <main className="-mt-8 flex h-screen w-full flex-col items-center justify-center text-4xl font-bold text-blue-700">
       <Logo size={136} />
       <div className="loader-sq mt-2" />
     </main>

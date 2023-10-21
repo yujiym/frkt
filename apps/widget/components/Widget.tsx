@@ -150,14 +150,14 @@ export default function Widget() {
         <div className="px-6 pb-16 pt-8">
           <h1 className="pb-6 text-center text-2xl font-bold">NFT widget</h1>
           <p>Description here.....</p>
-          <div className="w-full flex justify-center items-center min-h-[196px]">
+          <div className="flex min-h-[196px] w-full items-center justify-center">
             {isLoading ? (
               <Loading />
             ) : (
               <>
                 {error ? (
-                  <div className="text-center my-24 text-lg">
-                    <div className="text-6xl mb-2">😵‍💫</div>Something wrong
+                  <div className="my-24 text-center text-lg">
+                    <div className="mb-2 text-6xl">😵‍💫</div>Something wrong
                   </div>
                 ) : (
                   <>
@@ -174,7 +174,7 @@ export default function Widget() {
                       <>
                         <div className="loader-sq" />
                         <button
-                          className="btn btn-success w-full mt-12"
+                          className="btn btn-success mt-12 w-full"
                           onClick={handleMintCrossNFT}
                         >
                           Mint NFT
