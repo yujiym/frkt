@@ -18,7 +18,6 @@ import { addSigNature } from './../hooks/safe'
 import { GRAPHQL_API_ENDPOINT, SignContractInfos } from './../utils/constants'
 import Loading from './Loading'
 
-
 // create client instance for GraphQL
 const client = new Client({
   url: GRAPHQL_API_ENDPOINT,
@@ -28,18 +27,19 @@ const client = new Client({
 export default function Widget() {
   return (
     <Provider value={client}>
-      <WidgetContent/>
+      <WidgetContent />
     </Provider>
   )
 }
 
 function WidgetContent() {
-
   const { appId, recipeId } = useParams()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
-  const signId = searchParams.get('signId')
- 
+  // const signId = searchParams.get('signId')
+
+  const signId = 4
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
   const [pkpWalletAddress, setPkpWalletAddress] = useState<string | null>(null)
@@ -48,15 +48,17 @@ function WidgetContent() {
   const [pkpWallet, setPkpWallet] = useState<PKPEthersWallet | null>(null)
   const [txLink, setTxLink] = useState<string | null>(null)
   // TODO get fileName & safeAddress from DB or grahpql
-  const [fileName, setFileName ] = useState<string | null>("FrktSampleContract4")
-  const [safeAddress, setSafeAddres] = useState<string | null>("0x9aC51CfdCdF343D6d7410a23880Eb25F20756098");
+  const [fileName, setFileName] = useState<string | null>('FrktSampleContract4')
+  const [safeAddress, setSafeAddres] = useState<string | null>(
+    '0x9aC51CfdCdF343D6d7410a23880Eb25F20756098'
+  )
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
   const bgColor: string = null ?? '#fff'
   // const authType: 'google' | 'webauthn' = 'google'
 
-  console.log("signId:", signId)
+  console.log('signId:', signId)
 
   // execute subgraph query
   const [result] = useQuery({
@@ -64,7 +66,6 @@ function WidgetContent() {
     variables: { signId: signId },
   })
   const { data, fetching } = result
-  
 
   const queryResult: SignContractInfos = data
   console.log('data:', queryResult)
@@ -84,13 +85,11 @@ function WidgetContent() {
     try {
       setIsLoading(true)
 
-      /*
       if (data != undefined) {
-        setFileName(data.signContractCreateds[0].name);
-        setSafeAddres(data.signContractCreateds[0].safeAddress);
+        setFileName(data.signContractCreateds[0].name)
+        setSafeAddres(data.signContractCreateds[0].safeAddress)
       }
-      */
-      
+
       if (authType === AuthType.Google) {
         if (!token) return
         const res = await getLitGooglePkp(token)
@@ -179,30 +178,30 @@ function WidgetContent() {
     if (!appId || !recipeId) return
     setTimeout(() => initFunc(), 600)
   }, [])
-  
+
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex h-screen items-center justify-center">
       <div
-        className="container mx-auto max-w-sm relative border sm:rounded-lg rounded-none sm:shadow-solid shadow-none"
+        className="sm:shadow-solid container relative mx-auto max-w-sm rounded-none border shadow-none sm:rounded-lg"
         style={{
           color: textColor,
           backgroundColor: bgColor,
           borderColor: textColor,
         }}
       >
-        <div className="px-6 pt-8 pb-16">
-          <h1 className="font-bold text-2xl text-center pb-6">
+        <div className="px-6 pb-16 pt-8">
+          <h1 className="pb-6 text-center text-2xl font-bold">
             SignContract widget
           </h1>
           <p>fileName: {fileName}</p>
-          <div className="w-full flex justify-center items-center min-h-[196px]">
+          <div className="flex min-h-[196px] w-full items-center justify-center">
             {isLoading ? (
               <Loading />
             ) : (
               <>
                 {error ? (
-                  <div className="text-center my-24 text-lg">
-                    <div className="text-6xl mb-2">😵‍💫</div>Something wrong
+                  <div className="my-24 text-center text-lg">
+                    <div className="mb-2 text-6xl">😵‍💫</div>Something wrong
                   </div>
                 ) : (
                   <>
@@ -219,7 +218,7 @@ function WidgetContent() {
                       <>
                         <div className="loader-sq" />
                         <button
-                          className="btn btn-success w-full mt-12"
+                          className="btn btn-success mt-12 w-full"
                           onClick={handleSignContract}
                         >
                           Sign
@@ -232,7 +231,7 @@ function WidgetContent() {
             )}
           </div>
         </div>
-        <footer className="absolute bottom-0 right-0 left-0 text-sm text-center pb-5 flex items-center justify-center">
+        <footer className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-5 text-center text-sm">
           Powerd by{' '}
           <a href={HOST} target="_blank" className="mx-2">
             <Logo size={54} />
