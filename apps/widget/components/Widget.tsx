@@ -1,44 +1,80 @@
 'use client'
 import Logo from '@@/components/svgs/Logo'
 import { HOST } from '@@/lib/const'
-import { BiconomySmartAccountV2 } from '@biconomy/account'
 import { ChainId } from '@biconomy/core-types'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
-import { ethers } from 'ethers'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { FUJI_RPC_URL } from '~/utils/constants'
+import { Client, Provider, cacheExchange, fetchExchange, useQuery } from 'urql'
+import query from '~/graphql/query'
+import { BASE_RPC_URL } from '~/utils/constants'
 import {
   getLitGooglePkp,
   getPkpWallet,
   getWebAuthnPkp,
   registerWebAuthn,
 } from '~/utils/lit-auth'
-import { createSmartWallet, crossMintNft } from './../hooks/biconomy'
-import Loading from './Loading'
+import { addSigNature } from '~/hooks/safe'
+import { GRAPHQL_API_ENDPOINT, SignContractInfos } from '~/utils/constants'
+
+// create client instance for GraphQL
+const client = new Client({
+  url: GRAPHQL_API_ENDPOINT,
+  exchanges: [cacheExchange, fetchExchange],
+})
 
 export default function Widget() {
+  return (
+    <Provider value={client}>
+      <WidgetContent />
+    </Provider>
+  )
+}
+
+function WidgetContent() {
   const { appId, recipeId } = useParams()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
+  // const signId = searchParams.get('signId')
+
+  const signId = 4
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
-  const [smartAccount, setSmartAccount] =
-    useState<BiconomySmartAccountV2 | null>(null)
   const [pkpWalletAddress, setPkpWalletAddress] = useState<string | null>(null)
   const [resultMessage, setResultMessage] = useState<string | null>(null)
+  const [chainId, setChainId] = useState<number>(ChainId.BASE_GOERLI_TESTNET)
+  const [pkpWallet, setPkpWallet] = useState<PKPEthersWallet | null>(null)
   const [txLink, setTxLink] = useState<string | null>(null)
+  // TODO get fileName & safeAddress from DB or grahpql
+  const [fileName, setFileName] = useState<string | null>('FrktSampleContract4')
+  const [safeAddress, setSafeAddres] = useState<string | null>(
+    '0x9aC51CfdCdF343D6d7410a23880Eb25F20756098'
+  )
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
   const bgColor: string = null ?? '#fff'
   // const authType: 'google' | 'webauthn' = 'google'
 
+  console.log('signId:', signId)
+
+  // execute subgraph query
+  const [result] = useQuery({
+    query,
+    variables: { signId: signId },
+  })
+  const { data, fetching } = result
+
+  const queryResult: SignContractInfos = data
+  console.log('data:', queryResult)
+
   const AuthType = {
     WebAuthn: 'webauthn',
     Google: 'google',
   }
+
+  const authType = 'webauthn'
 
   const initFunc = async () => {
     let newPkpWallet: PKPEthersWallet
@@ -47,6 +83,11 @@ export default function Widget() {
 
     try {
       setIsLoading(true)
+
+      if (data != undefined) {
+        setFileName(data.signContractCreateds[0].name)
+        setSafeAddres(data.signContractCreateds[0].safeAddress)
+      }
 
       if (authType === AuthType.Google) {
         if (!token) return
@@ -60,7 +101,6 @@ export default function Widget() {
       } else if (authType === AuthType.WebAuthn) {
         console.log('webauthn here')
 
-        // get pkp Info by webAuthn
         const { authMethod, pkp } = await getWebAuthnPkp()
         console.log('pkp info by webAuth:', pkp)
         console.log('authMethod by webAuth:', authMethod)
@@ -85,18 +125,10 @@ export default function Widget() {
         authType,
         pkpPublicKey,
         authMethodInfo,
-        FUJI_RPC_URL
+        BASE_RPC_URL
       )
+      setPkpWallet(newPkpWallet)
       setPkpWalletAddress(await newPkpWallet.getAddress())
-
-      // create SmartWallet for biconomy
-      // TODO Change chain ID by recepiId
-      const { biconomySmartAccount } = await createSmartWallet(
-        ChainId.AVALANCHE_TESTNET,
-        newPkpWallet
-      )
-      // set SmartAccount
-      setSmartAccount(biconomySmartAccount)
       setError(null)
     } catch (error) {
       console.log(':::::Errror:::::', error)
@@ -106,25 +138,36 @@ export default function Widget() {
     }
   }
 
-  const handleMintCrossNFT = async () => {
+  const handleSignContract = async () => {
     // TODO set rpc url info from DB
-    const provider = new ethers.providers.JsonRpcProvider(FUJI_RPC_URL)
+
     try {
       setIsLoading(true)
 
-      // call crossMintNft method
-      const transactionHash = await crossMintNft(
-        smartAccount!,
-        provider,
-        pkpWalletAddress!
+      // get signature
+      const signature = await pkpWallet!.signMessage(
+        `I sign to ${appId}/${recipeId}/${signId}/${safeAddress} Contract!`
       )
 
-      setTxLink(`https://testnet.snowtrace.io/tx/${transactionHash}`)
+      // call addSignature method
+      const response = await addSigNature(
+        appId,
+        recipeId,
+        signId,
+        chainId,
+        safeAddress,
+        signature
+      )
+
+      console.log(
+        `Relay Transaction Task ID: https://relay.gelato.digital/tasks/status/${response.taskId}`
+      )
+      setTxLink(`https://relay.gelato.digital/tasks/status/${response.taskId}`)
 
       setResultMessage('🎉Congratulations!🎉')
     } catch (err: any) {
-      console.log(':::::Errror:::::', error)
-      setError(error)
+      console.log(':::::Errror:::::', err)
+      setError(err)
     } finally {
       setIsLoading(false)
     }
@@ -146,11 +189,13 @@ export default function Widget() {
         }}
       >
         <div className="px-6 pb-16 pt-8">
-          <h1 className="pb-6 text-center text-2xl font-bold">NFT widget</h1>
-          <p>Description here.....</p>
+          <h1 className="pb-6 text-center text-2xl font-bold">
+            SignContract widget
+          </h1>
+          <p>fileName: {fileName}</p>
           <div className="flex min-h-[196px] w-full items-center justify-center">
             {isLoading ? (
-              <Loading />
+              <div className="loader-sq" />
             ) : (
               <>
                 {error ? (
@@ -173,9 +218,9 @@ export default function Widget() {
                         <div className="loader-sq" />
                         <button
                           className="btn btn-success mt-12 w-full"
-                          onClick={handleMintCrossNFT}
+                          onClick={handleSignContract}
                         >
-                          Mint NFT
+                          Sign
                         </button>
                       </>
                     )}

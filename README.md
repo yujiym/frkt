@@ -29,8 +29,6 @@ Based on Account Abstraction by Biconomy (we can also use other AA stack) and MP
 
 [Architecture]() link here
 
-## Tech
-
 ### Folder structure
 
 ```
@@ -51,6 +49,7 @@ Based on Account Abstraction by Biconomy (we can also use other AA stack) and MP
 Smart contracts for FRKT widget.
 
 - Hardhat
+- Ethers.js
 
 ### 🛠️ Dashboard
 
@@ -87,6 +86,8 @@ Widget component for recipes.
 - Tailwind CSS
 - Hosted on Cloudflare Pages
 
+## Techs
+
 ### Applied Prizes
 
 - Safe
@@ -94,27 +95,27 @@ Widget component for recipes.
 
   Our team developed the SignContract widget with the Safe{Core} Account Abstraction SDK built in.
 
-  - protocol-kit  
+  - protocol-kit
     [code is here]()
-  - relay-kit  
+  - relay-kit
     [code is here]()
 
     Relay Transaction Task ID is [0x8d6ae383814cd4ca70aa72c042e9aaf6db517c6107258bb1c69dde2554bec659](https://relay.gelato.digital/tasks/status/0x8d6ae383814cd4ca70aa72c042e9aaf6db517c6107258bb1c69dde2554bec659)
 
-  - safe-core-sdk-types  
+  - safe-core-sdk-types
     [code is here]()
 
-- Lit Protocol  
+- Lit Protocol
   Programmatic Signing with the Lit JS SDK V3
 
   Our team developed authbypass, the most prominent feature of this product, using LitProtocol SDK V3.
 
   GoogleAuth and WebAuthn are supported so that users can implement their preferred authentication method.
 
-  - claming key with Google Auth  
+  - claming key with Google Auth
     [code is here]()
 
-  - mint PKP with WebAuthn  
+  - mint PKP with WebAuthn
     [code is here]()
 
 - Filecoin
@@ -144,7 +145,7 @@ Widget component for recipes.
 
 - Scroll
 
-  - Deploy on Scroll  
+  - Deploy on Scroll
     Our team deployed SignContract on Scroll Alpha.
 
     [deployed Contract is here](https://sepolia-blockscout.scroll.io/address/0x8DF7e6234f76e8fAC829feF83E7520635359094C#code)

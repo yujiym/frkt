@@ -16,19 +16,14 @@ import {
   SponsorUserOperationDto,
 } from '@biconomy/paymaster'
 import { ethers } from 'ethers'
-import { abi as sourceMinterAbi } from '../utils/abis/SourceMinter.json'
-import { getPayFeesIn } from './../utils/PayFees'
+import { abi as sourceMinterAbi } from '~/utils/abis/SourceMinter.json'
+import { getPayFeesIn } from '~/utils/PayFees'
 import {
   MUMBAI_CHAIN_SELECTOR,
   MUMBAI_RECEIVER_ADDRESS,
   SOURCE_MINTER_ADDRESS,
-} from './../utils/constants'
-
-const getEnv = async () => {
-  const res = await fetch('/api/env')
-  const { env } = await res.json()
-  return env
-}
+} from '~/utils/constants'
+import { getEnv } from '~/utils/get-env'
 
 /**
  * createSmartWallet method

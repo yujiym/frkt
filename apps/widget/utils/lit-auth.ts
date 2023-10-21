@@ -1,16 +1,15 @@
 'use client'
 import { LitAbility, LitActionResource } from '@lit-protocol/auth-helpers'
 import { ProviderType, AuthMethodType } from '@lit-protocol/constants'
-import { WebAuthnProvider, LitAuthClient } from '@lit-protocol/lit-auth-client'
+import {
+  WebAuthnProvider,
+  LitAuthClient,
+  GoogleProvider,
+} from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
 import { AuthMethod, IRelayPKP, type ClaimRequest } from '@lit-protocol/types'
-
-const getEnv = async () => {
-  const res = await fetch('/api/env')
-  const { env } = await res.json()
-  return env
-}
+import { getEnv } from '~/utils/get-env'
 
 type AuthType = 'webauthn' | 'google'
 

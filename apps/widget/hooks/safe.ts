@@ -7,14 +7,9 @@ import {
   RelayTransaction,
 } from '@safe-global/safe-core-sdk-types'
 import { ethers } from 'ethers'
-import signContractAbi from '../utils/abis/SignContract.json'
-import { BASE_RPC_URL, SIGN_CONTRACT_ADDRESS } from '../utils/constants'
-
-const getEnv = async () => {
-  const res = await fetch('/api/env')
-  const { env } = await res.json()
-  return env
-}
+import signContractAbi from '~/utils/abis/SignContract.json'
+import { BASE_RPC_URL, SIGN_CONTRACT_ADDRESS } from '~/utils/constants'
+import { getEnv } from '~/utils/get-env'
 
 // create Contract instance
 const contract = new ethers.utils.Interface(signContractAbi)

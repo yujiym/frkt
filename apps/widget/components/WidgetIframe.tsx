@@ -16,6 +16,7 @@ export default function Widget() {
   const textColor: string = null ?? '#1d4ed8'
   const bgColor: string = null ?? '#fff'
   const authType: 'google' | 'webauthn' = 'google'
+  const title: string = 'NFT widget'
 
   const initFunc = async () => {
     try {
@@ -48,7 +49,7 @@ export default function Widget() {
         }}
       >
         <div className="px-6 pb-16 pt-8">
-          <h1 className="pb-6 text-center text-2xl font-bold">NFT widget</h1>
+          <h1 className="pb-6 text-center text-2xl font-bold">{title}</h1>
           <p>Description here.....</p>
           <div className="flex min-h-[196px] w-full items-center justify-center">
             {error ? (
@@ -60,7 +61,7 @@ export default function Widget() {
             )}
           </div>
         </div>
-        <footer className="absolute bottom-0 left-0 right-0 flex items-center justify-center border-t border-current py-3 text-center text-sm">
+        <footer className="absolute inset-0 flex items-center justify-center border-t border-current py-3 text-center text-sm">
           Powerd by{' '}
           <a href={HOST} target="_blank" className="mx-2">
             <Logo size={54} />
