@@ -2,18 +2,6 @@ import Layout from '../components/Layout'
 import useAuth from '../hooks/useAuth'
 import { metaNFT as meta } from '../utils/const'
 
-function handleClick(url: string) {
-  const popup = window.open(url, '_blank', 'width=480,height=780')
-  // Check if the popup was blocked
-  if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-    // Popup blocked, fallback to redirect flow
-    window.location.href = url
-  } else {
-    // If the popup wasn't blocked, proceed with the popup flow
-    // (e.g., listen for messages from the popup, etc.)
-  }
-}
-
 export default function Home() {
   const { user } = useAuth()
 

@@ -4,7 +4,7 @@ window.onload = () => {
       this.content = `
         <div id="frkt-widget-module">
         <div id="frkt-widget-module-close" style="display:flex;justify-content:center;align-items:center;width:29px;height:29px;color:#666;background:rgba(238,238,238,0.98);border:1px solid #ddd;border-radius:999px;position:absolute;top:-3px;right:-3px;font-size:14px;cursor:pointer;font-weight:bold;">x</div>
-        <iframe src="${url}" style="width:100%;height:100%;border:none;" />
+        <iframe src="${url}" style="width:100%;height:100%;border:none;" onLoad="this.onloadFn()" />
         </div>`
       this.style = `
           #frkt-widget-module {
@@ -24,6 +24,17 @@ window.onload = () => {
             }
           }
         `
+    }
+
+    onloadFn() {
+      document
+        .getElementById('frkt-widget-module-close')
+        .addEventListener('click', () => {
+          const iframeEl = document.getElementById('frkt-widget-module')
+          if (iframeEl) {
+            iframeEl.style.display = 'none'
+          }
+        })
     }
 
     appendTo() {

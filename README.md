@@ -9,7 +9,7 @@ This repo is build for [ETHOnline 2023](https://ethglobal.com/events/ethonline20
 
 [Demo](https://frkt-demo.web.app/) is here.
 
-## Project
+## About this project
 
 ### 🤔 Problem
 
@@ -27,13 +27,17 @@ Based on Account Abstraction by Biconomy (we can also use other AA stack) and MP
    1. Create a user's wallet (a. Google Oauth or b. webauthn).
    1. Execute function in a widget (gas-less tx by AA).
 
+[Architecture]() link here
+
+## Tech
+
 ### Folder structure
 
 ```
 ├── apps
 │   ├── dashboard      -> 🛠️ Dashboard frontend
 │   ├── demo           -> ⚽ Demo app frontend
-│   ├── frkt-subgraph  -> 📈 The Graph subgraph for widget
+│   ├── frkt-subgraph  -> 📈 Subgraph for widget
 │   ├── widget         -> 👓 Widget
 │   └── www            -> ✈️ Landing page (frkt.io)
 ├── packages

@@ -1,13 +1,10 @@
 'use client'
 import { LitAbility, LitActionResource } from '@lit-protocol/auth-helpers'
-import { ProviderType } from '@lit-protocol/constants'
-import {
-  LitAuthClient,
-  WebAuthnProvider
-} from '@lit-protocol/lit-auth-client'
+import { ProviderType, AuthMethodType } from '@lit-protocol/constants'
+import { WebAuthnProvider, LitAuthClient } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
-import { AuthMethod, IRelayPKP } from '@lit-protocol/types'
+import { AuthMethod, IRelayPKP, type ClaimRequest } from '@lit-protocol/types'
 
 const getEnv = async () => {
   const res = await fetch('/api/env')
@@ -15,10 +12,7 @@ const getEnv = async () => {
   return env
 }
 
-const AuthType = {
-  WebAuthn: 'webauthn',
-  Google: 'google',
-}
+type AuthType = 'webauthn' | 'google'
 
 const litNodeClient = new LitNodeClient({
   litNetwork: 'cayenne',
@@ -99,44 +93,25 @@ export async function getLitGooglePkp(
   const { LIT_RELAY_API_KEY } = await getEnv()
   if (!LIT_RELAY_API_KEY) return
 
-  await client.connect()
+  await litNodeClient.connect()
 
-  let authMethod: AuthMethod = {
+  const authMethod: AuthMethod = {
     authMethodType: AuthMethodType.Google,
     accessToken,
   }
 
-  const decodedToken = JSON.parse(atob(token.split('.')[1]))
-  console.log('----002: ', decodedToken)
-  const { sub, aud } = decodedToken
-  
-  let session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
-    appId: sub,
-    userId: aud,
-    redirectUri: 'http://localhost:3003',
-  })
-
-  if (!session) {
-    session = authClient.initProvider<GoogleProvider>(ProviderType.Google, {
-      appId: sub,
-      userId: aud,
-      redirectUri: 'http://localhost:3003',
-    })
+  const claimReq: ClaimRequest = {
+    authMethod,
+    relayApiKey: LIT_RELAY_API_KEY,
   }
 
-  console.log('----003: ', session)
+  const res = await litNodeClient.claimKeyId(claimReq)
 
-  const authMethod = await session.authenticate()
-  console.log('----004: ', authMethod)
-
-  const keyId = session.getAuthMethodId(authMethod)
-  // const pubKey = session.litNodeClient.computePubkey(keyId)
-
-  return { authMethod, pubKey: 'pubKey' }
+  return { authMethod, pubKey: res.pubkey }
 }
 
 export async function getPkpWallet(
-  authType: string,
+  authType: AuthType,
   pkpPublicKey: any,
   authMethod: AuthMethod,
   rpc_url: string
@@ -155,9 +130,9 @@ export async function getPkpWallet(
 
   let provider
 
-  if (authType === AuthType.Google) {
+  if (authType === 'google') {
     provider = authClient.initProvider<GoogleProvider>(ProviderType.Google)
-  } else if (authType === AuthType.WebAuthn) {
+  } else if (authType === 'webauthn') {
     provider = authClient.initProvider<WebAuthnProvider>(ProviderType.WebAuthn)
   }
 
