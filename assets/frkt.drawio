@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-21T00:12:41.069Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="LGqbxswYYz-CafvHFILf" version="21.6.8" type="device" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-10-21T00:25:00.952Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="rufQyPe36BZlzpGfX1Q4" version="22.0.6" type="device" pages="4">
   <diagram name="ページ1" id="yPWh1t6rHSZyYPfJQf3b">
     <mxGraphModel dx="1242" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -169,7 +169,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="m8rF2OLePvYMggXyJ-KL" name="SignContract">
-    <mxGraphModel dx="830" dy="622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1242" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F8F8F8" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -316,7 +316,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="28Rc1KQdF87eafClvdSU" name="CrossMintNFT">
-    <mxGraphModel dx="1876" dy="622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2069" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#f8f8f8" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -431,7 +431,7 @@
         <mxCell id="nJW1QheDv6ySgnilsX-W-10" value="&lt;b&gt;call mint method&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="1" vertex="1">
           <mxGeometry x="860" y="268" width="90" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="hTf4dmwWn4ldgi4GDAnR-2" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="GuFkAknfKRUBFrbLugNE-3">
+        <mxCell id="hTf4dmwWn4ldgi4GDAnR-2" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" target="GuFkAknfKRUBFrbLugNE-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="880" y="355" as="sourcePoint" />
             <mxPoint x="919" y="358" as="targetPoint" />
