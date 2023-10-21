@@ -164,8 +164,7 @@ export async function getPkpWallet(
   await pkpWallet.init()
 
   console.log('pkpWallet:', pkpWallet)
-  console.log("pkpWallet's address:", await pkpWallet.getAddress())
-  console.log("pkpWallet's add:", await pkpWallet.getAddress())
+  console.log('pkpWallets address:', await pkpWallet.getAddress())
 
   return pkpWallet
 }

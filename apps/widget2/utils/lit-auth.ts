@@ -134,7 +134,7 @@ export async function getLitGooglePkp(token: string): Promise<any | void> {
   const authMethod = await session.authenticate()
   console.log('----004: ', authMethod)
 
-  const keyId = session.getAuthMethodId(authMethod)
+  // const keyId = session.getAuthMethodId(authMethod)
   // const pubKey = session.litNodeClient.computePubkey(keyId)
 
   return { authMethod, pubKey: 'pubKey' }
@@ -194,8 +194,7 @@ export async function getPkpWallet(
   await pkpWallet.init()
 
   console.log('pkpWallet:', pkpWallet)
-  console.log("pkpWallet's address:", await pkpWallet.getAddress())
-  console.log("pkpWallet's add:", await pkpWallet.getAddress())
+  console.log('pkpWallets address:', await pkpWallet.getAddress())
 
   return pkpWallet
 }

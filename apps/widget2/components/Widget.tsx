@@ -42,9 +42,8 @@ function WidgetContent() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
-  const [pkpWalletAddress, setPkpWalletAddress] = useState<string | null>(null)
   const [resultMessage, setResultMessage] = useState<string | null>(null)
-  const [chainId, setChainId] = useState<number>(ChainId.BASE_GOERLI_TESTNET)
+  const [chainId] = useState<number>(ChainId.BASE_GOERLI_TESTNET)
   const [pkpWallet, setPkpWallet] = useState<PKPEthersWallet | null>(null)
   const [txLink, setTxLink] = useState<string | null>(null)
   // TODO get fileName & safeAddress from DB or grahpql
@@ -52,6 +51,7 @@ function WidgetContent() {
   const [safeAddress, setSafeAddres] = useState<string | null>(
     '0x9aC51CfdCdF343D6d7410a23880Eb25F20756098'
   )
+  const [approveStatus, setApproveStatus] = useState<boolean>(false)
 
   // config from table, props
   const textColor: string = null ?? '#1d4ed8'
@@ -65,7 +65,7 @@ function WidgetContent() {
     query,
     variables: { signId: signId },
   })
-  const { data, fetching } = result
+  const { data } = result
 
   const queryResult: SignContractInfos = data
   console.log('data:', queryResult)
@@ -88,6 +88,9 @@ function WidgetContent() {
       if (data != undefined) {
         setFileName(data.signContractCreateds[0].name)
         setSafeAddres(data.signContractCreateds[0].safeAddress)
+        if (data.changeApproveStatuses != undefined) {
+          setApproveStatus(data.changeApproveStatuses[0].approveStatus)
+        }
       }
 
       if (authType === AuthType.Google) {
@@ -129,7 +132,7 @@ function WidgetContent() {
         BASE_RPC_URL
       )
       setPkpWallet(newPkpWallet)
-      setPkpWalletAddress(await newPkpWallet.getAddress())
+      //setPkpWalletAddress(await newPkpWallet.getAddress())
       setError(null)
     } catch (error) {
       console.log(':::::Errror:::::', error)
@@ -194,6 +197,12 @@ function WidgetContent() {
             SignContract widget
           </h1>
           <p>fileName: {fileName}</p>
+          <br />
+          {approveStatus ? (
+            <p>status: Approved</p>
+          ) : (
+            <p>status: Not Approved</p>
+          )}
           <div className="flex min-h-[196px] w-full items-center justify-center">
             {isLoading ? (
               <Loading />
