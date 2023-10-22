@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactDevOverlay: false,
   experimental: {
     serverActions: true,
     externalDir: true,

@@ -40,9 +40,9 @@ export default function Widget() {
   }, [])
 
   return (
-    <div className="flex h-[480px] w-full items-center justify-center pb-0.5 pr-0.5">
+    <div className="relative flex h-[480px] w-full items-center justify-center pb-0.5 pr-0.5">
       <div
-        className="shadow-solid container relative mx-auto h-full w-full rounded-lg border-2"
+        className="shadow-solid container mx-auto h-full w-full rounded-lg border-2"
         style={{
           color: textColor,
           backgroundColor: bgColor,
@@ -51,7 +51,11 @@ export default function Widget() {
       >
         <div className="px-6 pb-16 pt-8">
           <h1 className="pb-6 text-center text-2xl font-bold">{title}</h1>
-          <p>Description here.....</p>
+          <p>
+            You can mint omnichain NFT!!
+            <br />
+            Let’s try it!
+          </p>
           <div className="flex min-h-[196px] w-full items-center justify-center">
             {error ? (
               <div className="my-24 text-center text-lg">
@@ -62,7 +66,7 @@ export default function Widget() {
             )}
           </div>
         </div>
-        <footer className="absolute inset-0 flex items-center justify-center border-t border-current py-3 text-center text-sm">
+        <footer className="absolute inset-x-0 bottom-0 flex items-center justify-center border-t border-current py-3 text-center text-sm">
           Powerd by{' '}
           <a href={HOST} target="_blank" className="mx-2">
             <Logo size={54} />
