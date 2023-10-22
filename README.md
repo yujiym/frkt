@@ -225,4 +225,4 @@ Our team developed the SignContract widget with the Safe{Core} Account Abstracti
 
   Our product is designed to allow the developer to set the paymaster for each app, so we developed a **GatTankChatbot** that uses the PushProtocol SDK to notify developer when the paymaster's balance gets low so that we do not run out of paymaster.
 
-  [code of pushprotocol implementation is here](https://github.com/yujiym/frkt/blob/main/sandbox/gastankchatbot/src/components/ReadContract.tsx#L42-L158)
+  [code of pushprotocol implementation is here](https://github.com/yujiym/frkt/blob/main/apps/dashboard/components/Notifications.tsx#L20-L139)
