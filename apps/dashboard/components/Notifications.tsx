@@ -4,17 +4,12 @@ import * as PushAPI from '@pushprotocol/restapi'
 import { NotificationItem, chainNameType } from '@pushprotocol/uiweb'
 import { ethers } from 'ethers'
 import { useCallback, useEffect, useState } from 'react'
-import { BaseError } from 'viem'
-import { useAccount, useContractRead } from 'wagmi'
-import { getPushSigner } from './../utils/ethereum'
-import { tokenPayMasterContractConfig } from './contracts'
+import { useAccount, useContractRead, useWalletClient } from 'wagmi'
+import { tokenPayMasterContractConfig } from './../lib/contracts'
 
 export function ReadContract() {
   return (
     <div>
-      <div>
-        <BalanceOf />
-      </div>
       <div>
         <Notifications />
       </div>
@@ -22,10 +17,13 @@ export function ReadContract() {
   )
 }
 
-function BalanceOf() {
+function Notifications() {
   const { address } = useAccount()
+  const { data: wallectClient } = useWalletClient()
+  const [theme, setTheme] = useState('light')
+  const [spams, setSpams] = useState<PushAPI.ParsedResponseType[]>()
 
-  const { data, error, isSuccess } = useContractRead({
+  const { data } = useContractRead({
     ...tokenPayMasterContractConfig,
     functionName: 'paymasterIdBalances',
     args: [address!],
@@ -39,58 +37,11 @@ function BalanceOf() {
     balance = ethers.utils.formatEther(data!.toString())
   }
 
-  useEffect(() => {
-    // send notificate
-    const sendNotificate = async () => {
-      const signer = await getPushSigner()
-      const apiResponse = await PushAPI.payloads.sendNotification({
-        signer,
-        type: 3,
-        identityType: 2,
-        notification: {
-          title: `[FRKT] TokenPaymaster's balance is very low!!`,
-          body: `[FRKT] TokenPaymaster's balance is very low!! Please deposit!!`,
-        },
-        payload: {
-          title: `[FRKT] TokenPaymaster's balance is very low!!`,
-          body: `[FRKT] TokenPaymaster's balance is very low!! Please deposit!!`,
-          cta: '',
-          img: '',
-        },
-        recipients: `eip155:5:${address}`,
-        channel: 'eip155:5:0xef902bbE4967ac7A5Ec22039cA2d994325A36dB9',
-        env: env,
-      })
-      console.log('apiResponse:', apiResponse)
-    }
-
-    if (Number(balance) <= 0.005) {
-      sendNotificate()
-    }
-  }, [balance])
-
-  // TODO add send notification logic
-
-  return (
-    <div>
-      balance: {isSuccess && balance} ETH
-      {error && <div>{(error as BaseError).shortMessage}</div>}
-    </div>
-  )
-}
-
-function Notifications() {
-  const { address } = useAccount()
-  const [theme, setTheme] = useState('light')
-  const [spams, setSpams] = useState<PushAPI.ParsedResponseType[]>()
-
-  const env: any = 'staging'
-
   const loadSpam = useCallback(async () => {
     try {
       // get channel data
       const channelData = await PushAPI.channels.getChannel({
-        channel: `eip155:5:0xef902bbE4967ac7A5Ec22039cA2d994325A36dB9`,
+        channel: 'eip155:5:0xef902bbE4967ac7A5Ec22039cA2d994325A36dB9',
         env: env,
       })
       console.log('channelData:', channelData)
@@ -108,6 +59,35 @@ function Notifications() {
       console.error(e)
     }
   }, [address])
+
+  useEffect(() => {
+    // send notificate
+    const sendNotificate = async () => {
+      const apiResponse = await PushAPI.payloads.sendNotification({
+        signer: wallectClient,
+        type: 3,
+        identityType: 2,
+        notification: {
+          title: '[FRKT] TokenPaymaster balance is very low!!',
+          body: '[FRKT] TokenPaymaster balance is very low!! Please deposit!!',
+        },
+        payload: {
+          title: '[FRKT] TokenPaymaster balance is very low!!',
+          body: '[FRKT] TokenPaymaster balance is very low!! Please deposit!!',
+          cta: '',
+          img: '',
+        },
+        recipients: `eip155:5:${address}`,
+        channel: 'eip155:5:0xef902bbE4967ac7A5Ec22039cA2d994325A36dB9',
+        env: env,
+      })
+      console.log('apiResponse:', apiResponse)
+    }
+
+    if (Number(balance) <= 0.005) {
+      sendNotificate()
+    }
+  }, [balance])
 
   useEffect(() => {
     loadSpam()
