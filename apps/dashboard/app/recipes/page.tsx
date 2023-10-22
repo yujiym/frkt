@@ -1,6 +1,50 @@
 'use client'
 import { BookCopy, CopyPlus } from 'lucide-react'
 import { toast } from '@@/components/Toaster'
+import { cn } from '@@/lib/utils'
+
+export const recipeData = [
+  {
+    id: 'nft',
+    title: 'Mint Omnichain NFT',
+    icon: '🖼️',
+    bgColor: 'bg-blue-100',
+  },
+  {
+    id: 'docment',
+    title: 'Sign Document On-chain ',
+    icon: '🖋️',
+    bgColor: 'bg-orange-100',
+  },
+]
+
+const RecipeCards = () => (
+  <>
+    {recipeData.map((item: any) => (
+      <div key={item.id} className="card bg-white">
+        <a className="flex h-full flex-col" href={`/recipes/${item.id}`}>
+          <div
+            className={cn(
+              'flex flex-1 items-center justify-center rounded-t-lg px-4',
+              item.bgColor
+            )}
+          >
+            <div className="text-center">
+              <p className="pt-12 text-5xl">{item.icon}</p>
+              <h3 className="my-6 text-lg">{item.title}</h3>
+            </div>
+          </div>
+          <div className="border-t border-black px-4 py-2 text-sm">
+            by Official
+          </div>
+          <button className="w-full border-t border-black px-4 py-2 text-center font-bold uppercase">
+            Try This
+          </button>
+        </a>
+      </div>
+    ))}
+  </>
+)
 
 export default function RecipesPage() {
   return (
@@ -14,7 +58,9 @@ export default function RecipesPage() {
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-6 py-8 md:grid-cols-2 lg:grid-cols-3">
         <div
           className="card relative bg-white"
-          onClick={() => toast.error('ok gooooooood', { icon: '😔' })}
+          onClick={() =>
+            toast.error('This feature is restricted', { icon: '😔' })
+          }
         >
           <a className="flex h-full flex-col" href="/recipes/new">
             <div className="flex flex-1 items-center justify-center px-4 py-12 text-gray-500">
@@ -25,37 +71,7 @@ export default function RecipesPage() {
             </button>
           </a>
         </div>
-        <div className="card bg-white">
-          <a className="flex h-full flex-col" href="/recipes/nft">
-            <div className="flex flex-1 items-center justify-center border-b border-black bg-blue-100 px-4 pt-12 text-5xl">
-              <div className="text-center">
-                🖼️
-                <h3 className="mb-6 mt-6 text-lg">Mint Omnichain NFT</h3>
-              </div>
-            </div>
-            <div className="px-4 py-2 text-sm">by Official</div>
-            <button className="w-full border-t border-black px-4 py-2 text-center font-bold uppercase">
-              Try This
-            </button>
-          </a>
-        </div>
-        <div
-          className="card bg-white"
-          onClick={() => toast.error('ok gooooooood', { icon: '😔' })}
-        >
-          <a>
-            <div className="flex items-center justify-center border-b border-black bg-orange-100 px-4 pt-12 text-5xl">
-              <div className="text-center">
-                🖋️
-                <h3 className="mb-6 mt-6 text-lg">Sign On-chain contract</h3>
-              </div>
-            </div>
-            <div className="px-4 py-2 text-sm">by Official</div>
-            <button className="w-full border-t border-black px-4 py-2 text-center font-bold uppercase">
-              Try This
-            </button>
-          </a>
-        </div>
+        <RecipeCards />
       </div>
     </>
   )

@@ -2,7 +2,7 @@ import DashboardLayout from '~components/DashboardLayout'
 import { SITE_TITLE } from '@@/lib/const'
 
 export const metadata = {
-  title: `Apps | ${SITE_TITLE} Dashboard`,
+  title: `App | ${SITE_TITLE} Dashboard`,
 }
 
 export default function MyAppsLayout({
