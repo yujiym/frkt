@@ -38,7 +38,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <div className="bg-purple-100 px-6 py-28 text-stone-600">
+      {/* <div className="bg-purple-100 px-6 py-28 text-stone-600">
         <div className="mx-auto max-w-2xl">
           <h2 className="mb-6 text-3xl font-black">Demo 3</h2>
           <p className="mb-14">widget description here</p>
@@ -61,7 +61,7 @@ export default function Home() {
             Try this
           </a>
         </div>
-      </div>
+      </div> */}
     </Layout>
   )
 }

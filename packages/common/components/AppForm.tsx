@@ -26,7 +26,6 @@ export default function AppForm() {
       <div className="mb-4">
         <Label>Name</Label>
         <Input {...register('name')} placeholder="Your app name" />
-        <span className="text-red-300">{}</span>
       </div>
       <div className="mb-4">
         <Label>Deploy chain</Label>

@@ -201,11 +201,7 @@ function WidgetContent() {
               <div className="loader-sq" />
             ) : (
               <>
-                {error ? (
-                  <div className="my-24 text-center text-lg">
-                    <div className="mb-2 text-6xl">😵‍💫</div>Something wrong
-                  </div>
-                ) : (
+                {error ? null : (
                   <>
                     {resultMessage !== null ? (
                       <>
@@ -218,9 +214,8 @@ function WidgetContent() {
                       </>
                     ) : (
                       <>
-                        <div className="loader-sq" />
                         <button
-                          className="btn btn-success mt-12 w-full"
+                          className="btn btn-neutral mt-12 w-full"
                           onClick={handleSignContract}
                         >
                           Sign
@@ -233,7 +228,7 @@ function WidgetContent() {
             )}
           </div>
         </div>
-        <footer className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-5 text-center text-sm">
+        <footer className="absolute inset-x-0 bottom-0 flex items-center justify-center pb-5 text-center text-sm">
           Powerd by{' '}
           <a href={HOST} target="_blank" className="mx-2">
             <Logo size={54} />

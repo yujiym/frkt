@@ -14,7 +14,7 @@ function handleClick(url: string) {
   }
 }
 
-export default function Home() {
+export default function SignDoc() {
   // signId
   const signId = 5
 
@@ -42,24 +42,26 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto grid max-w-4xl grid-cols-1 gap-0 px-6 pb-10 md:grid-cols-3 md:gap-8">
-        <div className="col-span-2 pt-10">
+      <div className="container mx-auto max-w-3xl px-6 pb-24 pt-10">
+        <h2 className="mb-1 text-3xl font-bold">SIGN DOCUMENT for XXXXXXX</h2>
+        <h2 className="text-xl font-bold">Contract No. 202310220000XXXXX</h2>
+        <div className="pt-10">
           <img
             src="/img/simpleContract.png"
-            className="w-full rounded-lg object-fill"
+            className="w-full border-2 border-gray-700 object-fill"
           />
         </div>
         <div className="flex flex-col justify-between pt-10">
           <button
-            className="btn btn-success mt-12 w-full"
+            className="btn btn-neutral mt-8 w-full "
             disabled={!user}
             onClick={() =>
               handleClick(
-                `http://localhost:3003/a/0002/r/0002?token=${user.accessToken!}&signId=${signId}`
+                `http://localhost:3003/a/0002/r/0002?w=true&signId=${signId}`
               )
             }
           >
-            {user ? 'Sign' : 'Login to Sign'}
+            {user ? 'Sign Document' : 'Login to Sign Document'}
           </button>
         </div>
       </div>
