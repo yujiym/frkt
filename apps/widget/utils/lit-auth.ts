@@ -1,14 +1,15 @@
 'use client'
 import { LitAbility, LitActionResource } from '@lit-protocol/auth-helpers'
-import { ProviderType, AuthMethodType } from '@lit-protocol/constants'
+import { AuthMethodType, ProviderType } from '@lit-protocol/constants'
 import {
-  WebAuthnProvider,
-  LitAuthClient,
   GoogleProvider,
+  LitAuthClient,
+  WebAuthnProvider,
 } from '@lit-protocol/lit-auth-client'
 import { LitNodeClient } from '@lit-protocol/lit-node-client'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
 import { AuthMethod, IRelayPKP, type ClaimRequest } from '@lit-protocol/types'
+import { GetClaimKeyId } from '~/utils/get-ClaimKeyId'
 import { getEnv } from '~/utils/get-env'
 
 type AuthType = 'webauthn' | 'google'
@@ -104,7 +105,8 @@ export async function getLitGooglePkp(
     relayApiKey: LIT_RELAY_API_KEY,
   }
 
-  const res = await litNodeClient.claimKeyId(claimReq)
+  //const res = await litNodeClient.claimKeyId(claimReq)
+  const res = await GetClaimKeyId(claimReq)
 
   return { authMethod, pubKey: res.pubkey }
 }

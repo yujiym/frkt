@@ -7,15 +7,18 @@ import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Client, Provider, cacheExchange, fetchExchange, useQuery } from 'urql'
 import query from '~/graphql/query'
-import { BASE_RPC_URL } from '~/utils/constants'
+import { addSigNature } from '~/hooks/safe'
+import {
+  BASE_RPC_URL,
+  GRAPHQL_API_ENDPOINT,
+  SignContractInfos,
+} from '~/utils/constants'
 import {
   getLitGooglePkp,
   getPkpWallet,
   getWebAuthnPkp,
   registerWebAuthn,
 } from '~/utils/lit-auth'
-import { addSigNature } from '~/hooks/safe'
-import { GRAPHQL_API_ENDPOINT, SignContractInfos } from '~/utils/constants'
 
 // create client instance for GraphQL
 const client = new Client({
@@ -37,7 +40,7 @@ function WidgetContent() {
   const token = searchParams.get('token')
   // const signId = searchParams.get('signId')
 
-  const signId = 4
+  const signId = 5
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
@@ -64,7 +67,7 @@ function WidgetContent() {
     query,
     variables: { signId: signId },
   })
-  const { data, fetching } = result
+  const { data } = result
 
   const queryResult: SignContractInfos = data
   console.log('data:', queryResult)
