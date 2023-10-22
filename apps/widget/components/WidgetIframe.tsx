@@ -1,8 +1,8 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'next/navigation'
 import Logo from '@@/components/svgs/Logo'
 import { HOST } from '@@/lib/const'
+import { useParams, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { getLitGooglePkp } from '~/utils/lit-auth'
 
 export default function Widget() {
@@ -22,6 +22,7 @@ export default function Widget() {
     try {
       if (authType === 'google') {
         if (!token) return
+        console.log('google Auth here')
         const res = await getLitGooglePkp(token)
         console.log(res)
       } else if (authType === 'webauthn') {
