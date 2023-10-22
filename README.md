@@ -115,10 +115,10 @@ Our team developed the SignContract widget with the Safe{Core} Account Abstracti
   GoogleAuth and WebAuthn are supported so that users can implement their preferred authentication method.
 
   - claming key with Google Auth
-    [code is here](https://github.com/yujiym/frkt/blob/main/apps/widget/utils/lit-auth.ts#L87-L110)
+    [code is here](https://github.com/yujiym/frkt/blob/main/apps/widget/utils/lit-auth.ts#L88-L112)
 
   - mint PKP with WebAuthn
-    [code is here](https://github.com/yujiym/frkt/blob/main/apps/widget/utils/lit-auth.ts#L21-L82)
+    [code is here](https://github.com/yujiym/frkt/blob/main/apps/widget/utils/lit-auth.ts#L22-L83)
 
 #### Filecoin
 
@@ -137,11 +137,11 @@ Our team developed the SignContract widget with the Safe{Core} Account Abstracti
 
   For UX optimization, we combined LitProtocol MPC and AA technologies to allow users to create wallets without being aware of the blockchain. All the user has to do is log in and press a button just like in existing apps.
 
-  [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
+  [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0x7de91d76b13440a69c54375c337828c6c64dc268)
 
   [Polygon testnet's Reciver Contract is here](https://mumbai.polygonscan.com/address/0x1d0841b8eDf79cAa822Cf7a834d47f096cA5E27a)
 
-  [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a/0)
+  [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a)
 
   [code of account abstraction implementation is here](https://github.com/yujiym/frkt/blob/main/apps/widget/hooks/biconomy.ts#L85-L162)
 
@@ -207,13 +207,13 @@ Our team developed the SignContract widget with the Safe{Core} Account Abstracti
 
   Our team has developed a gasless cross-chain NFT that combines the capabilities of Biconomy and Litprotocol to mint from the Avalanche testnet to the Polygon testnet.
 
-  [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
+  [Avalanche testnet's Sender Contract is here](https://testnet.snowtrace.io/address/0x7de91d76b13440a69c54375c337828c6c64dc268)
 
   [Polygon testnet's Reciver Contract is here](https://mumbai.polygonscan.com/address/0x1d0841b8eDf79cAa822Cf7a834d47f096cA5E27a)
 
-  [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a/1)
+  [【OpenSea】Minted NFT (on Polygon testnet)](https://testnets.opensea.io/ja/assets/mumbai/0x0b02f4e617b2c9ee58ae33b403075fa96be0b07a)
 
-  [CCIP Explorer's link](https://ccip.chain.link/address/0x10C2B0276F761074B946B23527890BcF32B8356C)
+  [CCIP Explorer's link](https://ccip.chain.link/msg/0x22ec208683382299f4e8acf32f8867c00bbbec0ae613cbf72341c08760eb2e16)
 
   [solidity's code of CCIP Contract implementation is here(sender side)](https://github.com/yujiym/frkt/blob/main/packages/contracts/contracts/cross-chain-nft/SourceMinter.sol)
 
