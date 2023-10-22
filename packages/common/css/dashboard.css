@@ -26,7 +26,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: var(--foreground);
-    --input: var(--white);
+    --input: var(--foreground);
     --ring: 240 5% 64.9%;
     --radius: 0.5rem;
   }
@@ -58,20 +58,20 @@
     @apply h-full;
   }
   body {
-    @apply min-h-screen relative overflow-x-hidden antialiased font-sans bg-background;
+    @apply bg-background relative min-h-screen overflow-x-hidden font-sans antialiased;
   }
 }
 
 @layer components {
   .btn {
-    @apply border-2 border-foreground bg-foreground flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-primary text-background hover:text-foreground disabled:bg-stone-200 disabled:cursor-not-allowed;
+    @apply border-foreground bg-foreground hover:shadow-solid hover:bg-primary text-background hover:text-foreground flex items-center justify-center rounded-md border-2 shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-stone-200;
   }
 
   .btn-outline {
-    @apply border-2 border-foreground bg-white flex items-center justify-center rounded-md hover:shadow-solid hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-none hover:bg-white disabled:bg-stone-200 disabled:cursor-not-allowed;
+    @apply border-foreground hover:shadow-solid flex items-center justify-center rounded-md border-2 bg-white shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-white disabled:cursor-not-allowed disabled:bg-stone-200;
   }
 
   .card {
-    @apply border border-zinc-800 rounded-md hover:shadow-solid shadow-none;
+    @apply hover:shadow-solid rounded-md border border-zinc-800 shadow-none;
   }
 }

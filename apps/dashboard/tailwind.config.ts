@@ -6,7 +6,7 @@ export default {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    './../../packages/common/components/**/*lit-.{js,ts,jsx,tsx}',
+    './../../packages/common/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     fontFamily: {

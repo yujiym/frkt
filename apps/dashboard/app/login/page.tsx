@@ -19,6 +19,7 @@ export default function LoginPage() {
         Signin with GitHub
       </button>
       <button
+        disabled
         className="btn-outline mb-6 h-16 w-full"
         onClick={() => signIn('google', { callbackUrl })}
       >

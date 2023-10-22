@@ -4,15 +4,12 @@ const nextConfig = {
     serverActions: true,
     externalDir: true,
   },
-  webpack: (config, { isServer }) => {
-    config.externals.push('pino-pretty', 'lokijs', 'encoding')
-    if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-        net: false,
-        tls: false,
-      }
-    }
+  webpack: (config, { webpack }) => {
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+        resource.request = resource.request.replace(/^node:/, '')
+      })
+    )
     return config
   },
 }
