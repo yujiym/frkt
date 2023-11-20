@@ -1,0 +1,8 @@
+[
+  "event NftCreated(address indexed,string,string,string,string)",
+  "function createNft(string,string,string,string,string) returns (address)",
+  "function getNfts() view returns (address[])",
+  "function nfts(uint256) view returns (address)",
+  "function nftsCount() view returns (uint256)",
+  "function transferOwnerShipDestinationMinter(address,address)"
+]

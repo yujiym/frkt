@@ -33,5 +33,11 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
+    'tailwindcss/no-custom-classname': [
+      true,
+      {
+        callees: ['classnames', 'clsx', 'ctl', 'cva', 'tv', 'cn'],
+      },
+    ],
   },
 }

@@ -1,0 +1,95 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract DestinationMinter",
+        "name": "minnter",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "receipeId",
+        "type": "string"
+      }
+    ],
+    "name": "DestinationMinterCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DestinationMintersCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "receipeId",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "router",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      }
+    ],
+    "name": "createDestinationMinter",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getDestinationMinters",
+    "outputs": [
+      {
+        "internalType": "contract DestinationMinter[]",
+        "name": "coll",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "minters",
+    "outputs": [
+      {
+        "internalType": "contract DestinationMinter",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

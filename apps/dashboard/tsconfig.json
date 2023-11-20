@@ -20,9 +20,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "~components/*": ["components/*"],
-      "~store/*": ["store/*"],
-      "~lib/*": ["lib/*"],
+      "~/*": ["*"],
       "@/*": ["./../../packages/*"],
       "@@/*": ["./../../packages/common/*"]
     }

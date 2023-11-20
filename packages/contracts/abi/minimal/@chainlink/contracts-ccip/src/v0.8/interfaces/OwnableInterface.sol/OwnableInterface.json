@@ -1,0 +1,5 @@
+[
+  "function acceptOwnership()",
+  "function owner() returns (address)",
+  "function transferOwnership(address)"
+]

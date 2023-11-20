@@ -1,0 +1,9 @@
+[
+  "error InsufficientFeeTokenAmount()",
+  "error InvalidMsgValue()",
+  "error UnsupportedDestinationChain(uint64 destChainSelector)",
+  "function ccipSend(uint64 destinationChainSelector, tuple(bytes receiver, bytes data, tuple(address token, uint256 amount)[] tokenAmounts, address feeToken, bytes extraArgs) message) payable returns (bytes32)",
+  "function getFee(uint64 destinationChainSelector, tuple(bytes receiver, bytes data, tuple(address token, uint256 amount)[] tokenAmounts, address feeToken, bytes extraArgs) message) view returns (uint256 fee)",
+  "function getSupportedTokens(uint64 chainSelector) view returns (address[] tokens)",
+  "function isChainSupported(uint64 chainSelector) view returns (bool supported)"
+]

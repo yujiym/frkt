@@ -8,6 +8,7 @@
     "test": "hardhat test",
     "clean": "hardhat clean",
     "compile": "hardhat compile",
+    "export-abi": "hardhat export-abi --no-compile",
     "deploy:scrollAlpha": "hardhat run scripts/deploy.ts --network scrollAlpha",
     "deploy:mumbai": "hardhat run scripts/deploy.ts --network mumbai",
     "deploy:baseGoerli": "hardhat run scripts/deploy.ts --network baseGoerli",
@@ -62,6 +63,7 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@nomicfoundation/hardhat-verify": "^1.0.0",
+    "@nomicfoundation/hardhat-viem": "^1.0.0",
     "@typechain/ethers-v6": "^0.4.0",
     "@typechain/hardhat": "^8.0.0",
     "@types/chai": "^4.2.0",
@@ -69,10 +71,12 @@
     "@types/node": ">=16.0.0",
     "chai": "^4.2.0",
     "ethers": "^6.4.0",
+    "hardhat-abi-exporter": "^2.10.1",
     "hardhat-gas-reporter": "^1.0.8",
     "solidity-coverage": "^0.8.0",
     "ts-node": ">=8.0.0",
     "typechain": "^8.1.0",
-    "typescript": ">=4.5.0"
+    "typescript": ">=4.5.0",
+    "viem": "^1.18.0"
   }
 }

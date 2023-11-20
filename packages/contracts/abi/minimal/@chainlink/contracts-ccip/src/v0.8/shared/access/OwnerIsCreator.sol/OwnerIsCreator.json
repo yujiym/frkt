@@ -1,0 +1,8 @@
+[
+  "constructor()",
+  "event OwnershipTransferRequested(address indexed,address indexed)",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function acceptOwnership()",
+  "function owner() view returns (address)",
+  "function transferOwnership(address)"
+]

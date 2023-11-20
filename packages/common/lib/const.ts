@@ -1,6 +1,6 @@
 export const SITE_TITLE = 'FRKT'
 export const SITE_DESCRIPTION = 'No-Code tools for Web2&3.'
-export const HOST =
+export const WWW_HOST =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
     : 'https://frkt.io'

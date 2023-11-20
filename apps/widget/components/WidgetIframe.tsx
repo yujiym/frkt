@@ -1,6 +1,6 @@
 'use client'
 import Logo from '@@/components/svgs/Logo'
-import { HOST } from '@@/lib/const'
+import { WWW_HOST } from '@@/lib/const'
 import { BiconomySmartAccountV2 } from '@biconomy/account'
 import { ChainId } from '@biconomy/core-types'
 import { PKPEthersWallet } from '@lit-protocol/pkp-ethers'
@@ -165,7 +165,7 @@ export default function Widget() {
           </div>
           <footer className="absolute inset-x-0 bottom-0 flex items-center justify-center border-t border-current py-3 text-center text-sm">
             Powerd by{' '}
-            <a href={HOST} target="_blank" className="mx-2">
+            <a href={WWW_HOST} target="_blank" className="mx-2">
               <Logo size={54} />
             </a>
           </footer>

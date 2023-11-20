@@ -1,0 +1,10 @@
+[
+  "event ChangeApproveStatus(string,string,uint256,bool)",
+  "event SignContractCreated(string,string,uint256,string,uint256,string,address[],address)",
+  "event SignatureAdded(string,string,uint256,string)",
+  "function addSignature(string,string,uint256,string)",
+  "function getApproveStatus(uint256) view returns (bool)",
+  "function isOwner(uint256,address) view returns (bool)",
+  "function setUpSignContract(string,string,string,uint256,string,address[],address)",
+  "function signContracts(uint256) view returns (string, address, uint256, bool, string)"
+]

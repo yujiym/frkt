@@ -1,17 +1,22 @@
+import { redirect } from 'next/navigation'
 import { KeySquare } from 'lucide-react'
 import { SITE_TITLE } from '@@/lib/const'
 import Logo from '@@/components/svgs/Logo'
-import { HOST } from '@@/lib/const'
+import { WWW_HOST } from '@@/lib/const'
+import { auth } from '~/auth'
 
 export const metadata = {
   title: `Login | ${SITE_TITLE} Dashboard`,
 }
 
-export default function LoginLayout({
+export default async function LoginLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await auth()
+  if (session) redirect('/home')
+
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       <div className="bg-primary flex flex-1 lg:basis-7/12">
@@ -27,7 +32,7 @@ export default function LoginLayout({
             This is an alpha version.
             <br />
             Pre-registration is available from{' '}
-            <a className="underline" href={`${HOST}#presignup`}>
+            <a className="underline" href={`${WWW_HOST}#presignup`}>
               here
             </a>
             .

@@ -1,0 +1,7 @@
+[
+  "event DestinationMinterCreated(address indexed,string)",
+  "function DestinationMintersCount() view returns (uint256)",
+  "function createDestinationMinter(string,address,address) returns (address)",
+  "function getDestinationMinters() view returns (address[])",
+  "function minters(uint256) view returns (address)"
+]

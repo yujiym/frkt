@@ -1,0 +1,10 @@
+[
+  "error FailedToWithdrawEth(address owner, address target, uint256 value)",
+  "event OwnershipTransferRequested(address indexed from, address indexed to)",
+  "event OwnershipTransferred(address indexed from, address indexed to)",
+  "function acceptOwnership()",
+  "function owner() view returns (address)",
+  "function transferOwnership(address to)",
+  "function withdraw(address beneficiary)",
+  "function withdrawToken(address beneficiary, address token)"
+]

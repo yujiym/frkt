@@ -1,0 +1,7 @@
+[
+  "event SourceMinterCreated(address indexed,string)",
+  "function SourceMintersCount() view returns (uint256)",
+  "function createSourceMinter(string,address,address) returns (address)",
+  "function getSourceMinters() view returns (address[])",
+  "function minters(uint256) view returns (address)"
+]

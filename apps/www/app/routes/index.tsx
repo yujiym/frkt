@@ -3,13 +3,15 @@ import type { Context } from 'sonik'
 const LINKS = [
   {
     name: '🫠 Demo',
-    href: 'https://example.com',
-    memo: '⚠️ Demo only runs in testnet, but use at your own risk.',
+    href: '',
+    memo: "Check out&nbsp;&nbsp;🎦 <a href='https://ethglobal.com/showcase/frkt-zzggk' target='_blank' rel='noopener' class='underline'>demo video</a>, 📑 <a class='underline' href='https://docs.google.com/presentation/d/1PrB03iRHlScmz-gmgh67dGJpIA4d9-a2yl7fr9EMCmY/preview?slide=id.g35f391192_00' target='_blank' rel='noopener'>slide</a>",
+    klass: 'line-through',
   },
-  { name: '👩‍💻 Dashboard', href: 'https://example.com' },
+  { name: '👩‍💻 Dashboard', href: '', klass: 'line-through' },
   {
     name: '📮 Contact',
     href: 'https://tally.so#tally-open=nP9vr0&tally-emoji-text=👋&tally-emoji-animation=wave',
+    klass: '',
   },
 ]
 
@@ -31,8 +33,15 @@ export default function Index(c: Context) {
             <ul class="list mb-12 text-right text-3xl leading-loose">
               {LINKS.map((item) => (
                 <li key={item.name.toLocaleLowerCase()} class="pb-2">
-                  {item.memo && <p class="text-xs">{item.memo}</p>}
-                  <a class="hover:border-b-2" href={item.href}>
+                  {item.memo && (
+                    <p
+                      class="text-lg"
+                      dangerouslySetInnerHTML={{
+                        __html: item.memo,
+                      }}
+                    ></p>
+                  )}
+                  <a class={`${item.klass} hover:border-b-2`} href={item.href}>
                     {item.name}
                   </a>
                 </li>

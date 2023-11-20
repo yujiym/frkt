@@ -20,7 +20,7 @@ export default function RootLayout({
         <meta property="og:url" content="https://frkt.io" />
         <meta
           property="og:description"
-          content="FRKT(/furɪkt/) provides a frictionless UX for any app"
+          content="FRKT(/frɪkt/) provides a frictionless UX for any app"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://frkt.io/static/ogp.png" />

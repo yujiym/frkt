@@ -1,5 +1,7 @@
 import '@nomicfoundation/hardhat-toolbox'
 import 'dotenv/config'
+import 'hardhat-abi-exporter'
+import '@nomicfoundation/hardhat-viem'
 import { HardhatUserConfig } from 'hardhat/config'
 
 const {
@@ -69,6 +71,20 @@ const config: HardhatUserConfig = {
       },
     ],
   },
+  abiExporter: [
+    {
+      path: './abi/json',
+      format: 'json',
+    },
+    {
+      path: './abi/minimal',
+      format: 'minimal',
+    },
+    {
+      path: './abi/fullName',
+      format: 'fullName',
+    },
+  ],
 }
 
 export default config

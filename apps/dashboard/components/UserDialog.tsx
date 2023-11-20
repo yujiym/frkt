@@ -3,7 +3,7 @@
 
 import { LogOut, Save } from 'lucide-react'
 import { signOut } from 'next-auth/react'
-import WalletDialog from '~components/WalletDialog'
+import WalletDialog from '~/components/WalletDialog'
 import { Dialog, DialogContent, DialogTrigger } from '@@/components/ui/Dialog'
 import {
   AlertDialog,

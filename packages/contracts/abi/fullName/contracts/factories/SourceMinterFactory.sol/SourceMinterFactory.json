@@ -1,0 +1,7 @@
+[
+  "event SourceMinterCreated(address indexed minter, string receipeId)",
+  "function SourceMintersCount() view returns (uint256)",
+  "function createSourceMinter(string receipeId, address router, address link) returns (address)",
+  "function getSourceMinters() view returns (address[] coll)",
+  "function minters(uint256) view returns (address)"
+]

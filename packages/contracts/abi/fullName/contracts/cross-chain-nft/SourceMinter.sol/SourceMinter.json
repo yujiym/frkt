@@ -1,0 +1,13 @@
+[
+  "constructor(address router, address link)",
+  "error FailedToWithdrawEth(address owner, address target, uint256 value)",
+  "event MessageSent(bytes32 messageId)",
+  "event OwnershipTransferRequested(address indexed from, address indexed to)",
+  "event OwnershipTransferred(address indexed from, address indexed to)",
+  "function acceptOwnership()",
+  "function mint(uint64 destinationChainSelector, address receiver, address to, uint8 payFeesIn)",
+  "function owner() view returns (address)",
+  "function transferOwnership(address to)",
+  "function withdraw(address beneficiary)",
+  "function withdrawToken(address beneficiary, address token)"
+]

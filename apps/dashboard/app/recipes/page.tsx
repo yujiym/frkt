@@ -46,7 +46,9 @@ const RecipeCards = () => (
   </>
 )
 
-export default function RecipesPage() {
+export default function RecipesPage({ session }: { session: any }) {
+  console.log('sss::', session)
+
   return (
     <>
       <div className="flex items-center justify-center px-4 pb-8 pt-16">

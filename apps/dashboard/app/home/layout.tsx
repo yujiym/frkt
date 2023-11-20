@@ -1,4 +1,4 @@
-import DashboardLayout from '~components/DashboardLayout'
+import DashboardLayout from '~/components/DashboardLayout'
 import { SITE_TITLE } from '@@/lib/const'
 
 export const metadata = {

@@ -25,7 +25,11 @@ export default function AppForm() {
       <h3 className="mb-6 text-xl font-bold">Basic</h3>
       <div className="mb-4">
         <Label>Name</Label>
-        <Input {...register('name')} placeholder="Your app name" />
+        <Input
+          {...register('name')}
+          placeholder="Your app name"
+          defaultValue="My Awesome App"
+        />
       </div>
       <div className="mb-4">
         <Label>Deploy chain</Label>

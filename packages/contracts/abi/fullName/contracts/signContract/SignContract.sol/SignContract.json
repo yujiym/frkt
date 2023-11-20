@@ -1,0 +1,10 @@
+[
+  "event ChangeApproveStatus(string appId, string receipeId, uint256 signId, bool approveStatus)",
+  "event SignContractCreated(string appId, string receipeId, uint256 signId, string name, uint256 required, string uri, address[] owners, address safeAddress)",
+  "event SignatureAdded(string appId, string receipeId, uint256 signId, string signature)",
+  "function addSignature(string _appId, string _receipeId, uint256 _signId, string _signature)",
+  "function getApproveStatus(uint256 _signId) view returns (bool)",
+  "function isOwner(uint256, address) view returns (bool)",
+  "function setUpSignContract(string _appId, string _receipeId, string _initName, uint256 _initRequired, string _initUri, address[] _owners, address _safeAddress)",
+  "function signContracts(uint256) view returns (string signName, address safeAddress, uint256 required, bool approveStatus, string fileUri)"
+]
